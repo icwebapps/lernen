@@ -1,10 +1,30 @@
 version: 2
 jobs:
-  deploy:
+  build:
+    docker:
+      - image: circleci/php:7.1.5-browsers
     working_directory: ~/app
     steps:
       - checkout
-
+      - run:
+          name: Install Composer
+          command: bash .circleci/composer.sh
+      - run:
+          name: Install Composer Dependencies
+          command: composer install --no-progress --no-suggest
+      - run:
+          name: Setup Environment
+          command: |
+            php artisan key:generate
+      - run:
+          name: Running tests
+          command: ./vendor/bin/phpunit
+  deploy:
+    docker:
+      - image: circleci/php:7.1.5-browsers 
+    working_directory: ~/app
+    steps:
+      - checkout
       - run:
           name: Installing deployment dependencies
           working_directory: /
@@ -12,18 +32,21 @@ jobs:
             sudo apt-get -y -qq update
             sudo apt-get install python-pip python-dev build-essential
             sudo pip install awsebcli --upgrade
-
       - run:
           name: Deploying
-          command: eb deploy $CIRCLE_BRANCH-my-application
+          command: |
+            bash .circleci/setup-eb.sh
+            eb deploy
 
 workflows:
   version: 2
-  build:
+  build-and-deploy:
     jobs:
+      - build
       - deploy:
+          requires:
+            - build 
           filters:
             branches:
               only:
-                - staging
                 - master
