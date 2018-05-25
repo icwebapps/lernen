@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function () {
-    return view('welcome', [ "rows" => 0 ]);
+    return view('welcome', [ "rows" => App\User::count() ]);
 });
