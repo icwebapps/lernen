@@ -25,11 +25,12 @@ jobs:
           command: composer install --no-progress --no-suggest
       - run:
           name: Setup Environment
-          command: |
-            php artisan key:generate
+          command: php artisan key:generate
       - run:
           name: Database
-          command: mysql -h 127.0.0.1 -u root -e "create database lernen_test;"
+          command: |
+            sudo apt install -y mysql-client
+            mysql -h 127.0.0.1 -u root -e "create database lernen_test;"
       - run:
           name: Running tests
           command: ./vendor/bin/phpunit
