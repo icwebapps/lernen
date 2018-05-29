@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome', [ "rows" => App\User::count() ]);
-});
+Route::get('/', 'Auth\LoginController@index');
+Route::post('/', 'Auth\LoginController@check_login');
