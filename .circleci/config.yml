@@ -27,11 +27,6 @@ jobs:
           name: Setup Environment
           command: php artisan key:generate
       - run:
-          name: Database
-          command: |
-            sudo apt -y install mysql-server-5.5
-            mysql -h 127.0.0.1 -u root -e "create database lernen_test;"
-      - run:
           name: Running tests
           command: ./vendor/bin/phpunit
   deploy:
