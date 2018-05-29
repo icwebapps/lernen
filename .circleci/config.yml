@@ -29,7 +29,7 @@ jobs:
       - run:
           name: Database
           command: |
-            sudo apt install -y mysql-client
+            sudo apt install -y mysql-client-5.5
             mysql -h 127.0.0.1 -u root -e "create database lernen_test;"
       - run:
           name: Running tests
