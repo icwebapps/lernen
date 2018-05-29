@@ -4,15 +4,14 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
+use App\User;
 
 class LoginTest extends TestCase
 {
-    public function testForRequiredFields()
+  
+    public function testForInvalidDetails()
     {
-      $response = $this->post('/login', [
-        'email' => '',
-        'password' => ''
-      ]);
-      $response->assertSeeText('The email field is required.');
+      // TODO
     }
 }
