@@ -27,6 +27,10 @@ jobs:
           name: Setup Environment
           command: php artisan key:generate
       - run:
+          name: Database
+          command: |
+            sudo apt-get install php7.1-mysql
+      - run:
           name: Running tests
           command: ./vendor/bin/phpunit
   deploy:
