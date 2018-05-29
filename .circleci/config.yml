@@ -30,7 +30,7 @@ jobs:
           name: Database
           command: |
             sudo apt-get update
-            sudo apt-get -y install mysql-client
+            sudo apt-get -y install mysql-client php7.1-pdo php7.1-mysql
             mysql -h 127.0.0.1 -u root -e "create database lernen_test;"
       - run:
           name: Running tests
