@@ -7,12 +7,16 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-  function index()
+  public function index()
   {
+    if (Auth::user())
+    {
+      return redirect('/dashboard');
+    }
     return view('login');
   }
 
-  function check_login(Request $request)
+  public function check_login(Request $request)
   {
     $this->validate($request, [
       'email' => 'required|email',
@@ -30,5 +34,11 @@ class LoginController extends Controller
     else {
       return back()->with('error', 'Incorrect login details');
     }
+  }
+
+  public function logout()
+  {
+    Auth::logout();
+    return redirect('/');
   }
 }

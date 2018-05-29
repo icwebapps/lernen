@@ -8,8 +8,8 @@
         <title>Lernen</title>
       </head>
       <body>
-        <p>Hello Boaz.</p>
-        <form method="post" action="/">
+        <p>Login.</p>
+        <form method="post" action="/login">
           {{ csrf_field() }}
         <input type="text" name="email" value="" placeholder="example@email.com"/>
         <input type="password" name="password" value="" />
