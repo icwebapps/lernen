@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome', [ "rows" => App\User::count() ]);
-});
+Route::get('/', 'HomeController@index');
+Route::get('/login', 'Auth\LoginController@index')->name('login');
+Route::get('/logout', 'Auth\LoginController@logout');
+Route::post('/login', 'Auth\LoginController@check_login');
+
+Route::get('/dashboard', 'DashboardController@index')->middleware('auth');

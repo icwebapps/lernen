@@ -3,6 +3,17 @@ jobs:
   build:
     docker:
       - image: circleci/php:7.1.5-browsers
+        environment:
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_DB: lernen_test
+          MYSQL_USER: root
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_PASSWORD:
+      - image: mysql:5.7
+        command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin --innodb-large-prefix=true --innodb-file-format=Barracuda
+        environment:
+          MYSQL_USER: root
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
     working_directory: ~/app
     steps:
       - checkout
@@ -14,8 +25,14 @@ jobs:
           command: composer install --no-progress --no-suggest
       - run:
           name: Setup Environment
+          command: php artisan key:generate
+      - run:
+          name: Database
           command: |
-            php artisan key:generate
+            sudo apt-get -y -qq update
+            sudo apt-get -y install mysql-client
+            mysql -h 127.0.0.1 -u root -e "create database lernen_test;"
+            sudo docker-php-ext-install pdo_mysql
       - run:
           name: Running tests
           command: ./vendor/bin/phpunit
