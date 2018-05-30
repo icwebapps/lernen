@@ -92,7 +92,7 @@ input[type="text"], input[type="password"]{border:1px solid #E2E4E5;border-radiu
 .overlay-indent{margin-left:12px}
 .header.header-extended {height: 350px;}
 .header.header-extended .logo {height: 100px;margin: 200px 0 0;}
-input[type="button"],input[type="submit"]{border: 1px solid #E4E5E6;background:#fff;font-family:'Open Sans',sans-serif;font-weight:800;color: #279dff;text-transform:uppercase;font-size:14px;border-radius: 17px;padding:12px;}
+input[type="button"],input[type="submit"]{border: 1px solid #E4E5E6;background:#fff;font-family:'Open Sans',sans-serif;font-weight: 600;color: #279dff;font-size:14px;border-radius: 17px;padding:12px;width: 100%;}
 #login-form{display:flex;flex-direction:column;width: 310px;}
 #login-form input{margin-bottom: 20px;outline: none;}
 .login-container {width: 100%;text-align: -webkit-center;margin: 45px 0 0;}

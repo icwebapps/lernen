@@ -6,27 +6,23 @@ export default class Field extends Component {
     super();
     this.state = {
       value: props.value,
-      error: false
+      error: props.error
     };
   }
   
   onChange(e) {
     const val = e.target.value;
-    this.setState({ value: val });
     this.props.onChange(e);
+    this.setState({ value: val, error: false });
     this.checkRequired(val);
   }
 
   checkRequired(val) {
     if (this.props.required) {
       if (val == "") {
-        const msg = 'This field is required.';
+        const msg = this.props.placeholder + ' is required.';
         this.setState({ error: msg });
-        this.props.updateError(msg);
-      }
-      else {
-        this.setState({ error: false });
-        this.props.updateError('');
+        this.props.onError(msg);
       }
     }
   }
@@ -39,7 +35,7 @@ export default class Field extends Component {
         name={this.props.name}
         value={this.state.value}
         onChange={(e) => this.onChange(e)}
-        className={ this.state.error ? "error" : "" } />
+        className={ (this.state.error || this.props.error) ? "error" : "" } />
     ); 
   }
 }
