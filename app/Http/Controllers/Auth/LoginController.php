@@ -29,10 +29,10 @@ class LoginController extends Controller
     ];
 
     if (Auth::attempt($user_data)) {
-      return redirect('dashboard');
+      return json_encode(["login" => 1]);
     }
     else {
-      return back()->with('error', 'Incorrect login details');
+      return json_encode(["login" => 0, "error" => "Incorrect login details"]);
     }
   }
 
