@@ -19,13 +19,7 @@
 
     <div class="width-fill">
       <div class="login-container">
-        <div class="login-form">
-          <form method="post" action="/login">
-            {{ csrf_field() }}
-            <input type="text" placeholder="Email address" /> 
-            <input type="password" placeholder="Password" />
-            <input type="button" value="Log in" />
-          </form>
+        <div id="login-form">
         </div>
 
         @if (count($errors) > 0)
