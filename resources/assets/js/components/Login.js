@@ -8,7 +8,8 @@ export default class Login extends Component {
     super();
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      error: ''
     };
   }
   
@@ -30,12 +31,17 @@ export default class Login extends Component {
     });
   }
 
+  storeError(msg) {
+    this.setState({ error: msg });
+  }
+
   render() {
     return (
       <form method="post" onSubmit={(e)=>this.onSubmit(e)}>
-        <EmailField value={this.state.email} onChange={(e) => this.onChange(e)} /> 
+        <EmailField required="true" value={this.state.email} onChange={(e) => this.onChange(e)} updateError={(msg) => this.storeError(msg)}/> 
         <input type="password" placeholder="Password" name="password" value={this.state.password} onChange={(e) => this.onChange(e)} />
         <input type="submit" value="Log in" />
+        { this.state.error != '' ? <div className="form-errors">{this.state.error}</div> : '' }
       </form>
     );
   }

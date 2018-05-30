@@ -9,8 +9,7 @@ export default class EmailField extends Component {
         type="text"
         name="email"
         placeholder="Email Address"
-        value={this.props.value}
-        onChange={this.props.onChange}
+        {...this.props}
       />
     );
   }

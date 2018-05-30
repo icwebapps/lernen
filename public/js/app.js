@@ -55586,7 +55586,8 @@ var Login = function (_Component) {
 
     _this.state = {
       email: '',
-      password: ''
+      password: '',
+      error: ''
     };
     return _this;
   }
@@ -55611,6 +55612,11 @@ var Login = function (_Component) {
       });
     }
   }, {
+    key: 'storeError',
+    value: function storeError(msg) {
+      this.setState({ error: msg });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -55620,13 +55626,20 @@ var Login = function (_Component) {
         { method: 'post', onSubmit: function onSubmit(e) {
             return _this2.onSubmit(e);
           } },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__EmailField__["a" /* default */], { value: this.state.email, onChange: function onChange(e) {
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__EmailField__["a" /* default */], { required: 'true', value: this.state.email, onChange: function onChange(e) {
             return _this2.onChange(e);
+          }, updateError: function updateError(msg) {
+            return _this2.storeError(msg);
           } }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'password', placeholder: 'Password', name: 'password', value: this.state.password, onChange: function onChange(e) {
             return _this2.onChange(e);
           } }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'submit', value: 'Log in' })
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'submit', value: 'Log in' }),
+        this.state.error != '' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'form-errors' },
+          this.state.error
+        ) : ''
       );
     }
   }]);
@@ -55651,6 +55664,8 @@ if (document.getElementById('login-form')) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Field__ = __webpack_require__(60);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -55675,13 +55690,11 @@ var EmailField = function (_Component) {
   _createClass(EmailField, [{
     key: 'render',
     value: function render() {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Field__["a" /* default */], {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Field__["a" /* default */], _extends({
         type: 'text',
         name: 'email',
-        placeholder: 'Email Address',
-        value: this.props.value,
-        onChange: this.props.onChange
-      });
+        placeholder: 'Email Address'
+      }, this.props));
     }
   }]);
 
@@ -55719,7 +55732,8 @@ var Field = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Field.__proto__ || Object.getPrototypeOf(Field)).call(this));
 
     _this.state = {
-      value: props.value
+      value: props.value,
+      error: false
     };
     return _this;
   }
@@ -55727,8 +55741,24 @@ var Field = function (_Component) {
   _createClass(Field, [{
     key: 'onChange',
     value: function onChange(e) {
-      this.setState({ value: e.target.value });
+      var val = e.target.value;
+      this.setState({ value: val });
       this.props.onChange(e);
+      this.checkRequired(val);
+    }
+  }, {
+    key: 'checkRequired',
+    value: function checkRequired(val) {
+      if (this.props.required) {
+        if (val == "") {
+          var msg = 'This field is required.';
+          this.setState({ error: msg });
+          this.props.updateError(msg);
+        } else {
+          this.setState({ error: false });
+          this.props.updateError('');
+        }
+      }
     }
   }, {
     key: 'render',
@@ -55742,7 +55772,8 @@ var Field = function (_Component) {
         value: this.state.value,
         onChange: function onChange(e) {
           return _this2.onChange(e);
-        } });
+        },
+        className: this.state.error ? "error" : "" });
     }
   }]);
 

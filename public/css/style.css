@@ -96,3 +96,5 @@ input[type="button"],input[type="submit"]{border: 1px solid #E4E5E6;background:#
 #login-form{display:flex;flex-direction:column;width: 310px;}
 #login-form input{margin-bottom: 20px;outline: none;}
 .login-container {width: 100%;text-align: -webkit-center;margin: 45px 0 0;}
+input[type="text"].error, input[type="password"].error {border: 1px solid #d23838;}
+.form-errors {font-size: 13px;border: 1px solid #d23838;background: #d23838;color: #fff;border-radius: 10px;padding: 11px;font-weight: 600;}
