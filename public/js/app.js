@@ -55681,20 +55681,53 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var EmailField = function (_Component) {
   _inherits(EmailField, _Component);
 
-  function EmailField() {
+  function EmailField(props) {
     _classCallCheck(this, EmailField);
 
-    return _possibleConstructorReturn(this, (EmailField.__proto__ || Object.getPrototypeOf(EmailField)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (EmailField.__proto__ || Object.getPrototypeOf(EmailField)).call(this));
+
+    _this.state = {
+      value: props.value
+    };
+    return _this;
   }
 
   _createClass(EmailField, [{
+    key: 'onChange',
+    value: function onChange(e) {
+      var val = e.target.value;
+      this.setState({ value: val });
+      this.validateEmail(val);
+      this.props.onChange(e);
+    }
+  }, {
+    key: 'validateEmail',
+    value: function validateEmail(val) {
+      var emailValid = val.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+      if (!emailValid) {
+        var msg = 'Invalid email address.';
+        this.setState({ error: msg });
+        this.props.updateError(msg);
+      } else {
+        this.setState({ error: false });
+        this.props.updateError('');
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Field__["a" /* default */], _extends({
         type: 'text',
         name: 'email',
         placeholder: 'Email Address'
-      }, this.props));
+      }, this.props, {
+        onChange: function onChange(e) {
+          return _this2.onChange(e);
+        },
+        value: this.state.value
+      }));
     }
   }]);
 
