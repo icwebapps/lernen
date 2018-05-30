@@ -36381,12 +36381,16 @@ var Login = function (_Component) {
   }, {
     key: 'onSubmit',
     value: function onSubmit(e) {
+      var _this2 = this;
+
       e.preventDefault();
       __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('/login', _extends({}, this.state, {
         _token: $('meta[name="csrf-token"]').attr('content')
       })).then(function (response) {
         if (response.data.login == 1) {
           location.href = '/dashboard';
+        } else {
+          _this2.displayError("Login details were incorrect");
         }
       });
     }
@@ -36398,20 +36402,20 @@ var Login = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'form',
         { method: 'post', onSubmit: function onSubmit(e) {
-            return _this2.onSubmit(e);
+            return _this3.onSubmit(e);
           } },
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__EmailField__["a" /* default */], { required: 'true', value: this.state.email, onChange: function onChange(e) {
-            return _this2.onChange(e);
+            return _this3.onChange(e);
           }, onError: function onError(msg) {
-            return _this2.displayError(msg);
+            return _this3.displayError(msg);
           } }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'password', placeholder: 'Password', name: 'password', value: this.state.password, onChange: function onChange(e) {
-            return _this2.onChange(e);
+            return _this3.onChange(e);
           } }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'submit', value: 'Log in' }),
         this.state.error != '' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(

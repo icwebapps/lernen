@@ -28,6 +28,9 @@ export default class Login extends Component {
       if (response.data.login == 1) {
         location.href = '/dashboard';
       }
+      else {
+        this.displayError("Login details were incorrect");
+      }
     });
   }
 
