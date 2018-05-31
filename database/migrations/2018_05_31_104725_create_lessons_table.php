@@ -24,8 +24,8 @@ class CreateLessonsTable extends Migration
             $table->boolean('completed')->default(false);
             $table->timestamps();
 
-            $table->foreign('tutor_id')->references('id')->on('tutors');
-            $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('tutor_id')->references('user_id')->on('tutors');
+            $table->foreign('student_id')->references('user_id')->on('students');
         });
     }
 

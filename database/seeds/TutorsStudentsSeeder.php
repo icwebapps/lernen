@@ -15,16 +15,16 @@ class TutorsStudentsSeeder extends Seeder
     public function run()
     {
         Student::create([
-          'id' => User::where('name', 'Jason Lipowicz')->first()->id
+          'user_id' => User::where('name', 'Jason Lipowicz')->first()->id
         ]);
         Student::create([
-          'id' => User::where('name', 'Alex Zakon')->first()->id
+          'user_id' => User::where('name', 'Alex Zakon')->first()->id
         ]);
         Tutor::create([
-          'id' => User::where('name', 'Boaz Francis')->first()->id
+          'user_id' => User::where('name', 'Boaz Francis')->first()->id
         ]);
         Tutor::create([
-          'id' => User::where('name', 'Shravan Nageswaran')->first()->id
+          'user_id' => User::where('name', 'Shravan Nageswaran')->first()->id
         ]);
     }
 }

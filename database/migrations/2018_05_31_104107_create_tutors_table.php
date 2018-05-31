@@ -14,10 +14,10 @@ class CreateTutorsTable extends Migration
     public function up()
     {
         Schema::create('tutors', function (Blueprint $table) {
-            $table->integer('id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

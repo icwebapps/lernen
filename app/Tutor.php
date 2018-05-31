@@ -11,6 +11,6 @@ class Tutor extends Model
   }
 
   public function lessons() {
-    return $this->hasMany('App\Lesson', 'foreign_key', 'tutor_id');
+    return $this->hasMany('App\Lesson', 'tutor_id', 'user_id');
   }
 }

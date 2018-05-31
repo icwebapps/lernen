@@ -11,6 +11,6 @@ class Student extends Model
   }
 
   public function lessons() {
-    return $this->hasMany('App\Lesson', 'foreign_key', 'student_id');
+    return $this->hasMany('App\Lesson', 'student_id', 'user_id');
   }
 }

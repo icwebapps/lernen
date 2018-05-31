@@ -15,16 +15,16 @@ class LessonsSeeder extends Seeder
     public function run()
     {
         Lesson::create([
-          'tutor_id' => Tutor::find(4)->id,
-          'student_id' => Student::find(1)->id,
+          'tutor_id' => 4,
+          'student_id' => 1,
           'subject' => 'A-level Maths',
           'date' => date("Y-m-d", strtotime("+7 days")),
           'time' => '12:00:00'
         ]);
 
         Lesson::create([
-          'tutor_id' => Tutor::find(4)->id,
-          'student_id' => Student::find(1)->id,
+          'tutor_id' => 4,
+          'student_id' => 1,
           'subject' => 'A-level Maths',
           'date' => date("Y-m-d", strtotime("+10 days")),
           'time' => '14:00:00'
