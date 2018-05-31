@@ -51,7 +51,9 @@ jobs:
             sudo pip install awsebcli --upgrade
       - run:
           name: Compile and minify assets
-          command: npm run production
+          command: |
+            sudo apt-get install nodejs npm
+            npm run production
       - run:
           name: Deploying
           command: |
