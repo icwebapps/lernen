@@ -29,8 +29,8 @@ class LoginTest extends TestCase
         'password' => 'testpass123'
       ]);
 
-      $response->assertStatus(302);
-      $response->assertRedirect('/dashboard');      
+      $response->assertStatus(200);
+      $response->assertJson([ 'login' => 1 ]);      
       $this->assertAuthenticatedAs($user);
     }
 
@@ -42,7 +42,8 @@ class LoginTest extends TestCase
             'email' => $user->email,
             'password' => 'invalid'
         ]);
-        $response->assertRedirect('/login');
+        $response->assertStatus(200);
+        $response->assertJson([ 'login' => 0 ]);
         $this->assertGuest();
     }
     

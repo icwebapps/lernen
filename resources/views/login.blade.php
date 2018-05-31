@@ -1,29 +1,38 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout')
 
-        <title>Lernen</title>
-      </head>
-      <body>
-        <p>Login.</p>
-        <form method="post" action="/login">
-          {{ csrf_field() }}
-        <input type="text" name="email" value="" placeholder="example@email.com"/>
-        <input type="password" name="password" value="" />
-        <input type="submit" name="submit" value="Login">
-      </form>
+@section('title', 'Log in')
 
-      @if (count($errors) > 0)
-        @foreach ($errors->all() as $error)
-          {{ $error }}
-        @endforeach
-      @endif
+@section('content')
+  <div class="main">
 
-      @if ($message = Session::get('error'))
-      {{ $message }}
-      @endif
-    </body>
-</html>
+    <div class="header header-extended">
+      <div class="header-left">
+        &nbsp;
+      </div>
+      <div class="header-center">
+        <img src="/images/logo.png" class="logo" />
+      </div>
+      <div class="header-right">
+        &nbsp;
+      </div>
+    </div>
+
+    <div class="width-fill">
+      <div class="login-container">
+        <div id="login-form">
+        </div>
+
+        @if (count($errors) > 0)
+          @foreach ($errors->all() as $error)
+            {{ $error }}
+          @endforeach
+        @endif
+
+        @if ($message = Session::get('error'))
+        {{ $message }}
+        @endif
+      </div>
+    </div>
+    
+  </div>
+  @endsection

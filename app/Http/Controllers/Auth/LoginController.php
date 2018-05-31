@@ -18,21 +18,16 @@ class LoginController extends Controller
 
   public function check_login(Request $request)
   {
-    $this->validate($request, [
-      'email' => 'required|email',
-      'password' => 'required'
-    ]);
-
     $user_data = [
       'email' => $request->get('email'),
       'password' => $request->get('password')
     ];
 
     if (Auth::attempt($user_data)) {
-      return redirect('dashboard');
+      return json_encode(["login" => 1]);
     }
     else {
-      return back()->with('error', 'Incorrect login details');
+      return json_encode(["login" => 0, "error" => "Incorrect login details"]);
     }
   }
 
