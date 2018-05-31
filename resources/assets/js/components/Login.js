@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import EmailField from './EmailField';
+import PasswordField from './PasswordField';
 
 export default class Login extends Component {
   constructor() {
@@ -42,7 +43,7 @@ export default class Login extends Component {
     return (
       <form method="post" onSubmit={(e)=>this.onSubmit(e)}>
         <EmailField required="true" value={this.state.email} onChange={(e) => this.onChange(e)} onError={(msg) => this.displayError(msg)}/> 
-        <input type="password" placeholder="Password" name="password" value={this.state.password} onChange={(e) => this.onChange(e)} />
+        <PasswordField required="true" value={this.state.password} onChange={(e) => this.onChange(e)} onError={(msg) => this.displayError(msg)} />
         <input type="submit" value="Log in" />
         { this.state.error != '' ? <div className="form-errors">{this.state.error}</div> : '' }
       </form>
