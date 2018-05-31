@@ -38,7 +38,7 @@ jobs:
           command: ./vendor/bin/phpunit
   deploy:
     docker:
-      - image: circleci/php:7.1.5-browsers 
+      - image: circleci/node:6.10.3
     working_directory: ~/app
     steps:
       - checkout
@@ -52,7 +52,6 @@ jobs:
       - run:
           name: Compile and minify assets
           command: |
-            sudo apt-get install nodejs npm
             npm install
             npm run production
       - run:
