@@ -50,6 +50,9 @@ jobs:
             sudo apt-get install python-pip python-dev build-essential
             sudo pip install awsebcli --upgrade
       - run:
+          name: Compile and minify assets
+          command: npm run production
+      - run:
           name: Deploying
           command: |
             bash .circleci/setup-eb.sh
