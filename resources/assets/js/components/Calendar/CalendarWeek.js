@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import CalendarCell from './CalendarCell';
 
 export default class CalendarWeek extends Component {
   constructor(props) {
@@ -14,13 +15,14 @@ export default class CalendarWeek extends Component {
       <div className="calendar-week">
         {
           [...Array(7)].map((_, i) => {
+            // Format date
             const thisDate = new Date(this.props.start);
             thisDate.setDate(this.props.start.getDate() + i);
-            return (
-              <div className="calendar-cell">
-                <div className="calendar-number">{thisDate.getDate()}</div>
-              </div>
-            )
+            // Get events on this date
+            const todaysEvents = this.props.events.filter(e => {
+              return e.date == thisDate.getDate() && e.month == thisDate.getMonth() + 1
+            });
+            return <CalendarCell key={"cell"+i} number={thisDate.getDate()} events={todaysEvents} />;
           })
       }
       </div>

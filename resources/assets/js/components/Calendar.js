@@ -22,7 +22,7 @@ export default class Calendar extends Component {
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     return (
       <div className="calendar-days">
-        { days.map(d => <div className="calendar-day" key={d}>{d}</div> )}
+        { days.map(d => <div className="calendar-day" key={d}>{d}</div>) }
     </div>
     );
   }
@@ -33,7 +33,7 @@ export default class Calendar extends Component {
       [...Array(this.state.weeksToShow)].map((_, i) => {
         const thisWeekStart = new Date(startDate);
         thisWeekStart.setDate(startDate.getDate() + i*7);
-        return <CalendarWeek key={i} start={thisWeekStart} />
+        return <CalendarWeek key={"week"+i} start={thisWeekStart} events={this.state.events} />
       })
     );
   }
