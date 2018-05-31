@@ -17,3 +17,5 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::post('/login', 'Auth\LoginController@check_login');
 
 Route::get('/dashboard', 'DashboardController@index')->middleware('auth');
+Route::get('/calendar', 'CalendarController@index')->middleware('auth');
+Route::get('/calendar/events', 'CalendarController@events')->middleware('auth');

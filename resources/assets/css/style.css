@@ -67,7 +67,7 @@ input[type="text"], input[type="password"]{border:1px solid #E2E4E5;border-radiu
 .calendar-day{color:#ADAEBF;font-size:14px;flex:1;padding-left:15px}
 .calendar-cell{border:1px solid #DDD;background:#fff;flex:1;height:130px}
 .calendar-number{color:#AEB2BE;font-weight:600;font-size:13px;margin:20px 25px 0}
-.calendar-widget{display:flex;flex-direction:column;width:100%;background:#fff}
+#calendar-widget{display:flex;flex-direction:column;width:100%;background:#fff}
 .calendar-days{display:flex;padding:50px 10px 25px}
 .calendar-grid{display:flex;flex-direction:column}
 .calendar-week{display:flex}

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
-import EmailField from './EmailField';
-import PasswordField from './PasswordField';
+import EmailField from './Form/EmailField';
+import PasswordField from './Form/PasswordField';
 
 export default class Login extends Component {
   constructor() {
