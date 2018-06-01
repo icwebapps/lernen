@@ -19,7 +19,7 @@ class CreateStudentAssignmentsTable extends Migration
             $table->date('date_set');
             $table->date('date_due');
             $table->boolean('completed');
-            $table->integer('resource_id');
+            $table->integer('resource_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('resource_id')->references('id')->on('resources');
