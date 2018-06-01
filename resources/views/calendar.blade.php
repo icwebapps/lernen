@@ -8,21 +8,13 @@
 @endcomponent
 
 <div class="main">
-  <div class="header">
-    <div class="header-left">
-      <div class="page-title">Schedule</div>
-      <div class="header-tabs">
-        <div class="header-tab-item">Upcoming</div>
-        <div class="header-tab-item tab-selected">Calendar</div>
-      </div>
-    </div>
-    <div class="header-center">
-      <img src="/images/logo.png" class="logo" />
-    </div>
-    <div class="header-right">
-      <div class="header-logout"><img src="/images/icons8-shutdown-50.png" /></div>
-    </div>
-  </div>
+
+  @component('header')
+    @slot('title') Schedule @endslot
+      <div class="header-tab-item">Upcoming</div>
+      <div class="header-tab-item tab-selected">Calendar</div>
+  @endcomponent
+
   <div class="width-fill flex-rows">
     <div id="calendar-widget">
     </div>
