@@ -9,20 +9,12 @@ class ContactsController extends Controller
   public function index()
   {
     if (Auth::user()->isTutor()) {
-      return $this->tutor();
+      return view('tutees');
     }
     else {
-      return $this->student();
+      return;
     }
   }
 
-  private function tutor()
-  {
-    return view('tutees');
-  }
-
-  private function student()
-  {
-
-  }
+  
 }
