@@ -5,7 +5,7 @@ export default class Field extends Component {
   constructor(props) {
     super();
     this.state = {
-      value: props.value,
+      value: props.value || '',
       error: props.error
     };
   }

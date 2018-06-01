@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
+import SearchField from './Form/SearchField';
 
 export default class Contacts extends Component {
   constructor() {
     super();
+    this.state = { contacts: [] };
     this.loadData();
   }
 
@@ -24,10 +26,10 @@ export default class Contacts extends Component {
         </div>
         <div className="contacts-list">
           {
-            this.state.contacts.map(c => 
-              <div class="contact-item">
-                <div class="contact-name">{c.name}</div>
-                <div class="contact-number">{c.number}</div>
+            this.state.contacts.map((c, i) => 
+              <div className="contact-item" key={i}>
+                <div className="contact-name">{c.name}</div>
+                <div className="contact-number">{c.number}</div>
               </div>
             )
           }

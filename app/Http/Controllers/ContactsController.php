@@ -16,5 +16,16 @@ class ContactsController extends Controller
     }
   }
 
-  
+  public function list()
+  {
+    if (Auth::user()->isTutor()) {
+      $students = [];
+      $lessons = Auth::user()->tutor->lessons;
+      foreach ($lessons as $l) {
+        $thisStudent = $l->student->user;
+        $students[$thisStudent->id] = $thisStudent;
+      }
+      return json_encode([ "contacts" => array_values($students) ]);
+    }
+  }
 }
