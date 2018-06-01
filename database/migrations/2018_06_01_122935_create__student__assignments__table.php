@@ -13,15 +13,17 @@ class CreateStudentAssignmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('_student__assignments_', function (Blueprint $table) {
+        Schema::create('student__assignments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('subject');
             $table->date('date_set');
             $table->date('date_due');
             $table->boolean('completed');
-            $table->string('url');
-
+            $table->integer('resource_id');
             $table->timestamps();
+
+            $table->foreign('resource_id')->references('id')->on('resources');
+
         });
     }
 
