@@ -4,7 +4,7 @@
 
 @section('content')
 
-@component('sidebar')
+@component('sidebar', ['selected' => 'contacts'])
 @endcomponent
 
 <div class="main">
