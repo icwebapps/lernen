@@ -13,7 +13,7 @@ class CreateStudentAssignmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('student__assignments', function (Blueprint $table) {
+        Schema::create('student_assignments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('subject');
             $table->date('date_set');
@@ -34,6 +34,6 @@ class CreateStudentAssignmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_student__assignments_');
+        Schema::dropIfExists('student_assignments');
     }
 }
