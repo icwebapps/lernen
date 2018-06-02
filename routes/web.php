@@ -34,5 +34,3 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/resources', 'ResourceController@index')->middleware('auth');
 
 });
-
-
