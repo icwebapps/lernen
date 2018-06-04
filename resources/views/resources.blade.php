@@ -128,7 +128,15 @@
               </div>
             </div>
           </div>
-          <input type="button" value="Add Resource" class="add-resource" />
+
+          <form method="post" action="{{url('resources')}}">
+            {{csrf_field()}}
+          
+            <input type="file" name="filename">          
+            <input type="button" value="Add Resource" class="add-resource">
+
+          </form>
+          
         </div>
       </div>
     </div>
