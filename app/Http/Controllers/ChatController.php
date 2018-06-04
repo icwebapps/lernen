@@ -24,15 +24,17 @@ class ChatController extends Controller
     $user = Auth::user();
     
     if ($user->isTutor()) {
-      $message = $user->tutor->messages()->create([
+      $message = Message::create([
         'message' => $request->input('message'),
-        'student_id' => $request->input('student_id')
+        'student_id' => $request->input('student_id'),
+        'tutor_id' => $user->id
       ]);
     }
     else {
-      $message = $user->student->messages()->create([
+      $message = Message::create([
         'message' => $request->input('message'),
-        'tutor_id' => $request->input('tutor_id')
+        'tutor_id' => $request->input('tutor_id'),
+        'student_id' => $user->id
       ]);
     }
   

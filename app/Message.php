@@ -11,7 +11,7 @@ class Message extends Model
    *
    * @var array
    */
-  protected $fillable = ['message'];  
+  protected $fillable = ['message', 'student_id', 'tutor_id'];  
 
   public function student() {
     return $this->belongsTo('App\Student', 'student_id', 'user_id');
