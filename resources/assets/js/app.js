@@ -15,4 +15,4 @@ require('./bootstrap');
 
 require('./components/Login');
 require('./components/Calendar');
-require('./components/Contacts');
+require('./components/Listing');

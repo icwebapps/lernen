@@ -16,7 +16,7 @@
   @endcomponent
 
   <div class="width-fill">
-    <div id="contacts-widget"></div>
+    <div id="listing-widget"></div>
   </div>
 </div>
 </div>

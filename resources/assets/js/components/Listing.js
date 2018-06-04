@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import SearchField from './Form/SearchField';
+import Contact from './Contact/Contact';
+import ChatWidget from './Chat/ChatWidget';
 
-export default class Contacts extends Component {
+export default class Listing extends Component {
   constructor() {
     super();
     this.state = { contacts: [], q: '' };
@@ -23,31 +25,22 @@ export default class Contacts extends Component {
   }
 
   render() {
-    return (
+    return ([
       <div className="panel-contacts">
         <div className="search-box">
           <SearchField placeholder="Search for students" onChange={e=>this.searchName(e)} />
         </div>
         <div className="contacts-list">
-          {
-            this.state.contacts.map((c, i) => {
-              if (this.state.q == "" || (this.state.q != "" && c.name.toLowerCase().includes(this.state.q))) {
-                return (
-                <div className="contact-item" key={i}>
-                  <div className="contact-name">{c.name}</div>
-                  <div className="contact-options">
-                    <img src="/images/icons8-speech-bubble-50.png" />
-                  </div>
-                </div>)
-              }
-            })
-          }
+          <Contact contacts={this.state.contacts} q={this.state.q} />
         </div>
+      </div>,
+      <div className="panel-chat">
+        <ChatWidget />
       </div>
-    );
+    ]);
   }
 }
 
-if (document.getElementById('contacts-widget')) {
-  ReactDOM.render(<Contacts />, document.getElementById('contacts-widget'));
+if (document.getElementById('listing-widget')) {
+  ReactDOM.render(<Listing />, document.getElementById('listing-widget'));
 }
