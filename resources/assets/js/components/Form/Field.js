@@ -35,7 +35,8 @@ export default class Field extends Component {
         name={this.props.name}
         value={this.state.value}
         onChange={(e) => this.onChange(e)}
-        className={ (this.state.error || this.props.error) ? "error" : "" } />
+        className={ (this.state.error || this.props.error) ? "error" : "" }
+        autoComplete={ this.props.autocomplete || '' } />
     ); 
   }
 }

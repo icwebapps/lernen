@@ -16,6 +16,7 @@ export default class SearchField extends Component {
         {...this.props}
         value={this.state.value}
         error={this.state.error}
+        autocomplete="off"
       />
     );
   }

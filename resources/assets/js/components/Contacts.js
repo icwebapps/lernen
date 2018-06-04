@@ -35,7 +35,9 @@ export default class Contacts extends Component {
                 return (
                 <div className="contact-item" key={i}>
                   <div className="contact-name">{c.name}</div>
-                  <div className="contact-number">{c.number}</div>
+                  <div className="contact-options">
+                    <img src="/images/icons8-speech-bubble-50.png" />
+                  </div>
                 </div>)
               }
             })
