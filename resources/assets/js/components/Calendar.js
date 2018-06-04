@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
+import CalendarWeek from './Calendar/CalendarWeek';
 
 export default class Calendar extends Component {
   constructor() {
     super();
+    this.state = {};
     this.loadData();
-  }
-
-  renderDays() {
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    return (
-      <div className="calendar-days">
-        { days.map(d => <div className="calendar-day" key={d}>{d}</div> )}
-    </div>
-    );
   }
 
   loadData() {
@@ -25,12 +18,30 @@ export default class Calendar extends Component {
     });
   }
 
+  renderDays() {
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    return (
+      <div className="calendar-days">
+        { days.map(d => <div className="calendar-day" key={d}>{d}</div>) }
+    </div>
+    );
+  }
+
+  renderWeeks() {
+    const startDate = new Date(this.state.start);
+    return (
+      [...Array(this.state.weeksToShow)].map((_, i) => {
+        const thisWeekStart = new Date(startDate);
+        thisWeekStart.setDate(startDate.getDate() + i*7);
+        return <CalendarWeek key={"week"+i} start={thisWeekStart} events={this.state.events} />
+      })
+    );
+  }
+
   render() {
     return (
-      <div>
-        {this.renderDays()}
-        <div></div>
-      </div>
+      [this.renderDays(),
+      this.state.start ? <div className="calendar-grid">{this.renderWeeks()}</div> : '']
     );
   }
 }

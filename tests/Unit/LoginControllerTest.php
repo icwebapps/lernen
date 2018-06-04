@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 
-class LoginTest extends TestCase
+class LoginControllerTest extends TestCase
 {
   use RefreshDatabase;
 

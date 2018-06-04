@@ -14,7 +14,6 @@ class CalendarController extends Controller
   public function events()
   {
     $startDate = date("Y-m-d", strtotime("previous monday"));
-    $numDays = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
     $weeksToShow = 5;
 
     $events = [];
@@ -32,7 +31,6 @@ class CalendarController extends Controller
     return json_encode([
       'events' => $events,
       'start' => $startDate,
-      'numDays' => $numDays,
       'weeksToShow' => $weeksToShow
     ]);
 
