@@ -6,7 +6,7 @@ import SearchField from './Form/SearchField';
 export default class Contacts extends Component {
   constructor() {
     super();
-    this.state = { contacts: [] };
+    this.state = { contacts: [], q: '' };
     this.loadData();
   }
 
@@ -18,20 +18,27 @@ export default class Contacts extends Component {
     });
   }
 
+  searchName(e) {
+    this.setState({ q: e.target.value.toLowerCase() });
+  }
+
   render() {
     return (
       <div className="panel-contacts">
         <div className="search-box">
-          <SearchField placeholder="Search for students" />
+          <SearchField placeholder="Search for students" onChange={e=>this.searchName(e)} />
         </div>
         <div className="contacts-list">
           {
-            this.state.contacts.map((c, i) => 
-              <div className="contact-item" key={i}>
-                <div className="contact-name">{c.name}</div>
-                <div className="contact-number">{c.number}</div>
-              </div>
-            )
+            this.state.contacts.map((c, i) => {
+              if (this.state.q == "" || (this.state.q != "" && c.name.toLowerCase().includes(this.state.q))) {
+                return (
+                <div className="contact-item" key={i}>
+                  <div className="contact-name">{c.name}</div>
+                  <div className="contact-number">{c.number}</div>
+                </div>)
+              }
+            })
           }
         </div>
       </div>
