@@ -2,8 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Assignment;
-use App\Lesson;
-use App\Student;
 use App\Tutor;
 use App\User;
 
@@ -24,8 +22,9 @@ class AssignmentsSeeder extends Seeder
                 'student_id' => 1,
                 'tutor_id' => $t->user_id,
                 'subject' =>str_random(10),
-                'date_set' => date("T-m-d", strtottime("-1 days")),
-                'date_due' => date("Y-m-d", strtotime("+7 days"))
+                'date_set' => date("Y-m-d", strtotime("-2 days")),
+                'date_due' => date("Y-m-d", strtotime("+7 days")),
+                'rec'
             ]);
         }
     }
