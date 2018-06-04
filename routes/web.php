@@ -16,6 +16,7 @@ Route::get('/login', 'Auth\LoginController@index')->name('login');
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::post('/login', 'Auth\LoginController@check_login');
 
+
 Route::middleware(['auth'])->group(function () {
   Route::get('/dashboard', 'DashboardController@index');
   Route::get('/calendar', 'CalendarController@index');
