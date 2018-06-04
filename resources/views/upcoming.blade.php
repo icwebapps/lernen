@@ -1,47 +1,15 @@
-<!doctype html>
-<html>
-  <head>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,800" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css" />
-    <title>Lernen</title>
-  </head>
-  <body>
-    <div class="site">
+@extends('layout')
 
-      <div class="sidebar">
-        <img class="logo-icon" src="images/icon.png" />
-        <div class="nav">
-          <div class="nav-item">
-            <img src="images/icons8-dashboard-50.png" />
-          </div>
-          <div class="nav-item nav-selected">
-            <img src="images/icons8-today-100.png" />
-          </div>
-          <div class="nav-item">
-            <img src="images/icons8-address-book-2-filled-100.png" />
-          </div>
-          <div class="nav-item">
-            <img src="images/icons8-male-user-50.png" />
-          </div>
-        </div>
-      </div>
+@section('title', 'Calendar')
 
-      <div class="main">
-        <div class="header">
-          <div class="header-left">
-            <div class="page-title">Schedule</div>
-            <div class="header-tabs">
-              <div class="header-tab-item tab-selected">Upcoming</div>
-              <div class="header-tab-item">Calendar</div>
-            </div>
-          </div>
-          <div class="header-center">
-            <img src="images/images/logo.png" class="logo" />
-          </div>
-          <div class="header-right">
-            <div class="header-logout"><img src="images/icons8-shutdown-50.png" /></div>
-          </div>
-        </div>
+@section('content')
+
+@component('sidebar')
+@endcomponent
+
+@component('menu')
+@endcomponent
+
         <div class="width-scrollable">
           <div class="column">
             <div class="column-title">Today</div>
@@ -208,5 +176,4 @@
         </div>
       </div>
     </div>
-  </body>
-</html>
+@endsection
