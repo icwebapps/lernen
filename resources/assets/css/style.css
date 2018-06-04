@@ -4,8 +4,9 @@ body{font-family:'Open Sans',sans-serif}
 .sidebar{background:#2F323A;width:80px;height:100%;box-sizing:border-box}
 .sidebar .logo-icon{width:47px;border-bottom: 1px solid #4a4d56;padding: 15px 16px;}
 .sidebar .nav{padding-top: 50px;}
-.nav-item{padding:13px;text-align:center}
-.nav-item.nav-selected{background:#5093E1}
+.nav-item a{padding:13px;text-align:center;display: block;}
+.nav-item.nav-selected a{background:#5093E1!important}
+.nav-item a:hover{background:#344354}
 .nav-item img{width:40px}
 .main{background:#EDEFF5;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
 .footer{background:#fff;padding: 20px 30px;border-top:10px solid #D1D7E9;display: flex;justify-content: space-between;}
@@ -51,8 +52,9 @@ body{font-family:'Open Sans',sans-serif}
 .person-extra{font-weight:600;color:#A5A3BA;font-size:15px;display:flex}
 .person-email{margin-right:40px}
 .contact-item{font-size:17px;display: flex;justify-content: space-between;padding: 20px 25px;}
-.contact-number{color:#B5BDCA;font-size: 12px;font-weight: 600;margin: 4px 0 0;}
+.contact-options{color:#B5BDCA;font-size: 12px;font-weight: 600;margin: 4px 0 0;}
 .contact-name{color:#6B6C71;font-weight: 300;}
+.contact-options img {width: 25px;}
 .contact-item.item-selected{background:#5093E1}
 .contact-item.item-selected .contact-name,.contact-item.item-selected .contact-number{color:#fff}
 .contacts-list{overflow-y: hidden;}

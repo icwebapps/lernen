@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use App\Lesson;
 use App\Student;
 use App\Tutor;
+use App\User;
 
 class LessonsSeeder extends Seeder
 {
@@ -14,20 +15,16 @@ class LessonsSeeder extends Seeder
      */
     public function run()
     {
+      // Create lessons with 15 different students in the next month for tutor 4
+      for ($i=0; $i<15; $i++) {
+        $s = Student::create([ 'user_id' => factory(User::class)->create()->id ]);
         Lesson::create([
           'tutor_id' => 4,
-          'student_id' => 1,
-          'subject' => 'A-level Maths',
+          'student_id' => $s->user_id,
+          'subject' => str_random(10),
           'date' => date("Y-m-d", strtotime("+7 days")),
           'time' => '12:00:00'
         ]);
-
-        Lesson::create([
-          'tutor_id' => 4,
-          'student_id' => 1,
-          'subject' => 'A-level Maths',
-          'date' => date("Y-m-d", strtotime("+10 days")),
-          'time' => '14:00:00'
-        ]);
+      }
     }
 }

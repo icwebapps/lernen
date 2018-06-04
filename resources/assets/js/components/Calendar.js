@@ -36,5 +36,5 @@ export default class Calendar extends Component {
 }
 
 if (document.getElementById('calendar-widget')) {
-    ReactDOM.render(<Calendar />, document.getElementById('calendar-widget'));
+  ReactDOM.render(<Calendar />, document.getElementById('calendar-widget'));
 }

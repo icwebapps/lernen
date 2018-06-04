@@ -34,4 +34,8 @@ class User extends Authenticatable
     public function tutor() {
       return $this->hasOne('App\Tutor');
     }
+
+    public function isTutor() {
+      return !is_null($this->tutor); 
+    }
 }

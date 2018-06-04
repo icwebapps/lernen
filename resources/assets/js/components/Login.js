@@ -52,5 +52,5 @@ export default class Login extends Component {
 }
 
 if (document.getElementById('login-form')) {
-    ReactDOM.render(<Login />, document.getElementById('login-form'));
+  ReactDOM.render(<Login />, document.getElementById('login-form'));
 }
