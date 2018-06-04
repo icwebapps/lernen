@@ -27,5 +27,8 @@ class ContactsController extends Controller
       }
       return json_encode([ "contacts" => array_values($students) ]);
     }
+    else {
+      abort(404);
+    }
   }
 }
