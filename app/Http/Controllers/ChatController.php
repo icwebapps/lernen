@@ -1,14 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Message, Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class ChatController extends Controller
 {
   public function fetch()
   {
-    return Message::with('user')->get();
+    $user = Auth::user();
+    
+    if ($user->isTutor()) {
+      return Message::where('tutor_id', $user->id)->with('student.user')->get();
+    }
+    else {
+      return Message::where('student_id', $user->id)->with('tutor.user')->get();
+    }
   }
 
   public function send(Request $request)
