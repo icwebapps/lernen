@@ -20,6 +20,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/dashboard', 'DashboardController@index');
   Route::get('/calendar', 'CalendarController@index');
   Route::get('/calendar/events', 'CalendarController@events');
+  Route::get('/upcoming', 'UpcomingController@index');
 
   Route::get('/students', 'ContactsController@index');
   Route::get('/students/list', 'ContactsController@list');
