@@ -12,4 +12,12 @@ class Message extends Model
    * @var array
    */
   protected $fillable = ['message'];  
+
+  public function student() {
+    return $this->belongsTo('App\Student', 'student_id', 'user_id');
+  }
+
+  public function tutor() {
+    return $this->belongsTo('App\Tutor', 'tutor_id', 'user_id');
+  }
 }
