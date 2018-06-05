@@ -18,19 +18,20 @@ class DashboardController extends Controller
 
   public function assignments()
   {
-    $events = [];
-    $assignments = Auth::user()->student->assignments;
-    foreach ($assignments as $a)
-    {
-      $events[] = [
-          'assignment' => $a->student,
-          'due' => $a->date_due,
-          'completed' => $a->completed
-          ];
+    $tasks = [];
+    $assignments = Auth::user()->student->assignments->with('resource')->get();
+
+    foreach ($assignments as $a) {
+      $tasks[] = [
+        'title' => $a->title,
+        'due' => $a->date_due,
+        'completed' => $a->completed,
+        'url' => $a >url //set up relation between resource and assignment (assignment model)
+      ];
     }
 
     return json_encode([
-        'events' => $events
+      'events' => $tasks
     ]);
   }
 }
