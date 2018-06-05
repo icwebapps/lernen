@@ -24,6 +24,10 @@ export default class Listing extends Component {
     this.setState({ q: e.target.value.toLowerCase() });
   }
 
+  openChat(contact) {
+    this.setState({ talkingTo: contact });
+  }
+
   render() {
     return ([
       <div className="panel-contacts">
@@ -31,11 +35,11 @@ export default class Listing extends Component {
           <SearchField placeholder="Search for students" onChange={e=>this.searchName(e)} />
         </div>
         <div className="contacts-list">
-          <Contact contacts={this.state.contacts} q={this.state.q} />
+          <Contact contacts={this.state.contacts} q={this.state.q} onChat={(contact)=>this.openChat(contact)} />
         </div>
       </div>,
       <div className="panel-chat">
-        <ChatWidget isTutor={this.props.isTutor} />
+        { this.state.talkingTo ? <ChatWidget userId={this.props.userId} isTutor={this.props.isTutor} talkingTo={this.state.talkingTo} /> : '' }
       </div>
     ]);
   }
@@ -43,5 +47,5 @@ export default class Listing extends Component {
 
 if (document.getElementById('listing-widget')) {
   var el = document.getElementById('listing-widget');
-  ReactDOM.render(<Listing isTutor={el.dataset.istutor} />, el);
+  ReactDOM.render(<Listing userId={el.dataset.userid} isTutor={el.dataset.istutor} />, el);
 }

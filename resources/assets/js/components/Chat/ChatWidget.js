@@ -6,13 +6,12 @@ export default class ChatWidget extends Component {
     super();
     this.state = {
       messages: [],
-      text: '',
-      isTutor: props.isTutor
+      text: ''
     }
   }
 
   componentDidMount() {
-    Echo.private('chat')
+    Echo.private('chat-' + this.props.userId + '-' + this.props.talkingTo.id)
       .listen('MessageSent', (e) => {
         this.setState({ messages: [ ...this.state.messages, e.message ] })
       });
@@ -31,15 +30,23 @@ export default class ChatWidget extends Component {
   }
 
   fetchMessages() {
-    axios.get('/messages').then(response => {
+    axios.get('/messages/'+this.props.talkingTo.id).then(response => {
       this.setState({ messages: response.data });
     });
   }
 
   sendMessage() {
-    this.setState({ messages: [ ...this.state.messages, { message: this.state.text }] })
+    this.setState({
+      messages: [
+        ...this.state.messages,
+        {
+          message: this.state.text,
+          tutor_sent: this.props.isTutor
+        }
+      ]
+    });
     
-    axios.post('/messages', { message: this.state.text, student_id: 1 }).then(response => {
+    axios.post('/messages', { message: this.state.text, student_id: this.props.talkingTo.id }).then(response => {
       console.log(response.data);
     });
 
@@ -48,10 +55,11 @@ export default class ChatWidget extends Component {
 
   render() {
     return ([
+      <h2>You are talking to {this.props.talkingTo.name}</h2>,
       <ul>
         {
           this.state.messages.map((m, i) => {
-            const outgoing = (this.state.isTutor && m.tutor_sent) || (!this.state.isTutor && !m.tutor_sent);
+            const outgoing = (this.props.isTutor && m.tutor_sent) || (!this.props.isTutor && !m.tutor_sent);
             return <li key={i}>{outgoing ? <b>{m.message}</b> : m.message}</li>
           })
         }
