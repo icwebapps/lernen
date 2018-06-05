@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ContactItem = ({contact, i, onChat}) =>
+const ContactsItem = ({contact, i, onChat}) =>
   <div className="contact-item" key={i}>
     <div className="contact-name">{contact.name}</div>
     <div className="contact-options">
@@ -8,4 +8,4 @@ const ContactItem = ({contact, i, onChat}) =>
     </div>
   </div>;
 
-export default ContactItem;
+export default ContactsItem;

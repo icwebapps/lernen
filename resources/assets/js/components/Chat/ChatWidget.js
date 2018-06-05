@@ -11,10 +11,15 @@ export default class ChatWidget extends Component {
   }
 
   componentDidMount() {
-    Echo.private('chat-' + this.props.userId + '-' + this.props.talkingTo.id)
+    const channel = this.props.isTutor ?
+                      this.props.userId + '-' + this.props.talkingTo.id :
+                      this.props.talkingTo.id + '-' + this.props.userId;
+
+    Echo.private('chat-' + channel)
       .listen('MessageSent', (e) => {
         this.setState({ messages: [ ...this.state.messages, e.message ] })
       });
+      
     this.fetchMessages();
   }
 
@@ -46,7 +51,7 @@ export default class ChatWidget extends Component {
       ]
     });
     
-    axios.post('/messages', { message: this.state.text, student_id: this.props.talkingTo.id }).then(response => {
+    axios.post('/messages', { message: this.state.text, other_id: this.props.talkingTo.id }).then(response => {
       console.log(response.data);
     });
 

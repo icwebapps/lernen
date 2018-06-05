@@ -14,30 +14,48 @@ class ContactsControllerTest extends TestCase
   public function testIndexTutorAction()
   {
     $tutor = factory(Tutor::class)->create();
-    $response = $this->actingAs($tutor->user)->get('/students');
+    $response = $this->actingAs($tutor->user)->get('/contacts');
     $response->assertStatus(200);
-    $response->assertViewIs('tutees');
+    $response->assertViewIs('contacts');
   }
 
   public function testIndexStudentAction()
   {
     $student = factory(Student::class)->create();
-    $response = $this->actingAs($student->user)->get('/tutors');
-    $response->assertStatus(404);
+    $response = $this->actingAs($student->user)->get('/contacts');
+    $response->assertStatus(200);
+    $response->assertViewIs('contacts');
   }
 
   public function testRetrieveTuteesValid()
   {
     $tutor = factory(Tutor::class)->create();
-    $response = $this->actingAs($tutor->user)->get('/students/list');
+    factory(Lesson::class)->create([
+      'student_id' => factory(Student::class)->create()->user_id,
+      'tutor_id' => $tutor->user_id
+    ]);
+    $response = $this->actingAs($tutor->user)->get('/contacts/list');
     $response->assertStatus(200);
-    $response->assertJson([ 'contacts' => [] ]);
+    $response->assertJsonCount(1, 'contacts');
   }
 
-  public function testRetrieveTuteesInvalid()
+  public function testRetrieveStudentsValid()
   {
     $student = factory(Student::class)->create();
-    $response = $this->actingAs($student->user)->get('/students/list');
-    $response->assertStatus(404);
+    factory(Lesson::class)->create([
+      'tutor_id' => factory(Tutor::class)->create()->user_id,
+      'student_id' => $student->user_id
+    ]);
+    $response = $this->actingAs($student->user)->get('/contacts/list');
+    $response->assertStatus(200);
+    $response->assertJsonCount(1, 'contacts');
+  }
+
+  public function testRetrieveInvalid()
+  {
+    $student = factory(Student::class)->create();
+    $response = $this->actingAs($student->user)->get('/contacts/list');
+    $response->assertStatus(200);
+    $response->assertJsonCount(0, 'contacts');
   }
 }

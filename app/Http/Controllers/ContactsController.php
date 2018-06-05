@@ -8,12 +8,7 @@ class ContactsController extends Controller
 {
   public function index()
   {
-    if (Auth::user()->isTutor()) {
-      return view('tutees');
-    }
-    else {
-      return;
-    }
+    return view('contacts');
   }
 
   public function list()
@@ -28,7 +23,13 @@ class ContactsController extends Controller
       return json_encode([ "contacts" => array_values($students) ]);
     }
     else {
-      abort(404);
+      $tutors = [];
+      $lessons = Auth::user()->student->lessons;
+      foreach ($lessons as $l) {
+        $thisTutor = $l->tutor->user;
+        $tutors[$thisTutor->id] = $thisTutor;
+      }
+      return json_encode([ "contacts" => array_values($tutors) ]);
     }
   }
 }

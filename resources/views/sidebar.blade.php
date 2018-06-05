@@ -8,7 +8,7 @@
       <a href="/calendar"><img src="/images/icons8-today-100.png" /></a>
     </div>
     <div class="nav-item @if ($selected == "contacts") nav-selected @endif">
-      <a href="/students"><img src="/images/icons8-address-book-2-filled-100.png" /></a>
+      <a href="/contacts"><img src="/images/icons8-address-book-2-filled-100.png" /></a>
     </div>
     <div class="nav-item @if ($selected == "account") nav-selected @endif">
       <a href="/account"><img src="/images/icons8-male-user-50.png" /></a>

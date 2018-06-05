@@ -43,7 +43,7 @@ class ChatControllerTest extends TestCase
     $student = factory(Student::class)->create();
     $response = $this->actingAs($tutor->user)->post('/messages', [
       'message' => 'This is a test message',
-      'student_id' => $student->user_id
+      'other_id' => $student->user_id
     ]);
     $response->assertStatus(200);
 
