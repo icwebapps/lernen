@@ -13,4 +13,8 @@ class Student extends Model
   public function lessons() {
     return $this->hasMany('App\Lesson', 'student_id', 'user_id');
   }
+
+  public function messages() {
+    return $this->hasMany('App\Message');
+  }
 }
