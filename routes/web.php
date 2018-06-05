@@ -32,6 +32,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/students/list', 'ContactsController@list');
 
   Route::get('/resources', 'ResourceController@index');
+  Route::get('/resources/list', 'ResourceController@list');
   Route::post('/resources', 'ResourceController@store');
 });
 
