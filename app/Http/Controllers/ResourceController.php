@@ -17,6 +17,18 @@ class ResourceController extends Controller
     }
   }
 
+  public function list()
+  {
+    if (Auth::user()->isTutor()) {
+      $resources = Auth::user()->tutor->resources;
+      return json_encode([ "resources" => $resources]);
+    }
+    else {
+      abort(404);
+    }
+  }
+
+/*
   public function store(Request $request)
   {
     $this->validate($request, [
@@ -37,5 +49,6 @@ class ResourceController extends Controller
       return back()->with('success', 'Your files has been successfully added');
     }
   }
+  */
 
 }
