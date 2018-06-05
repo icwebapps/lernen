@@ -11,7 +11,7 @@
 
   @component('header')
     @slot('title') Schedule @endslot
-      <div class="header-tab-item">Upcoming</div>
+      <a href="/upcoming" style="text-decoration:none;"><div class="header-tab-item">Upcoming</div></a>
       <div class="header-tab-item tab-selected">Calendar</div>
   @endcomponent
 
@@ -31,7 +31,7 @@
 </div>
 </div>
 
-<div class="overlay overlay-date" style="display:none">
+<!--<div class="overlay overlay-date" style="display:none">
   <div class="overlay-title">9 April 2018</div>
   <div class="overlay-content">
     <div class="overlay-item accent-red">
@@ -55,5 +55,6 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->
+
 @endsection

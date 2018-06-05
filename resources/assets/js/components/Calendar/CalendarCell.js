@@ -5,7 +5,9 @@ export default class CalendarCell extends Component {
   render() {
     return (
       <div className={"calendar-cell " + (this.props.events.length > 0 ? "cell-event" : "") }>
-        <div className="calendar-number">{this.props.number}</div>
+        <div className="calendar-number">
+        <div className={this.props.ifToday=="true" ? "today-item" : ""}>{this.props.number}</div>
+        </div>
         { this.props.events.length > 0 ?
           <div className="calendar-events">
             {

@@ -6,7 +6,8 @@ export default class CalendarWeek extends Component {
   constructor(props) {
     super();
     this.state = {
-      start: new Date(props.start)
+      start: new Date(props.start),
+      today: new Date(props.today)
     }
   }
 
@@ -22,7 +23,9 @@ export default class CalendarWeek extends Component {
             const todaysEvents = this.props.events.filter(e => {
               return e.date == thisDate.getDate() && e.month == thisDate.getMonth() + 1
             });
-            return <CalendarCell key={"cell"+i} number={thisDate.getDate()} events={todaysEvents} />;
+            const ifToday = thisDate.getDate() == this.props.today.getDate() 
+              && this.props.today.getMonth() == thisDate.getMonth() ? "true" : "false";
+            return <CalendarCell key={"cell"+i} number={thisDate.getDate()} ifToday={ifToday} events={todaysEvents}/>;
           })
       }
       </div>

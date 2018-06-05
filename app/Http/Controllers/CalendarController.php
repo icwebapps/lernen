@@ -14,6 +14,7 @@ class CalendarController extends Controller
   public function events()
   {
     $startDate = date("Y-m-d", strtotime("previous monday"));
+    $todayDate = date("Y-m-d", strtotime("now"));
     $weeksToShow = 5;
 
     $events = [];
@@ -22,6 +23,7 @@ class CalendarController extends Controller
       $events[] = [
         'date' => date('j', strtotime($l->date)),
         'month' => date('m', strtotime($l->date)),
+        'time' => $l->time,
         'student' => $l->student->user->name,
         'location' => $l->location,
         'subject' => $l->subject
@@ -31,6 +33,7 @@ class CalendarController extends Controller
     return json_encode([
       'events' => $events,
       'start' => $startDate,
+      'today' => $todayDate,
       'weeksToShow' => $weeksToShow
     ]);
 

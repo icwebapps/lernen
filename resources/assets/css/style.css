@@ -78,6 +78,7 @@ input[type="text"], input[type="password"]{border:1px solid #E2E4E5;border-radiu
 .calendar-week:nth-of-type(1) .calendar-cell{border-top-width:2px}
 .calendar-week:nth-of-type(5) .calendar-cell{border-bottom-width:2px}
 .event-item{color:#777373;font-size:16px}
+.today-item{color:#ff4a4a;}
 .cell-event .calendar-number {color: #313549;}
 .calendar-events{padding:10px 23px 0}
 .calendar-cell.cell-event{background:#EDEFF5}
