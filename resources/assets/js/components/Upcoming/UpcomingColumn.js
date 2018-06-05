@@ -13,7 +13,7 @@ export default class UpcomingColumn extends Component {
       }
       </div>
       <div className="column-content"> {
-        this.props.events.map((e, i) => 
+        this.props.events.map((e, _) => 
         <div className="card accent-red">
         <div className="card-left">{e.time}</div>
         <div className="card-middle">
