@@ -23,6 +23,7 @@ class CalendarController extends Controller
       $events[] = [
         'date' => date('j', strtotime($l->date)),
         'month' => date('m', strtotime($l->date)),
+        'time' => $l->time,
         'student' => $l->student->user->name,
         'location' => $l->location,
         'subject' => $l->subject

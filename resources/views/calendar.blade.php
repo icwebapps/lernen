@@ -31,7 +31,7 @@
 </div>
 </div>
 
-<div class="overlay overlay-date" style="display:none">
+<!--<div class="overlay overlay-date" style="display:none">
   <div class="overlay-title">9 April 2018</div>
   <div class="overlay-content">
     <div class="overlay-item accent-red">
@@ -55,5 +55,6 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->
+
 @endsection

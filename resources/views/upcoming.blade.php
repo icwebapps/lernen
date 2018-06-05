@@ -16,7 +16,11 @@
    @endcomponent
 
         <div class="width-scrollable">
-          <div class="column">
+
+        <div id="upcoming-widget">
+        </div>
+
+          <!--<div class="column">
             <div class="column-title">Today</div>
             <div class="column-content">
               <div class="card accent-red">
@@ -159,7 +163,7 @@
                   </div>                
                 </div>
             </div>
-          </div>
+          </div>-->
         </div>
 
         <div class="footer">
