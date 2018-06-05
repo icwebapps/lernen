@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ResourceController extends Controller
 {
   public function index() 
   {
-    return view('resources');
+    if (Auth::user()->isTutor()) {
+       return view('resources');
+    }
+    else {
+      return;
+    }
   }
 
   public function store(Request $request)
