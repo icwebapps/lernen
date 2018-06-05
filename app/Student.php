@@ -17,4 +17,8 @@ class Student extends Model
   public function messages() {
     return $this->hasMany('App\Message');
   }
+  
+  public function assignments() {
+    return $this->hasMany('App\Assignment', 'student_id', 'user_id');
+  }
 }

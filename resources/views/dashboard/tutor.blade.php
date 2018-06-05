@@ -83,44 +83,45 @@
             </div>
 
             <div class="dashboard-panel-item flex-rows">
-                <div class="assignments-progress">
-                    5 assignments left
-                    <div class="assignments-progress-bar">
-                        <div class="progress-complete" style="width: 85%"></div>
-                    </div>
-                </div>
-                <div class="assignments-list">
-                    <div class="assignments-row assignments-header">
-                        <div class="assignments-cell">Assignment</div>
-                        <div class="assignments-cell">Due</div>
-                        <div class="assignments-cell">Submit</div>
-                    </div>
-                    <div class="assignments-row">
-                        <div class="assignments-cell">C1 January 2009</div>
-                        <div class="assignments-cell due-soon">Today 6:00PM</div>
-                        <div class="assignments-cell"><img src="images/icons8-checkmark-filled-50.png" /></div>
-                    </div>
-                    <div class="assignments-row">
-                        <div class="assignments-cell">C1 January 2010</div>
-                        <div class="assignments-cell due-soon">Tomorrow 3:00PM</div>
-                        <div class="assignments-cell"><img src="images/icons8-checkmark-filled-50.png" /></div>
-                    </div>
-                    <div class="assignments-row">
-                        <div class="assignments-cell">C2 January 2010</div>
-                        <div class="assignments-cell">07/06 2:00PM</div>
-                        <div class="assignments-cell"><img src="images/icons8-checkmark-filled-50.png" /></div>
-                    </div>
-                    <div class="assignments-row">
-                        <div class="assignments-cell">Fourier Series</div>
-                        <div class="assignments-cell">09/06 15:00PM</div>
-                        <div class="assignments-cell"><img src="images/icons8-checkmark-filled-50.png" /></div>
-                    </div>
-                    <div class="assignments-row">
-                        <div class="assignments-cell">Simplifying Fractions</div>
-                        <div class="assignments-cell">15/06 15:00PM</div>
-                        <div class="assignments-cell"><img src="images/icons8-checkmark-filled-50.png" /></div>
-                    </div>
-                </div>
+                <div id="dashboard-assignment-widget"></div>
+<!--                <div class="assignments-progress">-->
+<!--                    5 assignments left-->
+<!--                    <div class="assignments-progress-bar">-->
+<!--                        <div class="progress-complete" style="width: 85%"></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="assignments-list">-->
+<!--                    <div class="assignments-row assignments-header">-->
+<!--                        <div class="assignments-cell">Assignment</div>-->
+<!--                        <div class="assignments-cell">Due</div>-->
+<!--                        <div class="assignments-cell">Submit</div>-->
+<!--                    </div>-->
+<!--                    <div class="assignments-row">-->
+<!--                        <div class="assignments-cell">C1 January 2009</div>-->
+<!--                        <div class="assignments-cell due-soon">Today 6:00PM</div>-->
+<!--                        <div class="assignments-cell"><img src="images/icons8-checkmark-filled-50.png" /></div>-->
+<!--                    </div>-->
+<!--                    <div class="assignments-row">-->
+<!--                        <div class="assignments-cell">C1 January 2010</div>-->
+<!--                        <div class="assignments-cell due-soon">Tomorrow 3:00PM</div>-->
+<!--                        <div class="assignments-cell"><img src="images/icons8-checkmark-filled-50.png" /></div>-->
+<!--                    </div>-->
+<!--                    <div class="assignments-row">-->
+<!--                        <div class="assignments-cell">C2 January 2010</div>-->
+<!--                        <div class="assignments-cell">07/06 2:00PM</div>-->
+<!--                        <div class="assignments-cell"><img src="images/icons8-checkmark-filled-50.png" /></div>-->
+<!--                    </div>-->
+<!--                    <div class="assignments-row">-->
+<!--                        <div class="assignments-cell">Fourier Series</div>-->
+<!--                        <div class="assignments-cell">09/06 15:00PM</div>-->
+<!--                        <div class="assignments-cell"><img src="images/icons8-checkmark-filled-50.png" /></div>-->
+<!--                    </div>-->
+<!--                    <div class="assignments-row">-->
+<!--                        <div class="assignments-cell">Simplifying Fractions</div>-->
+<!--                        <div class="assignments-cell">15/06 15:00PM</div>-->
+<!--                        <div class="assignments-cell"><img src="images/icons8-checkmark-filled-50.png" /></div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
 
             <div class="dashboard-panel-item">

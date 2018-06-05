@@ -1,56 +1,55 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import EmailField from './Form/EmailField';
 import PasswordField from './Form/PasswordField';
 
-export default class Login extends Component {
+export default class Dashboard extends Component {
     constructor() {
         super();
         this.state = {
-            email: '',
-            password: '',
-            error: ''
+            events: []
         };
+        this.loadData();
     }
 
-    onChange(e) {
-        const tempState = { error: '' };
-        tempState[e.target.name] = e.target.value;
-        this.setState(tempState);
-    }
-
-    onSubmit(e) {
-        e.preventDefault();
-        axios.post('/login', {
-            ...this.state,
+    loadData() {
+        axios.get('/dashboard/assignments', {
             _token: $('meta[name="csrf-token"]').attr('content')
         }).then((response) => {
-            if (response.data.login == 1) {
-                location.href = '/dashboard';
-            }
-            else {
-                this.displayError("Login details were incorrect");
-            }
+            this.setState(response.data);
         });
-    }
-
-    displayError(msg) {
-        this.setState({ error: msg });
     }
 
     render() {
         return (
-            <form method="post" onSubmit={(e)=>this.onSubmit(e)}>
-                <EmailField required="true" value={this.state.email} onChange={(e) => this.onChange(e)} onError={(msg) => this.displayError(msg)}/>
-                <PasswordField required="true" value={this.state.password} onChange={(e) => this.onChange(e)} onError={(msg) => this.displayError(msg)} />
-                <input type="submit" value="Log in" />
-                { this.state.error != '' ? <div className="form-errors">{this.state.error}</div> : '' }
-            </form>
+            <div className="dashboard-panel-item flex-rows">
+                <div className="assignments-progress">
+                    5 assignments left
+                    <div className="assignments-progress-bar">
+                    </div>
+                </div>
+                <div className="assignments-list">
+                    <div className="assignments-row assignments-header">
+                        <div className="assignments-cell">Assignment</div>
+                        <div className="assignments-cell">Due</div>
+                        <div className="assignments-cell">Submit</div>
+                    </div>
+                    {this.state.events.map((e, _) =>
+                        <div className="assignments-row">
+                            <div className="assignments-cell">{e.assignment.created_at}</div>
+                            <div className="assignments-cell due-soon">{e.due}</div>
+                            <div className="assignments-cell"><img src={e.completed==1 ?
+                                "images/icons8-checkmark-filled-50.png" : "images/shravan.jpg"}/></div>
+                        </div>
+                    )}
+
+                </div>
+            </div>
         );
     }
 }
 
-if (document.getElementById('login-form')) {
-    ReactDOM.render(<Login />, document.getElementById('login-form'));
+if (document.getElementById('dashboard-assignment-widget')) {
+    ReactDOM.render(<Dashboard/>, document.getElementById('dashboard-assignment-widget'));
 }

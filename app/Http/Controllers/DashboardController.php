@@ -15,4 +15,22 @@ class DashboardController extends Controller
       return view('dashboard.student');
     }
   }
+
+  public function assignments()
+  {
+    $events = [];
+    $assignments = Auth::user()->student->assignments;
+    foreach ($assignments as $a)
+    {
+      $events[] = [
+          'assignment' => $a->student,
+          'due' => $a->date_due,
+          'completed' => $a->completed
+          ];
+    }
+
+    return json_encode([
+        'events' => $events
+    ]);
+  }
 }
