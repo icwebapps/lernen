@@ -35,12 +35,13 @@ export default class Listing extends Component {
         </div>
       </div>,
       <div className="panel-chat">
-        <ChatWidget />
+        <ChatWidget isTutor={this.props.isTutor} />
       </div>
     ]);
   }
 }
 
 if (document.getElementById('listing-widget')) {
-  ReactDOM.render(<Listing />, document.getElementById('listing-widget'));
+  var el = document.getElementById('listing-widget');
+  ReactDOM.render(<Listing isTutor={el.dataset.istutor} />, el);
 }

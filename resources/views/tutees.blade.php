@@ -16,7 +16,7 @@
   @endcomponent
 
   <div class="width-fill">
-    <div id="listing-widget"></div>
+    <div id="listing-widget" data-istutor="{{ Auth::user()->isTutor() }}"></div>
   </div>
 </div>
 </div>

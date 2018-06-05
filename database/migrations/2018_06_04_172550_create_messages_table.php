@@ -18,6 +18,7 @@ class CreateMessagesTable extends Migration
           $table->integer('student_id')->unsigned();
           $table->integer('tutor_id')->unsigned();
           $table->text('message');
+          $table->boolean('tutor_sent');
           $table->timestamps();
 
           $table->foreign('tutor_id')->references('user_id')->on('tutors');

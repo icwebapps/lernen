@@ -6,14 +6,15 @@ export default class ChatWidget extends Component {
     super();
     this.state = {
       messages: [],
-      text: ''
+      text: '',
+      isTutor: props.isTutor
     }
   }
 
   componentDidMount() {
     Echo.private('chat')
       .listen('MessageSent', (e) => {
-        this.setState({ messages: [ ...this.state.messages, { message: e.message.message, user: e.user }] })
+        this.setState({ messages: [ ...this.state.messages, e.message ] })
       });
     this.fetchMessages();
   }
@@ -49,9 +50,10 @@ export default class ChatWidget extends Component {
     return ([
       <ul>
         {
-          this.state.messages.map((m, i) =>
-            <li key={i}>{m.outgoing ? <b>{m.message}</b> : m.message}</li>
-          )
+          this.state.messages.map((m, i) => {
+            const outgoing = (this.state.isTutor && m.tutor_sent) || (!this.state.isTutor && !m.tutor_sent);
+            return <li key={i}>{outgoing ? <b>{m.message}</b> : m.message}</li>
+          })
         }
       </ul>,
       <textarea placeholder="Enter message" onChange={e=>this.onChange(e)} value={this.state.text} onKeyDown={e=>this.onEnterPress(e)}></textarea>

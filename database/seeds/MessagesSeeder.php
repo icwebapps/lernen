@@ -17,7 +17,8 @@ class MessagesSeeder extends Seeder
         Message::create([
           'tutor_id' => 4,
           'student_id' => $s->user_id,
-          'message' => str_random(100)
+          'message' => 'Test message ' . $i,
+          'tutor_sent' => (bool) random_int(0, 1)
         ]);
       }
     }
