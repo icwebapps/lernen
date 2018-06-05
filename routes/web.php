@@ -22,8 +22,8 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/calendar/events', 'CalendarController@events');
   Route::get('/upcoming', 'UpcomingController@index');
 
-  Route::get('/students', 'ContactsController@index');
-  Route::get('/students/list', 'ContactsController@list');
+  Route::get('/contacts', 'ContactsController@index');
+  Route::get('/contacts/list', 'ContactsController@list');
 
   Route::get('/messages/{talkingTo}', 'ChatController@fetch');
   Route::post('/messages', 'ChatController@send');

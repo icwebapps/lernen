@@ -1,6 +1,12 @@
 @extends('layout')
 
-@section('title', 'Tutees')
+@if (Auth::user()->isTutor())
+  @php ($title = 'Students')
+@else
+  @php ($title = 'Tutors')
+@endif
+
+@section('title', $title)
 
 @section('content')
 
@@ -10,13 +16,13 @@
 <div class="main">
 
   @component('header')
-    @slot('title') Tutees @endslot
+    @slot('title') {{ $title }} @endslot
       <div class="header-tab-item tab-selected">Alphabetically</div>
       <div class="header-tab-item">Recent</div>
   @endcomponent
 
   <div class="width-fill">
-    <div id="listing-widget" data-userid="{{ Auth::user()->id }}" data-istutor="{{ Auth::user()->isTutor() }}"></div>
+    <div id="contacts-widget" data-userid="{{ Auth::user()->id }}" data-istutor="{{ Auth::user()->isTutor() }}"></div>
   </div>
 </div>
 </div>

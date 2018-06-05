@@ -170,4 +170,4 @@ input.add-resource {width: 165px;text-transform: uppercase;font-weight: 700;font
 .assignments-row .assignments-cell{width:170px;color:#A1B1CE;font-size:14px}
 .assignments-row .assignments-cell:first-of-type{color:#475670}
 .assignments-cell.due-soon {color: #f54a84;font-weight: bold;}
-#listing-widget{display:flex;}
+#contacts-widget{display:flex;}

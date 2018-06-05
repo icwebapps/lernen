@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import SearchField from './Form/SearchField';
-import Contact from './Contact/Contact';
+import ContactsList from './Contacts/ContactsList';
 import ChatWidget from './Chat/ChatWidget';
 
-export default class Listing extends Component {
+export default class Contacts extends Component {
   constructor() {
     super();
     this.state = { contacts: [], q: '' };
@@ -13,7 +13,7 @@ export default class Listing extends Component {
   }
 
   loadData() {
-    axios.get('/students/list', {
+    axios.get('/contacts/list', {
       _token: $('meta[name="csrf-token"]').attr('content') 
     }).then((response) => {
       this.setState(response.data);
@@ -35,7 +35,7 @@ export default class Listing extends Component {
           <SearchField placeholder="Search for students" onChange={e=>this.searchName(e)} />
         </div>
         <div className="contacts-list">
-          <Contact contacts={this.state.contacts} q={this.state.q} onChat={(contact)=>this.openChat(contact)} />
+          <ContactsList contacts={this.state.contacts} q={this.state.q} onChat={(contact)=>this.openChat(contact)} />
         </div>
       </div>,
       <div className="panel-chat">
@@ -45,7 +45,7 @@ export default class Listing extends Component {
   }
 }
 
-if (document.getElementById('listing-widget')) {
-  var el = document.getElementById('listing-widget');
-  ReactDOM.render(<Listing userId={el.dataset.userid} isTutor={el.dataset.istutor} />, el);
+if (document.getElementById('contacts-widget')) {
+  var el = document.getElementById('contacts-widget');
+  ReactDOM.render(<Contacts userId={el.dataset.userid} isTutor={el.dataset.istutor} />, el);
 }
