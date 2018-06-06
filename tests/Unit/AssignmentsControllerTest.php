@@ -1,12 +1,15 @@
 <?php
 namespace Tests\Unit;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Assignment;
 use Tests\TestCase;
 use App\{User, Student, Tutor};
 
 class AssignmentsControllerTest extends TestCase
 {
+  use RefreshDatabase;
+
   public function testRetrieveTasks()
   {
     $user = factory(User::class)->create();
