@@ -7,7 +7,6 @@
 @component('sidebar', ['selected' => 'resources'])
 @endcomponent
 
-
 <div class="main">
   @component('header')
     @slot('title') Resources @endslot
