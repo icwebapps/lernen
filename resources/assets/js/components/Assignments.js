@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
-import EmailField from './Form/EmailField';
-import PasswordField from './Form/PasswordField';
 
-export default class Dashboard extends Component {
+export default class Assignments extends Component {
   constructor() {
     super();
     this.state = {
@@ -14,7 +12,7 @@ export default class Dashboard extends Component {
   }
 
   loadData() {
-    axios.get('/dashboard/assignments', {
+    axios.get('/assignments', {
       _token: $('meta[name="csrf-token"]').attr('content')
     }).then((response) => {
       this.setState(response.data);
@@ -37,10 +35,12 @@ export default class Dashboard extends Component {
           </div>
           {this.state.tasks.map((t, _) =>
             <div className="assignments-row">
-              <div className="assignments-cell" onClick={this.handleClick} style={{cursor: 'pointer'}}><a href="images/alex.jpg" download>{t.title}</a></div>
+              <div className="assignments-cell" style={{cursor: 'pointer'}}>
+                <a href={t.url} download>{t.title}</a>
+              </div>
               <div className="assignments-cell due-soon">{t.due}</div>
               <div className="assignments-cell"><img src={t.completed ?
-                "images/icons8-checkmark-filled-50.png" : "images/shravan.jpg"}/></div>
+                "images/icons8-checkmark-filled-50.png" : "images/upload-icon.png"}/></div>
             </div>
           )}
 
@@ -50,6 +50,6 @@ export default class Dashboard extends Component {
   }
 }
 
-if (document.getElementById('dashboard-assignment-widget')) {
-  ReactDOM.render(<Dashboard/>, document.getElementById('dashboard-assignment-widget'));
+if (document.getElementById('assignment-widget')) {
+  ReactDOM.render(<Assignments/>, document.getElementById('assignment-widget'));
 }

@@ -26,5 +26,11 @@ class TutorsStudentsSeeder extends Seeder
     Tutor::create([
       'user_id' => User::where('name', 'Shravan Nageswaran')->first()->id
     ]);
+
+    // Create 15 random students and tutors
+    for ($i=0; $i<15; $i++) {
+      factory(Tutor::class)->create();
+      factory(Student::class)->create();
+    }
   }
 }
