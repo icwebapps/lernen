@@ -37,7 +37,7 @@ export default class Dashboard extends Component {
           </div>
           {this.state.tasks.map((t, _) =>
             <div className="assignments-row">
-              <div className="assignments-cell" onClick={this.handleClick} style={{cursor: 'pointer'}}>{t.title}</div>
+              <div className="assignments-cell" onClick={this.handleClick} style={{cursor: 'pointer'}}><a href="images/alex.jpg" download>{t.title}</a></div>
               <div className="assignments-cell due-soon">{t.due}</div>
               <div className="assignments-cell"><img src={t.completed ?
                 "images/icons8-checkmark-filled-50.png" : "images/shravan.jpg"}/></div>
