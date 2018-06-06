@@ -41,25 +41,4 @@ class ResourceController extends Controller
       return back();
     }
   }
-/*
-  public function store(Request $request)
-  {
-    $this->validate($request, [
-
-      'filename' => 'required',
-      'filename.*' => 'mimes:pdf'
-
-    ]);
-
-    if ($request->hasfile('filename'))
-    {
-      $resource = new Resource;
-      $resource->name = $request->filename;
-      $resource->move(public_path().'/tmp_resources', $resource->name);
-      $resource->save();
-
-      return back();
-    }
-  }*/
-
 }
