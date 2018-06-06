@@ -14,12 +14,12 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\Lesson::class, function (Faker $faker) {
-    return [
-      'tutor_id' => 1,
-      'student_id' => 1,
-      'subject' => str_random(20),
-      'date' => $faker->date,
-      'time' => $faker->time,
-      'location' => str_random(10),
-    ];
+  return [
+    'tutor_id' => 1,
+    'student_id' => 1,
+    'subject' => str_random(20),
+    'date' => $faker->date,
+    'time' => $faker->time,
+    'location' => str_random(10),
+  ];
 });

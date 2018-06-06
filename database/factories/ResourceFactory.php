@@ -14,11 +14,11 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\Resource::class, function (Faker $faker) {
-    return [
-      'name' => str_random(10),
-      'url' => str_random(10),
-      'created_at' => $faker->date,
-      'updated_at' => $faker->date,
-      'tutor_id' => 2
-    ];
+  return [
+    'name' => str_random(10),
+    'url' => str_random(10),
+    'created_at' => $faker->date,
+    'updated_at' => $faker->date,
+    'tutor_id' => 2
+  ];
 });

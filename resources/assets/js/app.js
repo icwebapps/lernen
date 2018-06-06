@@ -18,3 +18,4 @@ require('./components/Calendar');
 require('./components/Contacts');
 require('./components/Upcoming');
 require('./components/ResourceRow');
+require('./components/Assignments');

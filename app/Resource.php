@@ -11,6 +11,6 @@ class Resource extends Model
   }
 
   public function students() {
-    return $this->hasManyThrough('App\Student', 'App\StudentAssignment', 'student_id', 'user_id');
+    return $this->hasManyThrough('App\Student', 'App\Assignment', 'student_id', 'user_id');
   }
 }
