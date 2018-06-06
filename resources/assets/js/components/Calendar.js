@@ -16,6 +16,23 @@ export default class Calendar extends Component {
     });
   }
 
+  componentWillMount() {
+    document.addEventListener("keydown", (e) => this._handleDownKey(e), false);
+  }
+
+  _handleDownKey(e) {
+    if (this.state.start) {
+      const newStart = new Date(this.state.start);
+      if (e.keyCode == 38) {
+        newStart.setDate(newStart.getDate() - 7);
+      }
+      else if (e.keyCode == 40) {
+        newStart.setDate(newStart.getDate() + 7);
+      }
+      this.setState({ start: newStart });
+    }
+  }
+
   renderDays() {
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     return (
