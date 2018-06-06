@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 class AssignmentsController extends Controller
 {
 
-  public function assignments()
+  public function list()
   {
     $tasks = [];
     $assignments = Auth::user()->student->assignments;

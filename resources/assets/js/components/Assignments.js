@@ -12,7 +12,7 @@ export default class Assignments extends Component {
   }
 
   loadData() {
-    axios.get('/assignments', {
+    axios.get('/assignments/list', {
       _token: $('meta[name="csrf-token"]').attr('content')
     }).then((response) => {
       this.setState(response.data);
