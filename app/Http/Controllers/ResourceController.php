@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use App\User;
 
 class ResourceController extends Controller
 {
@@ -20,7 +22,7 @@ class ResourceController extends Controller
   public function list()
   {
     if (Auth::user()->isTutor()) {
-      $resources = Auth::user()->tutor->resources->with('students');
+      $resources = User::with('tutor.resources.students')->find(Auth::user()->id)->tutor->resources;
       return json_encode([ "resources" => $resources]);
     }
     else {
@@ -28,6 +30,17 @@ class ResourceController extends Controller
     }
   }
 
+
+  public function store(Request $request)
+  {
+    if ($request->hasfile('filename'))
+    {
+      $file = $request->filename;
+      $name = $file->getClientOriginalName();
+      Storage::disk('s3')->put('resources/', $file, 'public');
+      return back();
+    }
+  }
 /*
   public function store(Request $request)
   {
@@ -40,15 +53,13 @@ class ResourceController extends Controller
 
     if ($request->hasfile('filename'))
     {
-      $name = $file->getClientOriginalName();
-      $file->move(public_path().'/resources', $name);
-      $resource = new Resource();
-      $resource->filename = $name;
+      $resource = new Resource;
+      $resource->name = $request->filename;
+      $resource->move(public_path().'/tmp_resources', $resource->name);
       $resource->save();
 
-      return back()->with('success', 'Your files has been successfully added');
+      return back();
     }
-  }
-  */
+  }*/
 
 }
