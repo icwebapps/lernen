@@ -23,7 +23,7 @@ export default class ResourceRow extends Component {
       this.state.resources.map((r, i) => 
         <div key={"resource"+i} className="resources-row">
           <div className="resources-table-cell">
-            <a href={r.url}>{r.name}</a>
+            <a href={"assets.lernen.co.uk/"+r.url}>{r.name}</a>
           </div>
           <div className="resources-table-cell">Assignment</div>
           <div className="resources-table-cell">0</div>
