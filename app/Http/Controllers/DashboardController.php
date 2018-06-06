@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
@@ -19,19 +18,19 @@ class DashboardController extends Controller
   public function assignments()
   {
     $tasks = [];
-    $assignments = Auth::user()->student->assignments->with('resource')->get();
+    $assignments = Auth::user()->student->assignments;
 
     foreach ($assignments as $a) {
       $tasks[] = [
         'title' => $a->title,
         'due' => $a->date_due,
         'completed' => $a->completed,
-        'url' => $a >url //set up relation between resource and assignment (assignment model)
+        'url' => $a->resource->url //set up relation between resource and assignment (assignment model)
       ];
     }
 
     return json_encode([
-      'events' => $tasks
+      'tasks' => $tasks
     ]);
   }
 }

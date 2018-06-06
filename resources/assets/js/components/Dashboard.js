@@ -8,7 +8,7 @@ export default class Dashboard extends Component {
   constructor() {
     super();
     this.state = {
-      events: []
+      tasks: []
     };
     this.loadData();
   }
@@ -35,11 +35,11 @@ export default class Dashboard extends Component {
             <div className="assignments-cell">Due</div>
             <div className="assignments-cell">Submit</div>
           </div>
-          {this.state.events.map((e, _) =>
+          {this.state.tasks.map((t, _) =>
             <div className="assignments-row">
-              <div className="assignments-cell">{e.title}</div>
-              <div className="assignments-cell due-soon">{e.due}</div>
-              <div className="assignments-cell"><img src={e.completed == 1 ?
+              <div className="assignments-cell" onClick={this.handleClick} style={{cursor: 'pointer'}}>{t.title}</div>
+              <div className="assignments-cell due-soon">{t.due}</div>
+              <div className="assignments-cell"><img src={t.completed ?
                 "images/icons8-checkmark-filled-50.png" : "images/shravan.jpg"}/></div>
             </div>
           )}
