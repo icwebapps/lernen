@@ -60,15 +60,20 @@ export default class ChatWidget extends Component {
 
   render() {
     return ([
-      <h2>You are talking to {this.props.talkingTo.name}</h2>,
-      <ul>
-        {
-          this.state.messages.map((m, i) => {
-            const outgoing = (this.props.isTutor && m.tutor_sent) || (!this.props.isTutor && !m.tutor_sent);
-            return <li key={i}>{outgoing ? <b>{m.message}</b> : m.message}</li>
-          })
-        }
-      </ul>,
+      <div className="chat-talking-to">
+        <img src="/images/jasonlipowicz.png" />
+        {this.props.talkingTo.name}
+      </div>,
+      <div className="chat-container">
+        <div className="chat-messages-container">
+          {
+            this.state.messages.map((m, i) => {
+              const outgoing = (this.props.isTutor && m.tutor_sent) || (!this.props.isTutor && !m.tutor_sent);
+              return <div className={"chat-message " + (outgoing ? "outgoing" : "")} key={i}>{m.message}</div>
+            })
+          }
+        </div>
+      </div>,
       <textarea placeholder="Enter message" onChange={e=>this.onChange(e)} value={this.state.text} onKeyDown={e=>this.onEnterPress(e)}></textarea>
     ])
   }

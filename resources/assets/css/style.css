@@ -43,7 +43,7 @@ body{font-family:'Open Sans',sans-serif}
 .header-tab-item,.resources-tab-item,.dashboard-header-item{padding:10px 0;font-weight:600;color:#9FA3C1;margin-right:35px}
 .header-left,.header-right{width:300px}
 .header-right{height:100%;text-align: -webkit-right;}
-.panel-contacts{width:350px;background:#fff;height: 100%;display: flex;flex-direction: column;}
+.panel-contacts{width:350px;background:#fff;height: 100%;display: flex;flex-direction: column;border-right: 1px solid #DADADA;}
 .panel-alpha{background:#EDEFF5;color:#A4A3BD;font-weight:600;padding: 7px;}
 .alpha-item.item-selected{background:#fff;border-radius:50%;color:#3E8BDF;font-weight:800}
 .alpha-item{text-align:center;padding: 5px;width: 30px;font-size:14px;box-sizing:border-box;height: 30px;margin-bottom: 2px;}
@@ -170,4 +170,12 @@ input.add-resource {width: 165px;text-transform: uppercase;font-weight: 700;font
 .assignments-row .assignments-cell{width:170px;color:#A1B1CE;font-size:14px}
 .assignments-row .assignments-cell:first-of-type{color:#475670}
 .assignments-cell.due-soon {color: #f54a84;font-weight: bold;}
-#contacts-widget{display:flex;}
+#contacts-widget{display:flex;flex: 1;}
+.panel-chat{width: 600px;display:flex;flex-direction:column;border-right: 1px solid #DADADA;}
+.chat-talking-to{background:#fff;border-bottom:1px solid #DADADA;font-weight:600;font-size:20px;color:#313549;text-align:center;padding:25px 0}
+.chat-talking-to img{border-radius:50%;width:30px;vertical-align:-10px;margin-right:25px}
+.chat-container{flex:1;position:relative}
+#contacts-widget textarea{border:none;border-top:1px solid #DADADA;font-family:'Open Sans',sans-serif;font-size:14px;padding:25px;outline:none;resize:none}
+.chat-messages-container{position:absolute;bottom:0;padding:15px;width:100%;box-sizing:border-box;display:flex;flex-direction:column}
+.chat-message{border:1px solid #DADADA;background:#fff;border-radius:7px;font-size:14px;padding:8px 25px 8px 15px;margin:5px 0;max-width:200px}
+.chat-message.outgoing{background:#4990e0;color:#fff;text-align:right;align-self:flex-end}
