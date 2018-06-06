@@ -81,7 +81,7 @@
           {{csrf_field()}}
         
           <input type="file" name="filename">          
-          <input type="submit" action="" value="Add Resource" class="add-resource">
+          <input type="submit" value="Add Resource" class="add-resource">
 
         </form>
         
