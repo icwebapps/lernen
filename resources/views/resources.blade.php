@@ -66,7 +66,7 @@
           <div class="resources-table-cell">Uploaded <img src="/images/icons8-sort-down-filled-50.png" /></div>
           <div class="resources-table-cell">Students <img src="/images/icons8-sort-down-filled-50.png" /></div>
         </div>
-        <div id="resources-row-container">
+        <div id="resources-widget">
         </div>
       </div>
 
