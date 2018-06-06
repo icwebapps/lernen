@@ -20,7 +20,7 @@ class ResourceController extends Controller
   public function list()
   {
     if (Auth::user()->isTutor()) {
-      $resources = Auth::user()->tutor->resources;
+      $resources = Auth::user()->tutor->resources->with('students');
       return json_encode([ "resources" => $resources]);
     }
     else {

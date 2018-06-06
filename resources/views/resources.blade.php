@@ -96,36 +96,7 @@
               <div class="resources-table-cell">Uploaded <img src="images/icons8-sort-down-filled-50.png" /></div>
               <div class="resources-table-cell">Students <img src="images/icons8-sort-down-filled-50.png" /></div>
             </div>
-            <div class="resources-row">
-              <div class="resources-table-cell">C1 January 2010</div>
-              <div class="resources-table-cell">Past Paper</div>
-              <div class="resources-table-cell">2</div>
-              <div class="resources-table-cell">03/06/18</div>
-              <div class="resources-table-cell resources-faces-list">
-                <img src="images/jasonlipowicz.png" />
-                <img src="images/alex.jpg" />
-                <img src="images/icons8-plus-50.png" />
-              </div>
-            </div>
-            <div class="resources-row">
-              <div class="resources-table-cell">C1 January 2011</div>
-              <div class="resources-table-cell">Past Paper</div>
-              <div class="resources-table-cell">1</div>
-              <div class="resources-table-cell">02/06/18</div>
-              <div class="resources-table-cell resources-faces-list">
-                <img src="images/shravan.jpg" />
-                <img src="images/icons8-plus-50.png" />
-              </div>
-            </div>
-            <div class="resources-row">
-              <div class="resources-table-cell">Partial Fractions</div>
-              <div class="resources-table-cell">Exercise</div>
-              <div class="resources-table-cell">3</div>
-              <div class="resources-table-cell">02/05/18</div>
-              <div class="resources-table-cell resources-faces-list">
-                <img src="images/boazfrancis.jpg" />
-                <img src="images/icons8-plus-50.png" />
-              </div>
+            <div id="resources-row-container">
             </div>
           </div>
 
