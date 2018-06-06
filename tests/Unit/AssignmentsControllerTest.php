@@ -2,8 +2,10 @@
 namespace Tests\Unit;
 
 use App\Assignment;
+use Tests\TestCase;
+use App\{User, Student, Tutor};
 
-class CalendarControllerTest extends TestCase
+class AssignmentsControllerTest extends TestCase
 {
   public function testRetrieveTasks()
   {
@@ -13,16 +15,16 @@ class CalendarControllerTest extends TestCase
     ]);
     factory(Assignment::class)->create([
       'student_id' => $student->user_id,
-      'tutor_id' => factory(Tutor::class)->create()
+      'tutor_id' => factory(Tutor::class)->create()->user_id
     ]);
     factory(Assignment::class)->create([
-      'student_id' => 1,
-      'tutor_id' => factory(Tutor::class)->create()
+      'student_id' => factory(Student::class)->create()->user_id,
+      'tutor_id' => factory(Tutor::class)->create()->user_id
     ]);
 
     $response = $this->actingAs($student->user)->get('/assignments/list');
     $response->assertStatus(200);
-    $response->assertJsonCount('tasks', 1);
+    $response->assertJsonCount(1, 'tasks');
   }
 
   public function testRetrieveNoTasks()
@@ -34,6 +36,6 @@ class CalendarControllerTest extends TestCase
 
     $response = $this->actingAs($student->user)->get('/assignments/list');
     $response->assertStatus(200);
-    $response->assertJsonCount('tasks', 0);
+    $response->assertJsonCount(0, 'tasks');
   }
 }

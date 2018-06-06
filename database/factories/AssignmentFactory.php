@@ -1,6 +1,10 @@
 <?php
 
+use App\Resource;
+use App\Tutor;
+use App\Student;
 use Faker\Generator as Faker;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +20,17 @@ use Faker\Generator as Faker;
 $factory->define(App\Assignment::class, function (Faker $faker) {
   $date_set = $faker->date;
   $date_due = strtotime('+7 days', strtotime($date_set));
+  $tutor_id = factory(Tutor::class)->create()->user_id;
   return [
-    'tutor_id' => 1,
-    'student_id' => 1,
+    'tutor_id' => $tutor_id,
+    'student_id' => factory(Student::class)->create()->user_id,
     'subject' => str_random(20),
     'date_set' => $date_set,
     'date_due' => date('Y-m-d', $date_due),
     'completed' => $faker->boolean,
-    'resource_id' => 2,
+    'resource_id' => factory(Resource::class)->create([
+      'tutor_id' => $tutor_id
+    ]),
     'title' => str_random(10)
   ];
 });
