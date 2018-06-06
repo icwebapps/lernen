@@ -14,17 +14,17 @@
         <div class="page-title">Resources</div>
       </div>
       <div class="header-center">
-        <img src="images/logo.png" class="logo" />
+        <img src="/images/logo.png" class="logo" />
       </div>
       <div class="header-right">
-        <div class="header-logout"><img src="images/icons8-shutdown-50.png" /></div>
+        <div class="header-logout"><img src="/images/icons8-shutdown-50.png" /></div>
       </div>
     </div>
     <div class="width-fill">
       <div class="panel-subjects">
         <div class="add-subject">
           <div class="add-subject-title">Add Subject</div>
-          <img src="images/icons8-plus-math-50.png" class="add-subject-button" />
+          <img src="/images/icons8-plus-math-50.png" class="add-subject-button" />
         </div>
         <div class="subject-list">
           <div class="subject-list-headers">
@@ -67,11 +67,11 @@
         </div>
         <div class="resources-table">
           <div class="resources-table-header resources-row">
-            <div class="resources-table-cell">Name <img src="images/icons8-sort-down-filled-50.png" /></div>
-            <div class="resources-table-cell">Type <img src="images/icons8-sort-down-filled-50.png" /></div>
-            <div class="resources-table-cell">Downloads <img src="images/icons8-sort-down-filled-50.png" /></div>
-            <div class="resources-table-cell">Uploaded <img src="images/icons8-sort-down-filled-50.png" /></div>
-            <div class="resources-table-cell">Students <img src="images/icons8-sort-down-filled-50.png" /></div>
+            <div class="resources-table-cell">Name <img src="/images/icons8-sort-down-filled-50.png" /></div>
+            <div class="resources-table-cell">Type <img src="/images/icons8-sort-down-filled-50.png" /></div>
+            <div class="resources-table-cell">Downloads <img src="/images/icons8-sort-down-filled-50.png" /></div>
+            <div class="resources-table-cell">Uploaded <img src="/images/icons8-sort-down-filled-50.png" /></div>
+            <div class="resources-table-cell">Students <img src="/images/icons8-sort-down-filled-50.png" /></div>
           </div>
           <div id="resources-row-container">
           </div>
