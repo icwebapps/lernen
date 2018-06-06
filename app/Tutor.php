@@ -17,4 +17,8 @@ class Tutor extends Model
   public function messages() {
     return $this->hasMany('App\Message');
   }
+
+  public function resources() {
+    return $this->hasMany('App\Resource', 'tutor_id', 'user_id');
+  }
 }
