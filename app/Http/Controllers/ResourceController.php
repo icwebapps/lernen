@@ -22,8 +22,8 @@ class ResourceController extends Controller
   public function list()
   {
     if (Auth::user()->isTutor()) {
-      $resources = User::with('tutor.resources.students')->find(Auth::user()->id)->tutor->resources;
-      return json_encode([ "resources" => $resources]);
+      $resources = User::with('tutor.resources.students.user')->find(Auth::user()->id)->tutor->resources;
+      return json_encode([ "resources" => $resources ]);
     }
     else {
       abort(404);
