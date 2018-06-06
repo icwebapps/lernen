@@ -15,7 +15,7 @@ class ResourceController extends Controller
        return view('resources');
     }
     else {
-      return;
+      abort(404);
     }
   }
 
