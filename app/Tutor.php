@@ -16,11 +16,13 @@ class Tutor extends Model
     return $this->hasMany('App\Lesson', 'tutor_id', 'user_id');
   }
 
-  public function messages() {
+  public function messages()
+  {
     return $this->hasMany('App\Message');
   }
 
-  public function resources() {
+  public function resources()
+  {
     return $this->hasMany('App\Resource', 'tutor_id', 'user_id');
   }
 }
