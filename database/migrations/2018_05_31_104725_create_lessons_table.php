@@ -26,6 +26,8 @@ class CreateLessonsTable extends Migration
 
             $table->foreign('tutor_id')->references('user_id')->on('tutors');
             $table->foreign('student_id')->references('user_id')->on('students');
+            $table->foreign('subject')->references('name')->on('subjects');
+
         });
     }
 
