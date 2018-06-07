@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Assignment extends Model
 {
   protected $fillable = [
-    'student_id', 'tutor_id', 'subject',
+    'student_id', 'subject_id',
     'date_set', 'date_due', 'resource_id', 'title'
   ];
   

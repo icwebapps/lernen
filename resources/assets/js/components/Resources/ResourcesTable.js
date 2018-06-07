@@ -11,10 +11,19 @@ export default class ResourcesTable extends Component {
       subject: '',
       resources: []
     };
-    this.loadData();
+    this.loadResources();
+    this.loadContacts();
   }
 
-  loadData() {
+  loadContacts() {
+    axios.get('/contacts/list', {
+      _token: $('meta[name="csrf-token"]').attr('content') 
+    }).then((response) => {
+      this.setState(response.data);
+    });
+  }
+
+  loadResources() {
     axios.get('/resources/list', {
       _token: $('meta[name="csrf-token"]').attr('content') 
     }).then((response) => {

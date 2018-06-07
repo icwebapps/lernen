@@ -6,7 +6,7 @@ use App\Resource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\{User, Assignment};
+use App\{User, Assignment, Subject};
 
 class ResourceController extends Controller
 {
@@ -23,7 +23,7 @@ class ResourceController extends Controller
   public function list()
   {
     if (Auth::user()->isTutor()) {
-      $resources = User::with('tutor.resources.students.user')->find(Auth::user()->id)->tutor->resources;
+      $resources = User::with('tutor.resources.assignments.student.user')->find(Auth::user()->id)->tutor->resources;
       return json_encode([ "resources" => $resources ]);
     }
     else {
@@ -49,8 +49,7 @@ class ResourceController extends Controller
   {
     $assignment = new Assignment([
       'student_id' => $request->input('student_id'),
-      'tutor_id' => Auth::user()->id,
-      'subject' => str_random(20),
+      'subject_id' => Subject::find(1)->id,
       'date_set' => date('Y-m-d'),
       'date_due' => date('Y-m-d'),
       'resource_id' => $resourceId,
