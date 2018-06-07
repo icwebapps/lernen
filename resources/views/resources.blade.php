@@ -24,6 +24,10 @@
           <div class="subject-list-header-item header-level">Level</div>
           <div class="subject-list-header-item header-files">Files</div>
         </div>
+
+        <div id="subject-widget">
+        </div>
+        
         <div class="subject-list-item">
           <div class="subject-list-letter letter-green">M</div>
           <div class="subject-list-name">Mathematics</div>
