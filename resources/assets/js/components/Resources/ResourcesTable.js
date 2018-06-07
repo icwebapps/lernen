@@ -4,33 +4,6 @@ import ReactDOM from 'react-dom';
 import ResourcesRow from './ResourcesRow';
 
 export default class ResourcesTable extends Component {
-  constructor() {
-    super();
-    this.state = {
-      tabID: '1',
-      subject: '',
-      resources: []
-    };
-    this.loadResources();
-    this.loadContacts();
-  }
-
-  loadContacts() {
-    axios.get('/contacts/list', {
-      _token: $('meta[name="csrf-token"]').attr('content') 
-    }).then((response) => {
-      this.setState(response.data);
-    });
-  }
-
-  loadResources() {
-    axios.get('/resources/list', {
-      _token: $('meta[name="csrf-token"]').attr('content') 
-    }).then((response) => {
-      this.setState(response.data);
-    });
-  }
-
   render() {
     return ([
       <div className="resources-table-header resources-row" key="resources-table-headers">
@@ -40,8 +13,8 @@ export default class ResourcesTable extends Component {
         <div className="resources-table-cell">Uploaded <img src="/images/icons8-sort-down-filled-50.png" /></div>
         <div className="resources-table-cell">Students <img src="/images/icons8-sort-down-filled-50.png" /></div>
       </div>,
-      this.state.resources.map((r, i) =>
-        <ResourcesRow allContacts={this.state.contacts} key={"resource"+i} resource={r} onAddStudent={()=>this.loadResources()} />
+      this.props.resources.map((r, i) =>
+        <ResourcesRow contacts={this.props.contacts} key={"resource"+i} resource={r} onAddStudent={this.props.onAddStudent} />
       )
     ]);
   }
