@@ -19,7 +19,6 @@ class student_assignment_seeder extends Seeder
         StudentAssignment::create([
         'student_id' => 1,
         'resource_id' => random_int(0,20),
-        'subject' => str_random(10),
         'date_set' => date("Y-m-d", strtotime("-1 days")),
         'date_due' => date("Y-m-d", strtotime("+7 days")),
         'completed' => (bool) random_int(0,1),

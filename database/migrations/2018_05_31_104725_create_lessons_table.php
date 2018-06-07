@@ -13,20 +13,21 @@ class CreateLessonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('lessons', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('tutor_id')->unsigned();
-            $table->integer('student_id')->unsigned();
-            $table->string('subject');
-            $table->date('date');
-            $table->time('time');
-            $table->string('location')->nullable();
-            $table->boolean('completed')->default(false);
-            $table->timestamps();
+      Schema::create('lessons', function (Blueprint $table) {
+        $table->increments('id');
+        $table->integer('tutor_id')->unsigned();
+        $table->integer('student_id')->unsigned();
+        $table->string('subject');
+        $table->date('date');
+        $table->time('time');
+        $table->string('location')->nullable();
+        $table->boolean('completed')->default(false);
+        $table->timestamps();
 
-            $table->foreign('tutor_id')->references('user_id')->on('tutors');
-            $table->foreign('student_id')->references('user_id')->on('students');
-        });
+        $table->foreign('tutor_id')->references('user_id')->on('tutors');
+        $table->foreign('student_id')->references('user_id')->on('students');
+
+      });
     }
 
     /**
@@ -36,6 +37,6 @@ class CreateLessonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lessons');
+      Schema::dropIfExists('lessons');
     }
 }

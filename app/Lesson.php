@@ -14,4 +14,8 @@ class Lesson extends Model
   {
     return $this->belongsTo('App\Tutor', 'tutor_id', 'user_id');
   }
+
+  public function subject() {
+    return $this->belongsTo('App\Subject', 'subject_id', 'id');
+  }
 }
