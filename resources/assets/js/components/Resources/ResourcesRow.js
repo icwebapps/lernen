@@ -30,13 +30,13 @@ export default class ResourcesRow extends Component {
         <div className="resources-table-cell">{this.props.resource.created_at}</div>
         <div className="resources-table-cell resources-faces-list">
           {
-            this.props.resource.students.map((s, j) =>
-              <a href={"/contacts/"+s.user.id} alt={s.user.name} title={s.user.name}><img key={"pp"+j} src={s.user.profile_picture} /></a>
+            this.props.resource.assignments.map((a, j) =>
+              <a href={"/contacts/"+a.student.user.id} alt={a.student.user.name} title={a.student.user.name}><img key={"pp"+j} src={a.student.user.profile_picture} /></a>
             )
           }
           <img src="/images/icons8-plus-50.png" onClick={(e) => this.openAddStudent()} />
         </div>
-        { this.state.addStudent ? <ModalAddStudent allContacts={this.props.allContacts} /> : '' }
+        { this.state.addStudent ? <ModalAddStudent resource={this.props.resource} allContacts={this.props.allContacts} onAddStudent={this.props.onAddStudent} /> : '' }
       </div>
     );
   }

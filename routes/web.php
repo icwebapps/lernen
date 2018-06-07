@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/resources', 'ResourceController@index');
   Route::get('/resources/list', 'ResourceController@list');
   Route::post('/resources', 'ResourceController@store');
+  Route::post('/resources/{id}/students', 'ResourceController@add_student');
 });
 
 

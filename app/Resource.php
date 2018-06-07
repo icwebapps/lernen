@@ -10,7 +10,7 @@ class Resource extends Model
     return $this->belongsTo('App\Tutor', 'tutor_id', 'user_id');
   }
 
-  public function students() {
-    return $this->hasManyThrough('App\Student', 'App\Assignment', 'resource_id', 'user_id');
+  public function assignments() {
+    return $this->hasMany('App\Assignment');
   }
 }

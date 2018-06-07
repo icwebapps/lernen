@@ -11,10 +11,19 @@ export default class ResourcesTable extends Component {
       subject: '',
       resources: []
     };
-    this.loadData();
+    this.loadResources();
+    this.loadContacts();
   }
 
-  loadData() {
+  loadContacts() {
+    axios.get('/contacts/list', {
+      _token: $('meta[name="csrf-token"]').attr('content') 
+    }).then((response) => {
+      this.setState(response.data);
+    });
+  }
+
+  loadResources() {
     axios.get('/resources/list', {
       _token: $('meta[name="csrf-token"]').attr('content') 
     }).then((response) => {
@@ -32,7 +41,7 @@ export default class ResourcesTable extends Component {
         <div className="resources-table-cell">Students <img src="/images/icons8-sort-down-filled-50.png" /></div>
       </div>,
       this.state.resources.map((r, i) =>
-      <ResourcesRow key={"resource"+i} resource={r} />
+        <ResourcesRow allContacts={this.state.contacts} key={"resource"+i} resource={r} onAddStudent={()=>this.loadResources()} />
       )
     ]);
   }
