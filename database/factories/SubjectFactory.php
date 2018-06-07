@@ -15,7 +15,6 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Subject::class, function (Faker $faker) {
   return [
-    'id' => 1,
     'name' => str_random(10),
     'level' => str_random(5)
   ];

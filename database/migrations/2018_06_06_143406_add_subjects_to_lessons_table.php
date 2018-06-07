@@ -29,6 +29,12 @@ class AddSubjectsToLessonsTable extends Migration
      */
     public function down()
     {
-      Schema::dropIfExists('lessons');
+      Schema::table('lessons', function (Blueprint $table) {
+        $table->string('subject');
+      });
+      Schema::table('lessons', function (Blueprint $table) {
+        $table->dropForeign('subject_id');
+        $table->dropColumn('subject_id');
+      });
     }
 }

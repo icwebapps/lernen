@@ -19,7 +19,7 @@ class LessonsSeeder extends Seeder
       // Create lessons with 15 different students in the next month for tutor 4
       $s = Student::all();
       for ($i=0; $i<15; $i++) {
-        Lesson::create([
+        factory(Lesson::class)->create([
           'tutor_id' => 4,
           'student_id' => $s[$i]->user_id,
           'date' => date("Y-m-d", strtotime("+7 days")),
