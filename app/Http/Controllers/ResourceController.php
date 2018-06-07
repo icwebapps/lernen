@@ -38,7 +38,7 @@ class ResourceController extends Controller
     $storagePath = Storage::disk('s3')->put('resources/', $file, 'public');
     $url = Storage::url($file);
     $storageName = basename($storagePath);
-    $resource = new resource;
+    $resource = new Resource;
     $resource->url = $url;
     $resource->name = $storageName;
     $resource->tutor_id = Auth::user()->id;
