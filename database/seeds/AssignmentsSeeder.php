@@ -20,7 +20,6 @@ class AssignmentsSeeder extends Seeder
       $t = Tutor::create(['user_id' => factory(User::class)->create()->id]);
       Assignment::create([
         'student_id' => 1,
-        'tutor_id' => $t->user_id,
         'subject' => str_random(10),
         'date_set' => date("Y-m-d", strtotime("-1 days")),
         'date_due' => date("Y-m-d", strtotime("+7 days")),
