@@ -22,8 +22,11 @@ export default class ResourcesUpload extends Component {
           'content-type': 'multipart/form-data'
           }
       }).then((response) => {
-
+        if (response.status == 1) {
+          this.props.onUpload();
+        }
     });
+
   }
 
   updateFile(e) {

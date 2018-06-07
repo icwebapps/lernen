@@ -2,22 +2,14 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 export default class ResourcesTabSelector extends Component {
-  constructor() 
-  {
-    super();
-    this.state = {
-      tabID: 1  
-    };
-  }
-
   onClick(i) 
   {
-    this.setState({tabID: i});
+    this.props.onTabChange(i);
   }
 
   selected(i)
   {
-    return this.state.tabID == i ? "tab-selected" : "";
+    return this.props.tabID == i ? "tab-selected" : "";
   }
 
   render() 

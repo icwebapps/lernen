@@ -10,12 +10,28 @@ export default class Resources extends Component {
   constructor() {
     super();
     this.state = {
+      resources: [],
+      contacts: [],
+      tabID: '1',
       subject: ''
     };
-    this.loadData();
+    this.loadResources();
+    this.loadContacts();
   }
 
-  loadData() {
+  tabChange(i) {
+    this.setState({ tabID: i });
+  }
+
+  loadContacts() {
+    axios.get('/contacts/list', {
+      _token: $('meta[name="csrf-token"]').attr('content') 
+    }).then((response) => {
+      this.setState(response.data);
+    });
+  }
+
+  loadResources() {
     axios.get('/resources/list', {
       _token: $('meta[name="csrf-token"]').attr('content') 
     }).then((response) => {
@@ -26,6 +42,14 @@ export default class Resources extends Component {
   changeSubject(new_subject) {
     this.setState({ subject: new_subject });
   }
+  
+  onUpload() {
+    this.loadResources();
+  }
+
+  onAddStudent() {
+    this.loadResources();
+  }
 
   render() {
     return ([
@@ -33,9 +57,9 @@ export default class Resources extends Component {
         <SubjectSidebar onChangeSubject={(subject)=>this.changeSubject(subject)} />
       </div>,
       <div className="panel-resources">
-        <ResourcesTabSelector key="resources-tab-selector"/>
-        <ResourcesTable key="resources-table"/>
-        <ResourcesUpload key="resources-upload"/>
+        <ResourcesTabSelector key="resources-tab-selector" tabID={this.state.tabID} onTabChange={(i)=>this.tabChange(i)} />
+        <ResourcesTable key="resources-table"  resources={this.state.resources} contacts={this.state.contacts} onAddStudent={(_)=>this.onAddStudent()} />
+        <ResourcesUpload key="resources-upload" onUpload={this.onUpload} />
       </div>
     ]);
   }
