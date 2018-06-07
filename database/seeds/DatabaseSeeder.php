@@ -10,7 +10,7 @@ class DatabaseSeeder extends Seeder
     Eloquent::unguard();
     $this->call('UsersTableSeeder');
     $this->call('TutorsStudentsSeeder');
-    $this->call('SubjectsSeeder');
+    $this->call('SubjectSeeder');
     $this->call('LessonsSeeder');
     $this->call('ResourcesSeeder');
     $this->call('AssignmentsSeeder');

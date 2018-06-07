@@ -22,10 +22,8 @@ class LessonsSeeder extends Seeder
         Lesson::create([
           'tutor_id' => 4,
           'student_id' => $s[$i]->user_id,
-          'subject' => str_random(10),
           'date' => date("Y-m-d", strtotime("+7 days")),
-          'time' => '12:00:00',
-          'subject_id' => 1
+          'time' => '12:00:00'
         ]);
       }
     }

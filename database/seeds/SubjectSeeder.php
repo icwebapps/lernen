@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Subjects;
+use App\Subject;
 
 class SubjectSeeder extends Seeder
 {

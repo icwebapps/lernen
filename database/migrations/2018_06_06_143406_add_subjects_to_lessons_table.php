@@ -17,6 +17,9 @@ class AddSubjectsToLessonsTable extends Migration
         $table->integer('subject_id')->unsigned();
         $table->foreign('subject_id')->references('id')->on('subjects');
       });
+      Schema::table('lessons', function (Blueprint $table) {
+        $table->dropColumn('subject');
+      });
     }
 
     /**
