@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ResourcesRow = ({resource}) =>
+const ResourcesRow = ({resource, addStudent}) =>
   <div className="resources-row">
     <div className="resources-table-cell">
       <a href={"assets.lernen.co.uk/"+resource.url}>{resource.name}</a>
@@ -14,7 +14,7 @@ const ResourcesRow = ({resource}) =>
           <a href={"/contacts/"+s.user.id} alt={s.user.name} title={s.user.name}><img key={"pp"+j} src={s.user.profile_picture} /></a>
         )
       }
-      <img src="/images/icons8-plus-50.png" />
+      <img src="/images/icons8-plus-50.png" onClick={(e) => addStudent(resource)} />
     </div>
   </div>;
 
