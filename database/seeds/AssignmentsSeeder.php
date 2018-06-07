@@ -1,10 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Assignment;
-use App\Tutor;
-use App\User;
-use App\Resource;
+use App\{Assignment, Tutor, User, Resource, Subject};
 
 class AssignmentsSeeder extends Seeder
 {
@@ -20,7 +17,7 @@ class AssignmentsSeeder extends Seeder
       $t = Tutor::create(['user_id' => factory(User::class)->create()->id]);
       Assignment::create([
         'student_id' => 1,
-        'subject' => str_random(10),
+        'subject_id' => factory(Subject::class)->create()->id,
         'date_set' => date("Y-m-d", strtotime("-1 days")),
         'date_due' => date("Y-m-d", strtotime("+7 days")),
         'resource_id' => factory(Resource::class)->create()->id,
