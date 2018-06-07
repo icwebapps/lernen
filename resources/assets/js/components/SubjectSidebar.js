@@ -21,6 +21,7 @@ export default class SubjectSidebar extends Component {
   render() {
     const $colours=["green", "red", "blue", "purple"];
     const $subjects = this.state.resources.map((r, i) => r.subject);
+    // Does not display duplicate subjects.
     $subjects.filter((s, i, a) => a.indexOf(s) == i);
     return ([
         <div className="subject-list-headers">
