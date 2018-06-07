@@ -19,6 +19,7 @@ $factory->define(App\Resource::class, function (Faker $faker) {
     'url' => str_random(10),
     'created_at' => $faker->date,
     'updated_at' => $faker->date,
-    'tutor_id' => 2
+    'tutor_id' => 2,
+    'subject_id' => factory(App\Subject::class)->create()->id
   ];
 });

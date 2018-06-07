@@ -13,4 +13,8 @@ class Resource extends Model
   public function assignments() {
     return $this->hasMany('App\Assignment');
   }
+
+  public function subject() {
+    return $this->belongsTo('App\Subject', 'subject_id', 'id');
+  }
 }
