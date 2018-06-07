@@ -5,7 +5,7 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
-use App\User, App\Tutor, App\Student, App\Lesson, App\Subject;
+use App\User, App\Tutor, App\Student, App\Lesson;
 
 class CalendarControllerTest extends TestCase
 {
