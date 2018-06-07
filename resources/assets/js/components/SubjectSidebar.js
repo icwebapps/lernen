@@ -29,7 +29,7 @@ export default class SubjectSidebar extends Component {
           <div className="subject-list-header-item header-files">Files</div>
         </div>,
         $subjects.map((s, i) =>
-          <SubjectsRow key={"subject"+i} subject={s} colour={$colours[i%4]}/>
+          <SubjectsRow key={"subject"+i} subject={s} colour={$colours[i%4]} resources={this.state.resources}/>
         )
     ]);
   }  

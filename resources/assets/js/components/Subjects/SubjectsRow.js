@@ -10,7 +10,7 @@ export default class SubjectsRow extends Component {
       </div>
       <div className="subject-list-name">{this.props.subject.name}</div>
       <div className="subject-list-level">{this.props.subject.level}</div>
-      <div className="subject-list-files">12</div>
+      <div className="subject-list-files">{this.props.resources.filter(r => r.subject == this.props.subject).length}</div>
     </div>
     ]);
   }
