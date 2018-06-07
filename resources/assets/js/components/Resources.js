@@ -10,10 +10,6 @@ export default class Resources extends Component {
     this.state = {};
   }
 
-  addStudent(resource) {
-    console.log(resource);
-  }
-
   render() {
     return ([
       <ResourcesTabSelector key="resources-tab-selector"/>,

@@ -6,7 +6,7 @@ use App\Resource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\User;
+use App\{User, Assignment};
 
 class ResourceController extends Controller
 {
@@ -31,7 +31,6 @@ class ResourceController extends Controller
     }
   }
 
-
   public function store(Request $request)
   {
     $file = $request->file;
@@ -43,6 +42,22 @@ class ResourceController extends Controller
     $resource->name = $storageName;
     $resource->tutor_id = Auth::user()->id;
     $resource->save();
+    return json_encode(["status" => 1]);
+  }
+
+  public function add_student(Request $request, $resourceId) 
+  {
+    $assignment = new Assignment([
+      'student_id' => $request->input('student_id'),
+      'tutor_id' => Auth::user()->id,
+      'subject' => str_random(20),
+      'date_set' => date('Y-m-d'),
+      'date_due' => date('Y-m-d'),
+      'resource_id' => $resourceId,
+      'title' => str_random(10)
+    ]);
+    
+    $assignment->save();
     return json_encode(["status" => 1]);
   }
 }

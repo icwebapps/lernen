@@ -32,7 +32,7 @@ export default class ResourcesTable extends Component {
         <div className="resources-table-cell">Students <img src="/images/icons8-sort-down-filled-50.png" /></div>
       </div>,
       this.state.resources.map((r, i) =>
-      <ResourcesRow key={"resource"+i} resource={r} />
+        <ResourcesRow allContacts={this.state.contacts} key={"resource"+i} resource={r} onAddStudent={()=>this.loadResources()} />
       )
     ]);
   }
