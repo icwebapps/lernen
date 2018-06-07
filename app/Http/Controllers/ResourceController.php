@@ -34,12 +34,12 @@ class ResourceController extends Controller
   public function store(Request $request)
   {
     $file = $request->file;
-    $storagePath = Storage::disk('s3')->put('resources/', $file, 'public');
-    $url = Storage::url($file);
-    $storageName = basename($storagePath);
+    $storagePath = Storage::disk('s3')->put('resources', $file, 'public');
     $resource = new Resource;
-    $resource->url = $url;
-    $resource->name = $storageName;
+    $resource->url = 'http://assets.lernen.co.uk/'.$storagePath;
+    $path = pathinfo($file->getClientOriginalName());
+    $resource->name = $path['filename'];
+    $resource->subject_id = 1;
     $resource->tutor_id = Auth::user()->id;
     $resource->save();
     return json_encode(["status" => 1]);

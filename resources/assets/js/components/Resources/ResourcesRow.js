@@ -23,7 +23,7 @@ export default class ResourcesRow extends Component {
     return (
       <div className="resources-row">
         <div className="resources-table-cell">
-          <a href={"assets.lernen.co.uk/"+this.props.resource.url}>{this.props.resource.name}</a>
+          <a href={this.props.resource.url}>{this.props.resource.name}</a>
         </div>
         <div className="resources-table-cell">Assignment</div>
         <div className="resources-table-cell">0</div>
