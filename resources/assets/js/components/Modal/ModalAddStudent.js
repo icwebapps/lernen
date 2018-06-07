@@ -26,7 +26,7 @@ export default class ModalAddStudent extends Component {
           <SearchField placeholder="Search for students" onChange={e=>this.searchName(e)} />
         </div>
         <div className="contacts-list">
-          <ContactsList contacts={this.props.allContacts} q={this.state.q} onClick={(contact) => this.addContact(contact)} />
+          <ContactsList minChars={1} contacts={this.props.allContacts} q={this.state.q} onClick={(contact) => this.addContact(contact)} />
         </div>
       </div>
     );
