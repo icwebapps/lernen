@@ -11,7 +11,12 @@ export default class ResourcesRow extends Component {
   }
 
   openAddStudent() {
-    this.setState({ addStudent: true });
+    if (this.state.addStudent) {
+      this.setState({ addStudent: false });
+    }
+    else {
+      this.setState({ addStudent: true });
+    }
   }
 
   render() {

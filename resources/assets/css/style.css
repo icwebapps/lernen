@@ -123,7 +123,7 @@ input[type="text"].error, input[type="password"].error {border: 1px solid #d2383
 .subject-list-header-item.header-level{width:70px}
 .subject-list-item.item-selected{border:1px solid #AAB1C6;border-radius:10px}
 .panel-resources{background:#fff;flex:1;border-left:1px solid #DADADA;padding:20px 30px}
-.resources-row{background:#F6F7FA;border-radius:10px;display:flex;padding:10px 20px;margin-bottom:15px}
+.resources-row{background:#F6F7FA;border-radius:10px;display:flex;padding:10px 20px;margin-bottom:15px;position: relative;}
 .resources-table-header.resources-row{background:#fff}
 .resources-tabs{margin:0}
 .resources-table{margin:50px 0 0}
@@ -180,3 +180,7 @@ input.add-resource {width: 165px;text-transform: uppercase;font-weight: 700;font
 .chat-messages-container{position:absolute;bottom:0;padding:15px;width:100%;box-sizing:border-box;display:flex;flex-direction:column}
 .chat-message{border:1px solid #DADADA;background:#fff;border-radius:7px;font-size:14px;padding:8px 25px 8px 15px;margin:5px 0;max-width:200px}
 .chat-message.outgoing{background:#4990e0;color:#fff;text-align:right;align-self:flex-end}
+.modal-add-student{position:absolute;right: 0;z-index:1;background:#fff;border: 1px solid #4c90e0;margin: 45px 0 0 0;box-shadow: 0 0 5px #0000004d;}
+.modal-add-student .search-box input{color:#666;font-size:14px;padding:7px 17px;border-radius:0;border:0;border-bottom:1px solid #E2E4E5;background:none;width: 200px;}
+.modal-add-student .search-box{padding:0}
+.modal-add-student .contact-item{font-size:14px;padding:10px 18px}
