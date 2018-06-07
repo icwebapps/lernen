@@ -6,7 +6,6 @@ export default class PasswordField extends Component {
   constructor(props) {
     super();
     this.state = {
-      value: props.value,
       error: false
     }
   }
@@ -18,7 +17,7 @@ export default class PasswordField extends Component {
         name="password"
         placeholder="Password"
         {...this.props}
-        value={this.state.value}
+        value={this.props.value}
         error={this.state.error}
       />
     );
