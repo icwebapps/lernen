@@ -51,18 +51,12 @@
       </div>
     </div>
 
-    <div class="panel-resources">
-      <div class="resources-tabs">
-        <div class="resources-tab-item tab-selected">Documents</div>
-        <div class="resources-tab-item">Photos</div>
-        <div class="resources-tab-item">Videos</div>
-      </div>
-      <div class="resources-table" id="resources-tab">
-        <div id="resources-widget">
-        </div>
-      </div>
-
-      <div id="upload-form"></div>
+    <div class="panel-resources" id="resources-widget">
+      <form method="post" action="{{url('resources')}}" enctype="multipart/form-data">
+        {{csrf_field()}}
+        <input type="file" name="filename">          
+        <input type="submit" value="Add Resource" class="add-resource">
+      </form>
     </div>
   </div>
 </div>

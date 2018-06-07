@@ -1,30 +1,12 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import ReactDOM from 'react-dom';
-import ResourcesRow from './Resources/ResourcesRow';
+import ResourcesTabSelector from './Resources/ResourcesTabSelector';
+import ResourcesTable from './Resources/ResourcesTable';
 
 export default class Resources extends Component {
   constructor() {
     super();
-    this.state = {resources: []};
-    this.loadContacts();
-    this.loadResources();
-  }
-
-  loadContacts() {
-    axios.get('/contacts/list', {
-      _token: $('meta[name="csrf-token"]').attr('content') 
-    }).then((response) => {
-      this.setState(response.data);
-    });
-  }
-
-  loadResources() {
-    axios.get('/resources/list', {
-      _token: $('meta[name="csrf-token"]').attr('content') 
-    }).then((response) => {
-      this.setState(response.data);
-    });
+    this.state = {};
   }
 
   addStudent(resource) {
@@ -32,11 +14,10 @@ export default class Resources extends Component {
   }
 
   render() {
-    return (  
-      this.state.resources.map((r, i) =>
-        <ResourcesRow allContacts={this.state.contacts} key={"resource"+i} resource={r} addStudent={(r)=>this.addStudent(r)} />
-      )
-    );
+    return ([
+      <ResourcesTabSelector key="sesources-tab-selector"/>,
+      <ResourcesTable key="resources-table"/>
+    ]);
   }
 }
 
