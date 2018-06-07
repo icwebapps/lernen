@@ -58,8 +58,8 @@ export default class Resources extends Component {
       </div>,
       <div className="panel-resources">
         <ResourcesTabSelector key="resources-tab-selector" tabID={this.state.tabID} onTabChange={(i)=>this.tabChange(i)} />
-        <ResourcesTable key="resources-table"  resources={this.state.resources} contacts={this.state.contacts} onAddStudent={(_)=>this.onAddStudent()} />
-        <ResourcesUpload key="resources-upload" onUpload={this.onUpload} />
+        <ResourcesTable key="resources-table"  resources={this.state.resources} contacts={this.state.contacts} onAddStudent={()=>this.onAddStudent()} />
+        <ResourcesUpload key="resources-upload" onUpload={()=>this.onUpload()} />
       </div>
     ]);
   }
