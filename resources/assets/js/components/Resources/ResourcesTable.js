@@ -3,7 +3,6 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import ResourcesRow from './ResourcesRow';
 
-
 export default class ResourcesTable extends Component {
   constructor() {
     super();
