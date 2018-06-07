@@ -70,27 +70,7 @@
         </div>
       </div>
 
-<<<<<<< 4923acf7161927ee562d575fd7344ea9de363b24
-      <form method="post" action="{{url('resources')}}" enctype="multipart/form-data">
-        {{csrf_field()}}
-      
-        <input type="file" name="filename">          
-        <input type="submit" value="Add Resource" class="add-resource">
-
-      </form>
-      
-=======
-        <div id="upload-form"></div>
-<!--        <form method="post" action="{{url('resources')}}" enctype="multipart/form-data">-->
-<!--          {{csrf_field()}}-->
-<!---->
-<!--          <input type="file" name="filename">-->
-<!--          <input type="submit" value="Add Resource" class="add-resource">-->
-<!---->
-<!--        </form>-->
-        
-      </div>
->>>>>>> Initial set up for resource upload using react
+      <div id="upload-form"></div>
     </div>
   </div>
 </div>

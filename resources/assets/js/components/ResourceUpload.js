@@ -8,27 +8,36 @@ export default class ResourceUpload extends Component {
 
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      file : null
+    };
   }
 
   onSubmit(e) {
     e.preventDefault();
-    axios.post('/resources', {
-      ...this.state,
-      _token: $('meta[name="csrf-token"]').attr('content')
-    }).then((response) => {
-      alert("uploaded"); // need to change this to check if file is chosen
+
+    const formData = new FormData();
+    formData.append('file', this.state.file);
+    axios.post('/resources', formData,
+      {
+        headers:
+          {
+          'content-type': 'multipart/form-data'
+          }
+      }).then((response) => {
+        
     });
   }
 
-  render() {
-    return (
-      <form method="post" onSubmit={(e)=>this.onSubmit(e)} encType="multipart/form-data">
+  updateFile(e) {
+    this.setState({file: e.target.files[0]});
+  }
 
-        <input type="file" name="filename"/>
-        <input type="submit" value="Add Resource" className="add-resource"/>
-      </form>
-    )
+  render() {
+    return ([
+      <input type="file" name="file" onChange={(e)=>this.updateFile(e)}/>,
+      <input type="button" value="Add Resource" onClick={(e)=>this.onSubmit(e)} className="add-resource"/>
+    ])
   }
 }
 

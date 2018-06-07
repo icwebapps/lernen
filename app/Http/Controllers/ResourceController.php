@@ -33,12 +33,8 @@ class ResourceController extends Controller
 
   public function store(Request $request)
   {
-    if ($request->hasfile('filename'))
-    {
-      $file = $request->filename;
-      $name = $file->getClientOriginalName();
-      Storage::disk('s3')->put('resources/', $file, 'public');
-      return back();
-    }
+    $file = $request->file;
+    Storage::disk('s3')->put('resources/', $file, 'public');
+    return json_encode(["status" => 1]);
   }
 }
