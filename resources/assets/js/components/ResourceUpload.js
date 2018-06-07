@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
+import Resources from "./Resources";
 
 
 
@@ -15,7 +16,6 @@ export default class ResourceUpload extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-
     const formData = new FormData();
     formData.append('file', this.state.file);
     axios.post('/resources', formData,
@@ -25,7 +25,7 @@ export default class ResourceUpload extends Component {
           'content-type': 'multipart/form-data'
           }
       }).then((response) => {
-        
+
     });
   }
 

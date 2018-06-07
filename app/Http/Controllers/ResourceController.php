@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Resource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -34,7 +35,14 @@ class ResourceController extends Controller
   public function store(Request $request)
   {
     $file = $request->file;
-    Storage::disk('s3')->put('resources/', $file, 'public');
+    $storagePath = Storage::disk('s3')->put('resources/', $file, 'public');
+    $url = Storage::url($file);
+    $storageName = basename($storagePath);
+    $resource = new resource;
+    $resource->url = $url;
+    $resource->name = $storageName;
+    $resource->tutor_id = Auth::user()->id;
+    $resource->save();
     return json_encode(["status" => 1]);
   }
 }
