@@ -16,6 +16,6 @@ class Lesson extends Model
   }
 
   public function subject() {
-    return $this->belongsTo('App\Subjects', 'subject_id', 'id');
+    return $this->belongsTo('App\Subject', 'subject_id', 'id');
   }
 }

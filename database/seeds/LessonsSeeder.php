@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Subjects;
+use App\Subject;
 use App\Lesson;
 use App\Student;
 use App\Tutor;
