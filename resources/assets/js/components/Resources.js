@@ -34,7 +34,7 @@ export default class Resources extends Component {
   render() {
     return (  
       this.state.resources.map((r, i) =>
-        <ResourcesRow key={"resource"+i} resource={r} addStudent={(r)=>this.addStudent(r)} />
+        <ResourcesRow allContacts={this.state.contacts} key={"resource"+i} resource={r} addStudent={(r)=>this.addStudent(r)} />
       )
     );
   }
