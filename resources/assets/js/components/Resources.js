@@ -15,7 +15,7 @@ export default class Resources extends Component {
 
   render() {
     return ([
-      <ResourcesTabSelector key="sesources-tab-selector"/>,
+      <ResourcesTabSelector key="resources-tab-selector"/>,
       <ResourcesTable key="resources-table"/>
     ]);
   }
