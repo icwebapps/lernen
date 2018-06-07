@@ -1,10 +1,8 @@
 <?php
-
 use App\Resource;
 use App\Tutor;
 use App\Student;
 use Faker\Generator as Faker;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +20,6 @@ $factory->define(App\Assignment::class, function (Faker $faker) {
   $date_due = strtotime('+7 days', strtotime($date_set));
   $tutor_id = factory(Tutor::class)->create()->user_id;
   return [
-    'tutor_id' => $tutor_id,
     'student_id' => factory(Student::class)->create()->user_id,
     'subject' => str_random(20),
     'date_set' => $date_set,
