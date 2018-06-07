@@ -11,7 +11,7 @@ const ResourcesRow = ({resource}) =>
     <div className="resources-table-cell resources-faces-list">
       {
         resource.students.map((s, j) =>
-          <img key={"pp"+j} src={s.user.profile_picture} />
+          <a href={"/contacts/"+s.user.id} alt={s.user.name} title={s.user.name}><img key={"pp"+j} src={s.user.profile_picture} /></a>
         )
       }
       <img src="/images/icons8-plus-50.png" />

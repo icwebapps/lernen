@@ -130,7 +130,7 @@ input[type="text"].error, input[type="password"].error {border: 1px solid #d2383
 .resources-table-cell{color:#63687d;width:220px}
 .resources-table-header img{width:12px}
 .resources-faces-list{display:flex}
-.resources-faces-list img{width:35px;height:35px;border-radius:50%;margin-right:10px}
+.resources-faces-list img{width:35px;height:35px;border-radius:50%;margin-right:10px;cursor:pointer;}
 .resources-table-cell:not(.resources-faces-list){padding-top:6px}
 input.add-resource {width: 165px;text-transform: uppercase;font-weight: 700;font-size: 12px;margin: 20px 0;}
 .dashboard-headers{padding:30px 15px 25px}

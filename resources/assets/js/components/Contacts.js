@@ -25,7 +25,7 @@ export default class Contacts extends Component {
     if (this.props.talkingToId) {
       contacts.map(c => {
         if (c.id == this.props.talkingToId) {
-          this.openChat(c);
+          this.setState({ talkingTo: c });
         }
       });
     }
