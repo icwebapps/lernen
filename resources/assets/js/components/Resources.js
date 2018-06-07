@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import ResourcesTabSelector from './Resources/ResourcesTabSelector';
 import ResourcesTable from './Resources/ResourcesTable';
 import ResourcesUpload from './Resources/ResourcesUpload';
 import ResourcesRow from './Resources/ResourcesRow';
@@ -10,7 +9,9 @@ import SubjectSidebar from './Resources/SubjectSidebar';
 export default class Resources extends Component {
   constructor() {
     super();
-    this.state = {resources: []};
+    this.state = {
+      subject: ''
+    };
     this.loadData();
   }
 
