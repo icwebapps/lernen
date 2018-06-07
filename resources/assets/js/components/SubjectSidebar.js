@@ -20,14 +20,16 @@ export default class SubjectSidebar extends Component {
   
   render() {
     const $colours=["green", "red", "blue", "purple"];
+    const $subjects = this.state.resources.map((r, i) => r.subject);
+    $subjects.filter((s, i, a) => a.indexOf(s) == i);
     return ([
         <div className="subject-list-headers">
           <div className="subject-list-header-item header-subject">Subject</div>
           <div className="subject-list-header-item header-level">Level</div>
           <div className="subject-list-header-item header-files">Files</div>
         </div>,
-        this.state.resources.map((r, i) =>
-          <SubjectsRow key={"subject"+i} subject={r.subject} colour={$colours[i%4]}/>
+        $subjects.map((s, i) =>
+          <SubjectsRow key={"subject"+i} subject={s} colour={$colours[i%4]}/>
         )
     ]);
   }  
