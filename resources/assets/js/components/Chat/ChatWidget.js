@@ -17,7 +17,7 @@ export default class ChatWidget extends Component {
 
     Echo.private('chat-' + channel)
       .listen('MessageSent', (e) => {
-        this.setState({ messages: [ ...this.state.messages, e.message ] })
+        this.setState({ messages: [ ...this.state.messages, e.message ] });
       });
       
     this.fetchMessages();
@@ -32,6 +32,10 @@ export default class ChatWidget extends Component {
       e.preventDefault();
       this.sendMessage();
     }
+  }
+
+  componentDidUpdate() {
+    this.el.scrollTop = this.el.scrollHeight;
   }
 
   fetchMessages() {
@@ -51,11 +55,9 @@ export default class ChatWidget extends Component {
       ]
     });
     
-    axios.post('/messages', { message: this.state.text, other_id: this.props.talkingTo.id }).then(response => {
-      console.log(response.data);
-    });
-
+    axios.post('/messages', { message: this.state.text, other_id: this.props.talkingTo.id });
     this.setState({ text: '' });
+    this.scrollToBottom();
   }
 
   render() {
@@ -65,7 +67,7 @@ export default class ChatWidget extends Component {
         {this.props.talkingTo.name}
       </div>,
       <div className="chat-container">
-        <div className="chat-messages-container">
+        <div className="chat-messages-container" ref={el => { this.el = el; }}>
           {
             this.state.messages.map((m, i) => {
               const outgoing = (this.props.isTutor && m.tutor_sent) || (!this.props.isTutor && !m.tutor_sent);

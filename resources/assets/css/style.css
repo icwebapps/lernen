@@ -175,9 +175,9 @@ input.add-resource {width: 165px;text-transform: uppercase;font-weight: 700;font
 .panel-chat{width: 600px;display:flex;flex-direction:column;border-right: 1px solid #DADADA;}
 .chat-talking-to{background:#fff;border-bottom:1px solid #DADADA;font-weight:600;font-size:20px;color:#313549;text-align:center;padding:25px 0}
 .chat-talking-to img{border-radius:50%;width:30px;vertical-align:-10px;margin-right:25px}
-.chat-container{flex:1;position:relative}
+.chat-container{flex:1;position:relative;}
 #contacts-widget textarea{border:none;border-top:1px solid #DADADA;font-family:'Open Sans',sans-serif;font-size:14px;padding:25px;outline:none;resize:none}
-.chat-messages-container{position:absolute;bottom:0;padding:15px;width:100%;box-sizing:border-box;display:flex;flex-direction:column}
+.chat-messages-container{position:absolute;bottom:0;padding:15px;width:100%;box-sizing:border-box;display:flex;flex-direction:column;height: 100%;overflow-y: scroll;}
 .chat-message{border:1px solid #DADADA;background:#fff;border-radius:7px;font-size:14px;padding:8px 25px 8px 15px;margin:5px 0;max-width:200px}
 .chat-message.outgoing{background:#4990e0;color:#fff;text-align:right;align-self:flex-end}
 .modal-add-student{position:absolute;right: 0;z-index:1;background:#fff;border: 1px solid #4c90e0;margin: 45px 0 0 0;box-shadow: 0 0 5px #0000004d;}
