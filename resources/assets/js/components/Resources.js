@@ -7,10 +7,19 @@ export default class Resources extends Component {
   constructor() {
     super();
     this.state = {resources: []};
-    this.loadData();
+    this.loadContacts();
+    this.loadResources();
   }
 
-  loadData() {
+  loadContacts() {
+    axios.get('/contacts/list', {
+      _token: $('meta[name="csrf-token"]').attr('content') 
+    }).then((response) => {
+      this.setState(response.data);
+    });
+  }
+
+  loadResources() {
     axios.get('/resources/list', {
       _token: $('meta[name="csrf-token"]').attr('content') 
     }).then((response) => {
@@ -18,10 +27,14 @@ export default class Resources extends Component {
     });
   }
 
+  addStudent(resource) {
+    console.log(resource);
+  }
+
   render() {
     return (  
       this.state.resources.map((r, i) =>
-        <ResourcesRow key={"resource"+i} resource={r} />
+        <ResourcesRow allContacts={this.state.contacts} key={"resource"+i} resource={r} addStudent={(r)=>this.addStudent(r)} />
       )
     );
   }
