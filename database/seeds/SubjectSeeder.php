@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Subjects;
 
-class SubjectsSeeder extends Seeder
+class SubjectSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class SubjectsSeeder extends Seeder
      */
     public function run()
     {
-      Subjects::create(['name' => 'Maths', 'level' => 'A-level']);
+      Subject::create(['name' => 'Maths', 'level' => 'A-level']);
     }
 }
