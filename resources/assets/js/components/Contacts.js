@@ -17,7 +17,18 @@ export default class Contacts extends Component {
       _token: $('meta[name="csrf-token"]').attr('content') 
     }).then((response) => {
       this.setState(response.data);
+      this.defaultTalkingTo(response.data.contacts);
     });
+  }
+
+  defaultTalkingTo(contacts) {
+    if (this.props.talkingToId) {
+      contacts.map(c => {
+        if (c.id == this.props.talkingToId) {
+          this.openChat(c);
+        }
+      });
+    }
   }
 
   searchName(e) {
@@ -25,6 +36,7 @@ export default class Contacts extends Component {
   }
 
   openChat(contact) {
+    history.pushState({}, "", "/contacts/"+contact.id);
     this.setState({ talkingTo: contact });
   }
 
@@ -47,5 +59,5 @@ export default class Contacts extends Component {
 
 if (document.getElementById('contacts-widget')) {
   var el = document.getElementById('contacts-widget');
-  ReactDOM.render(<Contacts userId={el.dataset.userid} isTutor={el.dataset.istutor} />, el);
+  ReactDOM.render(<Contacts userId={el.dataset.userid} isTutor={el.dataset.istutor} talkingToId={el.dataset.talkingtoid} />, el);
 }

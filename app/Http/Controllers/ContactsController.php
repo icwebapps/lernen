@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class ContactsController extends Controller
 {
-  public function index()
+  public function index($talkingToId = null)
   {
-    return view('contacts');
+    return view('contacts', [ 'talkingToId' => $talkingToId ]);
   }
 
   public function list()

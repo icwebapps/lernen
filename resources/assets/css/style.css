@@ -51,7 +51,8 @@ body{font-family:'Open Sans',sans-serif}
 .person-title{color:#4189DE;font-size:28px;padding-bottom:10px}
 .person-extra{font-weight:600;color:#A5A3BA;font-size:15px;display:flex}
 .person-email{margin-right:40px}
-.contact-item{font-size:17px;display: flex;justify-content: space-between;padding: 20px 25px;}
+.contact-item{font-size:17px;display: flex;justify-content: space-between;padding: 20px 25px;cursor:pointer;}
+.contact-item:hover{background: #f1f1f1;}
 .contact-options{color:#B5BDCA;font-size: 12px;font-weight: 600;margin: 4px 0 0;}
 .contact-name{color:#6B6C71;font-weight: 300;}
 .contact-options img {width: 25px;}

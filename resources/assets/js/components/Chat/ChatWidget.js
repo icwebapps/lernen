@@ -61,7 +61,7 @@ export default class ChatWidget extends Component {
   render() {
     return ([
       <div className="chat-talking-to">
-        <img src="/images/jasonlipowicz.png" />
+        <img src={this.props.talkingTo.profile_picture} />
         {this.props.talkingTo.name}
       </div>,
       <div className="chat-container">
