@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Resource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\{User, Assignment, Subject};
+use App\{User, Assignment, Subject, Resource};
 
 class ResourceController extends Controller
 {
@@ -49,11 +48,11 @@ class ResourceController extends Controller
   {
     $assignment = new Assignment([
       'student_id' => $request->input('student_id'),
-      'subject_id' => Subject::find(1)->id,
+      'subject_id' => 1,
       'date_set' => date('Y-m-d'),
       'date_due' => date('Y-m-d'),
       'resource_id' => $resourceId,
-      'title' => str_random(10)
+      'title' => Resource::find($resourceId)->name
     ]);
     
     $assignment->save();
