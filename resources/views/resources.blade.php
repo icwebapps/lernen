@@ -57,14 +57,7 @@
         <div class="resources-tab-item">Photos</div>
         <div class="resources-tab-item">Videos</div>
       </div>
-      <div class="resources-table">
-        <div class="resources-table-header resources-row">
-          <div class="resources-table-cell">Name <img src="/images/icons8-sort-down-filled-50.png" /></div>
-          <div class="resources-table-cell">Type <img src="/images/icons8-sort-down-filled-50.png" /></div>
-          <div class="resources-table-cell">Downloads <img src="/images/icons8-sort-down-filled-50.png" /></div>
-          <div class="resources-table-cell">Uploaded <img src="/images/icons8-sort-down-filled-50.png" /></div>
-          <div class="resources-table-cell">Students <img src="/images/icons8-sort-down-filled-50.png" /></div>
-        </div>
+      <div class="resources-table" id="resources-tab">
         <div id="resources-widget">
         </div>
       </div>
