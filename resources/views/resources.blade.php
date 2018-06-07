@@ -52,11 +52,6 @@
     </div>
 
     <div class="panel-resources" id="resources-widget">
-      <form method="post" action="{{url('resources')}}" enctype="multipart/form-data">
-        {{csrf_field()}}
-        <input type="file" name="filename">          
-        <input type="submit" value="Add Resource" class="add-resource">
-      </form>
     </div>
   </div>
 </div>
