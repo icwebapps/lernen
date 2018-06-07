@@ -2,6 +2,7 @@
 use App\Resource;
 use App\Tutor;
 use App\Student;
+use App\Subject;
 use Faker\Generator as Faker;
 
 /*
@@ -21,7 +22,7 @@ $factory->define(App\Assignment::class, function (Faker $faker) {
   $tutor_id = factory(Tutor::class)->create()->user_id;
   return [
     'student_id' => factory(Student::class)->create()->user_id,
-    'subject' => str_random(20),
+    'subject_id' => factory(Subject::class)->create()->id,
     'date_set' => $date_set,
     'date_due' => date('Y-m-d', $date_due),
     'completed' => $faker->boolean,
