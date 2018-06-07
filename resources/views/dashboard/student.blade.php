@@ -17,7 +17,7 @@
       <img src="images/logo.png" class="logo"/>
     </div>
     <div class="header-right">
-      <div class="header-logout"><img src="images/icons8-shutdown-50.png"/></div>
+      <div class="header-logout"><a href="/logout"><img src="images/icons8-shutdown-50.png"/></a></div>
     </div>
   </div>
   <div class="width-fill flex-rows">
