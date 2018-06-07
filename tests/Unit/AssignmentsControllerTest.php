@@ -17,12 +17,10 @@ class AssignmentsControllerTest extends TestCase
       'user_id' => $user->id
     ]);
     factory(Assignment::class)->create([
-      'student_id' => $student->user_id,
-      'tutor_id' => factory(Tutor::class)->create()->user_id
+      'student_id' => $student->user_id
     ]);
     factory(Assignment::class)->create([
-      'student_id' => factory(Student::class)->create()->user_id,
-      'tutor_id' => factory(Tutor::class)->create()->user_id
+      'student_id' => factory(Student::class)->create()->user_id
     ]);
 
     $response = $this->actingAs($student->user)->get('/assignments/list');
