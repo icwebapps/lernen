@@ -29,5 +29,4 @@ class LessonsSeeder extends Seeder
         ]);
       }
     }
-  }
 }
