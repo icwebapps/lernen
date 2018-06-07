@@ -22,7 +22,7 @@
   @endcomponent
 
   <div class="width-fill">
-    <div id="contacts-widget" data-userid="{{ Auth::user()->id }}" data-istutor="{{ Auth::user()->isTutor() }}"></div>
+    <div id="contacts-widget" data-talkingtoid="{{ $talkingToId }}" data-userid="{{ Auth::user()->id }}" data-istutor="{{ Auth::user()->isTutor() }}"></div>
   </div>
 </div>
 </div>
