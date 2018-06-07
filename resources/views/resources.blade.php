@@ -12,6 +12,7 @@
     @slot('title') Resources @endslot
   @endcomponent
 
+<<<<<<< Updated upstream
   <div class="width-fill">
     <div class="panel-subjects">
       <div class="add-subject">
@@ -29,6 +30,9 @@
 
     <div class="panel-resources" id="resources-widget">
     </div>
+=======
+  <div class="width-fill" id="resources-widget">
+>>>>>>> Stashed changes
   </div>
 </div>
   
