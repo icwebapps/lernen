@@ -2,23 +2,36 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 export default class ResourcesTabSelector extends Component {
-  onClick(i) 
-  {
+  getTabs() {
+    const types = [];
+    this.props.resources.map(r => {
+      if (types.indexOf(r.type) === -1) {
+        types.push(r.type);
+      }
+    });
+    return types;
+  }
+
+  capitaliseWord(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  onClick(i) {
     this.props.onTabChange(i);
   }
 
-  selected(i)
-  {
-    return this.props.tabID == i ? "tab-selected" : "";
+  selected(t) {
+    return this.props.selected == t ? "tab-selected" : "";
   }
 
-  render() 
-  {
+  render() {
     return (  
       <div className="resources-tabs">
-        <div className={"resources-tab-item " + this.selected(1)} onClick={(e)=>this.onClick(1)}>Documents</div>
-        <div className={"resources-tab-item " + this.selected(2)} onClick={(e)=>this.onClick(2)}>Photos</div>
-        <div className={"resources-tab-item " + this.selected(3)} onClick={(e)=>this.onClick(3)}>Videos</div>
+        {
+          this.getTabs().map(type =>
+            <div className={"resources-tab-item " + this.selected(type)} onClick={(e)=>this.onClick(type)}>{this.capitaliseWord(type)+'s'}</div>
+          )
+        }
       </div>
     );
   }

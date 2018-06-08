@@ -12,15 +12,15 @@ export default class Resources extends Component {
     this.state = {
       resources: [],
       contacts: [],
-      tabID: 1,
+      type: false,
       subject: false
     };
     this.loadResources();
     this.loadContacts();
   }
 
-  tabChange(i) {
-    this.setState({ tabID: i });
+  typeChange(t) {
+    this.setState({ type: t });
   }
 
   loadContacts() {
@@ -65,8 +65,9 @@ export default class Resources extends Component {
       <div className="panel-resources">
         <ResourcesTabSelector
           key="resources-tab-selector"
-          tabID={this.state.tabID}
-          onTabChange={(i)=>this.tabChange(i)} />
+          selected={this.state.type}
+          resources={this.state.resources}
+          onTabChange={(t)=>this.typeChange(t)} />
         <ResourcesTable
           key="resources-table"
           subject={this.state.subject}
