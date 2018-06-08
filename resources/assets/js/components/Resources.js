@@ -71,6 +71,7 @@ export default class Resources extends Component {
         <ResourcesTable
           key="resources-table"
           subject={this.state.subject}
+          type={this.state.type}
           resources={this.state.resources}
           contacts={this.state.contacts}
           onAddStudent={()=>this.onAddStudent()} />
