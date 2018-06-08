@@ -35,11 +35,26 @@ export default class Resources extends Component {
     axios.get('/resources/list', {
       _token: $('meta[name="csrf-token"]').attr('content') 
     }).then((response) => {
-      this.setState(response.data);
-      if (response.data.resources.length > 0) {
-        this.setState({ subject: response.data.resources[0].subject.id });
+      this.setState(response.data, () => this.setDefaults());
+    });
+  }
+
+  getTypes() {
+    const types = [];
+    this.state.resources.map(r => {
+      if (r.subject.id === this.state.subject && types.indexOf(r.type) === -1) {
+        types.push(r.type);
       }
     });
+    return types;
+  }
+
+  setDefaults() {
+    if (this.state.resources.length > 0) {
+      this.setState({ subject: this.state.resources[0].subject.id }, () => {
+        this.setState({ type: this.getTypes()[0] });
+      });
+    }
   }
 
   changeSubject(new_subject) {
@@ -66,7 +81,8 @@ export default class Resources extends Component {
         <ResourcesTabSelector
           key="resources-tab-selector"
           selected={this.state.type}
-          resources={this.state.resources}
+          subject={this.state.subject}
+          tabs={this.getTypes()}
           onTabChange={(t)=>this.typeChange(t)} />
         <ResourcesTable
           key="resources-table"
