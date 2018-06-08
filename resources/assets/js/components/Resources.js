@@ -58,7 +58,12 @@ export default class Resources extends Component {
   }
 
   changeSubject(new_subject) {
-    this.setState({ subject: new_subject });
+    this.setState({ subject: new_subject }, () => {
+      // Check that we have a valid type now
+      if (this.getTypes().indexOf(this.state.type) === -1) {
+        this.setState({ type: this.getTypes()[0] });
+      }
+    });
   }
   
   onUpload() {
