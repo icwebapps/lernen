@@ -20,7 +20,9 @@ class ContactsController extends Controller
         $thisStudent = $l->student->user;
         $students[$thisStudent->id] = $thisStudent;
       }
-      return json_encode([ "contacts" => array_values($students) ]);
+      $students = array_values($students);
+      usort($students, [$this, 'sortAlphaByName']);
+      return json_encode([ "contacts" => $students ]);
     }
     else {
       $tutors = [];
@@ -29,7 +31,18 @@ class ContactsController extends Controller
         $thisTutor = $l->tutor->user;
         $tutors[$thisTutor->id] = $thisTutor;
       }
-      return json_encode([ "contacts" => array_values($tutors) ]);
+      $tutors = array_values($tutors);
+      usort($tutors, [$this, 'sortAlphaByName']);
+      return json_encode([ "contacts" => $tutors ]);
     }
+  }
+
+  private function sortAlphaByName($a, $b)
+  {
+    $a = $a['name'];
+    $b = $b['name'];
+
+    if ($a == $b) return 0;
+    return ($a < $b) ? -1 : 1;
   }
 }
