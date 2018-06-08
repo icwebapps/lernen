@@ -40,6 +40,7 @@ export default class SubjectSidebar extends Component {
               <SubjectRow
                 key={"subject"+i}
                 subject={s}
+                selected={this.props.selected === s.id}
                 colour={colours[i%4]} 
                 resources={this.props.resources}
                 onChangeSubject={this.props.onChangeSubject} />
