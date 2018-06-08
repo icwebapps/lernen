@@ -21,9 +21,9 @@ export default class SubjectSidebar extends Component {
   render() {
     if (this.state.resources) {
       const colours=["green", "red", "blue", "purple"];
-      const subjects = this.state.resources.map((r, i) => r.subject);
+      let subjects = this.state.resources.map((r, _) => r.subject);
       // Does not display duplicate subjects.
-      subjects.filter((s, i, a) => a.indexOf(s) == i);
+      subjects = subjects.filter((s, i, a) => a.indexOf(s) > -1);
       return ([
         <div className="add-subject">
           <div className="add-subject-title">Add Subject</div>
