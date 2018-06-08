@@ -50,13 +50,15 @@ export default class Assignments extends Component {
         {
           this.state.tasks.map((t) => {
             if (!t.completed) {
-              return <div className="assignments-row">
+              return (
+                <div className="assignments-row">
                   <div className="assignments-cell" style={{cursor: 'pointer'}}>
                     <a href={t.url} download>{t.title}</a>
                   </div>
                   <div className="assignments-cell due-soon">{t.due}</div>
                   <div className="assignments-cell"><img src={"images/upload-icon.png"}/></div>
                 </div>
+              )
             }
           })
         }
