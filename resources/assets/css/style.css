@@ -110,7 +110,7 @@ input[type="text"].error, input[type="password"].error {border: 1px solid #d2383
 .subject-list-header-item{text-transform:uppercase;color:#A1B1CE;font-size:14px;font-weight:600;padding:10px}
 .subject-list-headers{display:flex}
 .subject-list{padding:20px}
-.subject-list-item{padding:10px;display:flex;margin-bottom:10px}
+.subject-list-item{padding:10px;display:flex;margin-bottom:10px;border: 1px solid transparent;}
 .subject-list-letter{color:#fff;font-weight:600;padding:7px 10px;display:inline-block;font-size:14px;width:13px;text-align:center}
 .subject-list-letter.letter-green{background:#4DB94A}
 .subject-list-letter.letter-red{background:#B94A75}
@@ -121,7 +121,7 @@ input[type="text"].error, input[type="password"].error {border: 1px solid #d2383
 .subject-list-files{width:30px}
 .subject-list-header-item.header-subject{width:218px}
 .subject-list-header-item.header-level{width:70px}
-.subject-list-item.item-selected{border:1px solid #AAB1C6;border-radius:10px}
+.subject-list-item.item-selected,.subject-list-item:hover{cursor:pointer;border-color: #AAB1C6;border-radius:10px;}
 .panel-resources{background:#fff;flex:1;border-left:1px solid #DADADA;padding:20px 30px}
 .resources-row{background:#F6F7FA;border-radius:10px;display:flex;padding:10px 20px;margin-bottom:15px;position: relative;}
 .resources-table-header.resources-row{background:#fff}
