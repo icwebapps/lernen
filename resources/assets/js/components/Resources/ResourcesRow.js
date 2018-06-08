@@ -31,10 +31,12 @@ export default class ResourcesRow extends Component {
         <div className="resources-table-cell resources-faces-list">
           {
             this.props.resource.assignments.map((a, j) =>
-              <a href={"/contacts/"+a.student.user.id} alt={a.student.user.name} title={a.student.user.name}><img key={"pp"+j} src={a.student.user.profile_picture} /></a>
+              <a href={"/contacts/"+a.student.user.id} alt={a.student.user.name} title={a.student.user.name}>
+                <img key={"pp"+j} src={a.student.user.profile_picture} />
+              </a>
             )
           }
-          <img src="/images/icons8-plus-50.png" onClick={(e) => this.openAddStudent()} />
+          <img src="/images/icons8-plus-50.png" onClick={() => this.openAddStudent()} />
         </div>
         { this.state.addStudent ? <ModalAddStudent resource={this.props.resource} contacts={this.props.contacts} onAddStudent={this.props.onAddStudent} /> : '' }
       </div>
