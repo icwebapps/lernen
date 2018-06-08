@@ -24,12 +24,12 @@ export default class SubjectSidebar extends Component {
       let subjects = this.props.resources.map((r, _) => Object.assign(r.subject, {count:0}));
       let count = this.countSubjects(subjects, this.removeDuplicates(subjects));
       return ([
-        <div className="add-subject">
+        <div className="add-subject" key="add-subject">
           <div className="add-subject-title">Add Subject</div>
           <img src="/images/icons8-plus-math-50.png" className="add-subject-button" />
         </div>,
         
-        <div className="subject-list">
+        <div className="subject-list" key="subject-list">
           <div className="subject-list-headers">
             <div className="subject-list-header-item header-subject">Subject</div>
             <div className="subject-list-header-item header-level">Level</div>

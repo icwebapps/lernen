@@ -35,8 +35,8 @@ export default class ResourcesUpload extends Component {
 
   render() {
     return ([
-      <input type="file" name="file" onChange={(e)=>this.updateFile(e)}/>,
-      <input type="button" value="Add Resource" onClick={(e)=>this.onSubmit(e)} className="add-resource"/>
+      <input type="file" name="file" onChange={(e)=>this.updateFile(e)} key="resource-file-upload" />,
+      <input type="button" value="Add Resource" onClick={(e)=>this.onSubmit(e)} className="add-resource" key="resource-file-submit" />
     ])
   }
 }

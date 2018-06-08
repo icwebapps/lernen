@@ -56,13 +56,13 @@ export default class Resources extends Component {
 
   render() {
     return ([
-      <div className="panel-subjects">
+      <div className="panel-subjects" key="panel-subjects">
         <SubjectSidebar
           selected={this.state.subject}
           resources={this.state.resources}
           onChangeSubject={(subject)=>this.changeSubject(subject)} />
       </div>,
-      <div className="panel-resources">
+      <div className="panel-resources" key="panel-resources">
         <ResourcesTabSelector
           key="resources-tab-selector"
           selected={this.state.type}
