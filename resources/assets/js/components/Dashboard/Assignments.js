@@ -23,7 +23,7 @@ export default class Assignments extends Component {
     return (
       <div className="dashboard-panel-item flex-rows">
         <div className="assignments-progress">
-          5 assignments left
+          {this.state.tasks.length.toString() + " assignments left"}
           <div className="assignments-progress-bar">
           </div>
         </div>
