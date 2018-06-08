@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Storage;
 class ProfileHelper {
 
   public static function picture($user_id) {
-    $file = "profile/$user_id.jpg";
+    $file = "profiles/$user_id.jpg";
     if (Storage::disk('s3')->exists($file)) {
-      return Storage::url($file);
+      return "http://" . env('AWS_BUCKET') . "/" . $file;
     }
     else {
       return "/images/profile-default.png";

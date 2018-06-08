@@ -35,7 +35,7 @@ class ResourceController extends Controller
     $file = $request->file;
     $storagePath = Storage::disk('s3')->put('resources', $file, 'public');
     $resource = new Resource;
-    $resource->url = 'http://assets.lernen.co.uk/'.$storagePath;
+    $resource->url = 'http://' .  env('AWS_BUCKET') . '/'. $storagePath;
     $path = pathinfo($file->getClientOriginalName());
     $resource->name = $path['filename'];
     $resource->subject_id = 1;
