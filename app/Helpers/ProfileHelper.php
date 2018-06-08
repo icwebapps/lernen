@@ -8,7 +8,7 @@ class ProfileHelper {
   public static function picture($user_id) {
     $file = "profiles/$user_id.jpg";
     if (Storage::disk('s3')->exists($file)) {
-      return "http://assets.lernen.co.uk/" . $file;
+      return "http://" . env('AWS_BUCKET') . "/" . $file;
     }
     else {
       return "/images/profile-default.png";
