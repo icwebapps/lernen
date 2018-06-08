@@ -54,7 +54,7 @@ export default class Resources extends Component {
   render() {
     return ([
       <div className="panel-subjects">
-        <SubjectSidebar onChangeSubject={(subject)=>this.changeSubject(subject)} />
+        <SubjectSidebar resources={this.state.resources} onChangeSubject={(subject)=>this.changeSubject(subject)} />
       </div>,
       <div className="panel-resources">
         <ResourcesTabSelector key="resources-tab-selector" tabID={this.state.tabID} onTabChange={(i)=>this.tabChange(i)} />

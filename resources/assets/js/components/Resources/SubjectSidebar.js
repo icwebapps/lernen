@@ -4,26 +4,25 @@ import ReactDOM from 'react-dom';
 import SubjectRow from './SubjectRow';
 
 export default class SubjectSidebar extends Component {
-  constructor() {
-    super();
-    this.state = {resources: []};
-    this.loadData();
+  removeDuplicates(subjects) {
+    return subjects.filter((subject, i, self) =>
+      i === self.findIndex((s) => s.name === subject.name && s.level === subject.level)
+    );
   }
-  
-  loadData() {
-    axios.get('/resources/list', {
-      _token: $('meta[name="csrf-token"]').attr('content') 
-    }).then((response) => {
-    this.setState(response.data);
+
+  countSubjects(all, distinct) {
+    all.map((subject, i) => {
+      let distinctIndex = distinct.findIndex((s) => s.name === subject.name && s.level === subject.level);
+      distinct[distinctIndex].count += 1;
     });
+    return distinct;
   }
-  
+
   render() {
-    if (this.state.resources) {
-      const colours=["green", "red", "blue", "purple"];
-      const subjects = this.state.resources.map((r, i) => r.subject);
-      // Does not display duplicate subjects.
-      subjects.filter((s, i, a) => a.indexOf(s) == i);
+    if (this.props.resources) {
+      const colours= ["green", "red", "blue", "purple"];
+      let subjects = this.props.resources.map((r, _) => Object.assign(r.subject, {count:0}));
+      let count = this.countSubjects(subjects, this.removeDuplicates(subjects));
       return ([
         <div className="add-subject">
           <div className="add-subject-title">Add Subject</div>
@@ -37,12 +36,12 @@ export default class SubjectSidebar extends Component {
             <div className="subject-list-header-item header-files">Files</div>
           </div>
           {
-            subjects.map((s, i) =>
+            count.map((s, i) =>
               <SubjectRow
                 key={"subject"+i}
                 subject={s}
                 colour={colours[i%4]} 
-                resources={this.state.resources}
+                resources={this.props.resources}
                 onChangeSubject={this.props.onChangeSubject} />
             )
           }
