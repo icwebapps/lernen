@@ -36,7 +36,7 @@ export default class ResourcesRow extends Component {
               </a>
             )
           }
-          <img src="/images/icons8-plus-50.png" onClick={(e) => this.openAddStudent()} />
+          <img src="/images/icons8-plus-50.png" onClick={() => this.openAddStudent()} />
         </div>
         { this.state.addStudent ? <ModalAddStudent resource={this.props.resource} contacts={this.props.contacts} onAddStudent={this.props.onAddStudent} /> : '' }
       </div>

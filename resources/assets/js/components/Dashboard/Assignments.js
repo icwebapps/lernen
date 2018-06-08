@@ -7,7 +7,7 @@ export default class Assignments extends Component {
     super();
     this.state = {
       tasks: [],
-      progress_bar_width: 40
+      progress_bar_width: 0
     };
     this.loadData();
   }
@@ -22,7 +22,6 @@ export default class Assignments extends Component {
   }
 
   changeStyle() {
-    console.log(this.state.tasks.length);
     const percentage = this.percentageComplete();
     this.setState({progress_bar_width: percentage});
   }
