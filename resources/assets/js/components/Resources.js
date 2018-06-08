@@ -31,11 +31,11 @@ export default class Resources extends Component {
     });
   }
 
-  loadResources() {
+  loadResources(callback=()=>{}) {
     axios.get('/resources/list', {
       _token: $('meta[name="csrf-token"]').attr('content') 
     }).then((response) => {
-      this.setState(response.data, () => this.setDefaults());
+      this.setState(response.data, () => this.setDefaults(callback));
     });
   }
 
@@ -49,11 +49,14 @@ export default class Resources extends Component {
     return types;
   }
 
-  setDefaults() {
-    if (this.state.resources.length > 0) {
+  setDefaults(callback) {
+    if (this.state.resources.length > 0 && !this.state.subject) {
       this.setState({ subject: this.state.resources[0].subject.id }, () => {
-        this.setState({ type: this.getTypes()[0] });
+        this.setState({ type: this.getTypes()[0] }, callback);
       });
+    }
+    else {
+      callback();
     }
   }
 
@@ -66,8 +69,10 @@ export default class Resources extends Component {
     });
   }
   
-  onUpload() {
-    this.loadResources();
+  onUpload(new_type) {
+    this.loadResources(() => {
+      this.setState({ type: new_type });
+    });
   }
 
   onAddStudent() {
@@ -98,7 +103,9 @@ export default class Resources extends Component {
           onAddStudent={()=>this.onAddStudent()} />
         <ResourcesUpload
           key="resources-upload"
-          onUpload={()=>this.onUpload()} />
+          onUpload={(new_type)=>this.onUpload(new_type)}
+          subject={this.state.subject}
+          type={this.state.type} />
       </div>
     ]);
   }
