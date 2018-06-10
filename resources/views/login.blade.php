@@ -3,7 +3,7 @@
 @section('title', 'Log in')
 
 @section('content')
-  <div class="main">
+  <div class="main main-login">
 
     <div class="header header-extended">
       <div class="header-left">
