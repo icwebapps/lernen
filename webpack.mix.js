@@ -12,4 +12,8 @@ let mix = require('laravel-mix');
  */
 
 mix.react('resources/assets/js/app.js', 'public/js')
-   .styles('resources/assets/css/style.css', 'public/css/style.css');
+   .styles(['resources/assets/css/style.css',
+            'resources/assets/css/responsive.css'], 'public/css/style.css')
+   .copyDirectory('resources/assets/images', 'public/images');
+            
+            

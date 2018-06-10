@@ -1,0 +1,21 @@
+@media (min-width: 320px) and (max-width: 480px) {
+.site{position:relative;width:auto;height:auto;}
+.sidebar{height:50px;width:100%;display:flex;position:relative}
+.sidebar .nav{padding:0;display:flex;justify-content:center;width:100%}
+.sidebar .logo-icon{width:78px;box-sizing:border-box;border:0;border-right:1px solid #4a4d56}
+.nav-item a{padding:10px 15px}
+.header-left{display:none}
+.logo{margin:15px}
+.header.header-extended { height:250px;}
+.header.header-extended .logo {height: 100px;margin: 100px 0 0;}
+.header{border:none}
+.nav-item img{width:25px}
+.main{flex-direction:column}
+.width-fill{flex-direction:column}
+.panel-subjects{width:auto;border-bottom:1px solid #DADADA}
+.panel-resources{padding:10px 20px}
+.resources-row{padding:16px 17px;font-size:12px;display:flex;flex-direction:column}
+.resources-table{margin:15px 0 0}
+.resources-faces-list img{width:20px;height:20px}
+.resources-table-header.resources-row{display:none}
+}

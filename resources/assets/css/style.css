@@ -1,14 +1,16 @@
 *{margin:0;padding:0}
-body{font-family:'Open Sans',sans-serif}
-.site{display:flex;width:100%;height:100%;position:absolute;}
+body{font-family:'Open Sans',sans-serif;background: #EDEFF5;}
+.site{display:flex;width:100%;height:100%;position:absolute;flex-direction: column;}
 .sidebar{background:#2F323A;width:80px;height:100%;box-sizing:border-box}
-.sidebar .logo-icon{width:47px;border-bottom: 1px solid #4a4d56;padding: 15px 16px;}
-.sidebar .nav{padding-top: 50px;}
-.nav-item a{padding:13px;text-align:center;display: block;}
+.sidebar .nav{padding-top: 52px;}
+.nav-item a{padding: 13px 20px;text-align:center;display: block;}
 .nav-item.nav-selected a{background:#5093E1!important}
 .nav-item a:hover{background:#344354}
 .nav-item img{width:40px}
-.main{background:#EDEFF5;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+.main{flex:1;display:flex;justify-content:space-between;}
+.main.main-login {flex-direction: column;}
+.main.main-login .header{justify-content: center;}
+.main.main-login .header-left, .main.main-login .header-right{display:none;}
 .footer{background:#fff;padding: 20px 30px;border-top:10px solid #D1D7E9;display: flex;justify-content: space-between;}
 .header{background:#fff;height:100px;display: flex;justify-content: space-between;border-bottom: 1px solid #DADADA;}
 .header-logout {background: #5093E1;width: 55px;text-align: left;height: 100px;}
@@ -41,8 +43,10 @@ body{font-family:'Open Sans',sans-serif}
 .header-tabs,.resources-tabs,.dashboard-headers{display:flex;margin:0 30px;}
 .header-tab-item.tab-selected,.resources-tab-item.tab-selected,.dashboard-header-item{border-bottom:5px solid #4C90E0;color:#313549}
 .header-tab-item,.resources-tab-item,.dashboard-header-item{padding:10px 0;font-weight:600;color:#9FA3C1;margin-right:35px}
-.header-left,.header-right{width:300px}
-.header-right{height:100%;text-align: -webkit-right;}
+.header-left,.header-right{width: 385px;display: flex;}
+.header-icon{background: #2f323a;width: 80px;}
+.header-left .logo-icon {width: 48px;border-bottom: 1px solid #4a4d56;padding: 15px 16px;}
+.header-right{height:100%;justify-content: flex-end;}
 .panel-contacts{width:350px;background:#fff;height: 100%;display: flex;flex-direction: column;border-right: 1px solid #DADADA;}
 .panel-alpha{background:#EDEFF5;color:#A4A3BD;font-weight:600;padding: 7px;}
 .alpha-item.item-selected{background:#fff;border-radius:50%;color:#3E8BDF;font-weight:800}

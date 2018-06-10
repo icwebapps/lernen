@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,800" rel="stylesheet" />
     <link rel="stylesheet" href="/css/style.css" />
     <title>@yield('title') | Lernen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
   </head>
   <body>

@@ -4,17 +4,16 @@
 
 @section('content')
 
-@component('sidebar', ['selected' => 'calendar'])
+@component('header')
+  @slot('title') Schedule @endslot
+    <a href="/upcoming" style="text-decoration:none;"><div class="header-tab-item">Upcoming</div></a>
+    <div class="header-tab-item tab-selected">Calendar</div>
 @endcomponent
 
 <div class="main">
-
-  @component('header')
-    @slot('title') Schedule @endslot
-      <a href="/upcoming" style="text-decoration:none;"><div class="header-tab-item">Upcoming</div></a>
-      <div class="header-tab-item tab-selected">Calendar</div>
+  @component('sidebar', ['selected' => 'calendar'])
   @endcomponent
-
+  
   <div class="width-fill flex-rows">
     <div id="calendar-widget">
     </div>
