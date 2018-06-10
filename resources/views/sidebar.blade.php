@@ -1,5 +1,4 @@
 <div class="sidebar">
-  <img class="logo-icon" src="/images/icon.png" />
   <div class="nav">
     <div class="nav-item @if ($selected == "dashboard") nav-selected @endif">
       <a href="/dashboard"><img src="/images/icons8-dashboard-50.png" /></a>

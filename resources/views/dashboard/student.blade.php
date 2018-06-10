@@ -4,22 +4,26 @@
 
 @section('content')
 
-@component('sidebar', ["selected"=>"dashboard"])
-@endcomponent
+<div class="header">
+  <div class="header-left">
+    <div class="header-icon">
+      <img class="logo-icon" src="/images/icon.png" />
+    </div>
+    <div class="page-title">Dashboard</div>
+    <div class="page-title page-dark">Welcome Jason!</div>
+  </div>
+  <div class="header-center">
+    <img src="images/logo.png" class="logo"/>
+  </div>
+  <div class="header-right">
+    <div class="header-logout"><a href="/logout"><img src="images/icons8-shutdown-50.png"/></a></div>
+  </div>
+</div>
 
 <div class="main">
-  <div class="header">
-    <div class="header-left">
-      <div class="page-title">Dashboard</div>
-      <div class="page-title page-dark">Welcome Jason!</div>
-    </div>
-    <div class="header-center">
-      <img src="images/logo.png" class="logo"/>
-    </div>
-    <div class="header-right">
-      <div class="header-logout"><a href="/logout"><img src="images/icons8-shutdown-50.png"/></a></div>
-    </div>
-  </div>
+  @component('sidebar', ["selected"=>"dashboard"])
+  @endcomponent
+  
   <div class="width-fill flex-rows">
     <div class="dashboard-headers">
       <div class="dashboard-header-item dashboard-item-long">Progress</div>

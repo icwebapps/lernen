@@ -10,15 +10,15 @@
 
 @section('content')
 
-@component('sidebar', ['selected' => 'contacts'])
+@component('header')
+  @slot('title') {{ $title }} @endslot
+    <div class="header-tab-item tab-selected">Alphabetically</div>
+    <div class="header-tab-item">Recent</div>
 @endcomponent
 
-<div class="main">
 
-  @component('header')
-    @slot('title') {{ $title }} @endslot
-      <div class="header-tab-item tab-selected">Alphabetically</div>
-      <div class="header-tab-item">Recent</div>
+<div class="main">
+  @component('sidebar', ['selected' => 'contacts'])
   @endcomponent
 
   <div class="width-fill">

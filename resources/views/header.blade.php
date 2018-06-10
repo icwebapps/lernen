@@ -1,8 +1,13 @@
 <div class="header">
   <div class="header-left">
-    <div class="page-title">{{ $title }}</div>
-    <div class="header-tabs">
-      {{ $slot }}
+    <div class="header-icon">
+      <img class="logo-icon" src="/images/icon.png" />
+    </div>
+    <div class="header-text">
+      <div class="page-title">{{ $title }}</div>
+      <div class="header-tabs">
+        {{ $slot }}
+      </div>
     </div>
   </div>
   <div class="header-center">
