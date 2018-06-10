@@ -16,7 +16,7 @@ export default class ResourcesTable extends Component {
         </div>
         {
           this.props.resources.map((r, i) => {
-            if (r.subject.id === this.props.subject) {
+            if (r.subject.id === this.props.subject && r.type === this.props.type) {
               return <ResourcesRow contacts={this.props.contacts} key={"resource"+i} resource={r} onAddStudent={this.props.onAddStudent} />
             }
             return '';

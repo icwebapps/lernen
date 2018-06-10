@@ -22,7 +22,10 @@ class ResourceController extends Controller
   public function list()
   {
     if (Auth::user()->isTutor()) {
-      $resources = User::with(['tutor.resources.assignments.student.user', 'tutor.resources.subject'])->find(Auth::user()->id)->tutor->resources;
+      $resources = User::with([
+        'tutor.resources.assignments.student.user',
+        'tutor.resources.subject'
+      ])->find(Auth::user()->id)->tutor->resources;
       return json_encode([ "resources" => $resources ]);
     }
     else {
@@ -38,10 +41,10 @@ class ResourceController extends Controller
     $resource->url = 'http://' .  env('AWS_BUCKET') . '/'. $storagePath;
     $path = pathinfo($file->getClientOriginalName());
     $resource->name = $path['filename'];
-    $resource->subject_id = 1;
+    $resource->subject_id = $request->subject_id;
     $resource->tutor_id = Auth::user()->id;
     $resource->save();
-    return json_encode(["status" => 1]);
+    return json_encode(["status" => 1, "type" => $resource->type]);
   }
 
   public function add_student(Request $request, $resourceId) 
