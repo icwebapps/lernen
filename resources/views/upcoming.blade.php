@@ -18,6 +18,7 @@
   <div class="width-scrollable">
     <div id="upcoming-widget">
     </div>
+  </div>
 
     <div class="footer">
       <div class="footer-left">
@@ -37,5 +38,4 @@
       </div>
     </div>
   </div>
-</div>
 @endsection
