@@ -26,7 +26,7 @@ class CalendarController extends Controller
         'monthFormat' => date('F', strtotime($l->date)),
         'year' => date('Y', strtotime($l->date)),
         'time' => $l->time,
-        'student' => $l->student->user->name,
+        'student' => $l->student->user,
         'location' => $l->location,
         'subject' => $l->subject
       ];
