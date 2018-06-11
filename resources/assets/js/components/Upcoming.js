@@ -22,12 +22,12 @@ export default class Upcoming extends Component {
     const todayDate = new Date(this.state.today);
     return (
       [...Array(7)].map((_, i) => {
-        const thisDay = new Date(todayDate);
+        let thisDay = new Date(todayDate);
         thisDay.setDate(todayDate.getDate() + i);
-        const thisEvents = this.state.events.filter(e => {
+        let thisEvents = this.state.events.filter(e => {
           return e.date == thisDay.getDate() && e.month == thisDay.getMonth() + 1
         });
-        return <UpcomingColumn key={"column"+i} start={thisDay} today={todayDate} events={thisEvents} />
+        return <UpcomingColumn key={"column"+i} i={i} start={thisDay} events={thisEvents} />
       })
     );
   }
