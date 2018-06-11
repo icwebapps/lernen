@@ -11,10 +11,9 @@ export default class EmailField extends Component {
     }
   }
 
-  onChange(e) {
-    const val = e.target.value;
+  onChange(val) {
     this.setState({ value: val, error: false });
-    this.props.onChange(e);
+    this.props.onChange(val);
     this.validateEmail(val);
   }
 
@@ -34,7 +33,7 @@ export default class EmailField extends Component {
         name="email"
         placeholder="Email Address"
         {...this.props}
-        onChange={(e)=>this.onChange(e)}
+        onChange={(val)=>this.onChange(val)}
         value={this.state.value}
         error={this.state.error}
       />

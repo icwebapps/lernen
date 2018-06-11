@@ -12,6 +12,11 @@ class SubjectSeeder extends Seeder
      */
     public function run()
     {
-      Subject::create(['name' => 'Maths', 'level' => 'A-level']);
+      // Create 2 subjects for tutor1
+      for ($i=0; $i<2; $i++) {
+        factory(Subject::class)->create([
+          'tutor_id' => 1
+        ]);
+      }
     }
 }

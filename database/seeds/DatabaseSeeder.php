@@ -12,8 +12,6 @@ class DatabaseSeeder extends Seeder
     $this->call('TutorsStudentsSeeder');
     $this->call('SubjectSeeder');
     $this->call('LessonsSeeder');
-    $this->call('ResourcesSeeder');
-    $this->call('AssignmentsSeeder');
   }
 }
 

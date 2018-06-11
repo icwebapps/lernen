@@ -29,6 +29,6 @@ $factory->define(App\Assignment::class, function (Faker $faker) {
     'resource_id' => factory(Resource::class)->create([
       'tutor_id' => $tutor_id
     ]),
-    'title' => str_random(10)
+    'title' => 'Assignment ' . rand(0, 10000)
   ];
 });

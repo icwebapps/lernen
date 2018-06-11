@@ -14,22 +14,21 @@ class TutorsStudentsSeeder extends Seeder
    */
   public function run()
   {
-    Student::create([
-      'user_id' => User::where('name', 'Jason Lipowicz')->first()->id
-    ]);
-    Student::create([
-      'user_id' => User::where('name', 'Alex Zakon')->first()->id
+    Tutor::create([
+      'user_id' => 1
     ]);
     Tutor::create([
-      'user_id' => User::where('name', 'Boaz Francis')->first()->id
+      'user_id' => 2
     ]);
-    Tutor::create([
-      'user_id' => User::where('name', 'Shravan Nageswaran')->first()->id
+    Student::create([
+      'user_id' => 3
+    ]);
+    Student::create([
+      'user_id' => 4
     ]);
 
-    // Create 15 random students and tutors
-    for ($i=0; $i<15; $i++) {
-      factory(Tutor::class)->create();
+    // Create 5 more random students
+    for ($i=0; $i<5; $i++) {
       factory(Student::class)->create();
     }
   }

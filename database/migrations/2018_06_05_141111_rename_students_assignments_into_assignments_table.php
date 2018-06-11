@@ -23,6 +23,6 @@ class RenameStudentsAssignmentsIntoAssignmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assignments');
+      Schema::rename('assignments', 'student_assignments');
     }
 }

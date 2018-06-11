@@ -13,26 +13,26 @@ class UsersTableSeeder extends Seeder
   public function run()
   {
     User::create([
-      'name' => 'Jason Lipowicz',
-      'email' => 'jlipowicz@hotmail.co.uk',
+      'name' => 'Tutor1 User',
+      'email' => 'tutor1@lernen.co.uk',
       'password' => Hash::make('test123'),
       'remember_token' => str_random(10)
     ]);
     User::create([
-      'name' => 'Boaz Francis',
-      'email' => 'bf816@ic.ac.uk',
+      'name' => 'Tutor2 User',
+      'email' => 'tutor2@lernen.co.uk',
       'password' => Hash::make('test123'),
       'remember_token' => str_random(10)
     ]);
     User::create([
-      'name' => 'Alex Zakon',
-      'email' => 'azakon@imperial.ac.uk',
+      'name' => 'Student1 User',
+      'email' => 'student1@lernen.co.uk',
       'password' => Hash::make('test123'),
       'remember_token' => str_random(10)
     ]);
     User::create([
-      'name' => 'Shravan Nageswaran',
-      'email' => 'snag@imperial.ac.uk',
+      'name' => 'Student2 User',
+      'email' => 'student2@lernen.co.uk',
       'password' => Hash::make('test123'),
       'remember_token' => str_random(10)
     ]);

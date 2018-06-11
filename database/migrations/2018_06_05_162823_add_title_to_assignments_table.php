@@ -25,7 +25,8 @@ class AddTitleToAssignmentsTable extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('assignments');
-
+    Schema::table('assignments', function (Blueprint $table) {
+      $table->dropColumn('title');
+    });
   }
 }

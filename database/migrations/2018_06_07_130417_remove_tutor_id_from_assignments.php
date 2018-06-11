@@ -28,7 +28,7 @@ class RemoveTutorIdFromAssignments extends Migration
     {
       Schema::table('assignments', function (Blueprint $table) {
         $table->integer('tutor_id')->unsigned();
-        $table->foreign('tutor_id')->references('user_id')->on('tutors');
+        $table->foreign('tutor_id', 'student_assignments_tutor_id_foreign')->references('user_id')->on('tutors');
       });
     }
 }

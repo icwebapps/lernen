@@ -31,9 +31,7 @@ class AddSubjectsToLessonsTable extends Migration
     {
       Schema::table('lessons', function (Blueprint $table) {
         $table->string('subject');
-      });
-      Schema::table('lessons', function (Blueprint $table) {
-        $table->dropForeign('subject_id');
+        $table->dropForeign(['subject_id']);
         $table->dropColumn('subject_id');
       });
     }

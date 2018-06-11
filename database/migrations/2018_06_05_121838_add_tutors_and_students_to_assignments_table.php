@@ -29,6 +29,11 @@ class AddTutorsAndStudentsToAssignmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_assignments');
+      Schema::table('student_assignments', function (Blueprint $table) {
+        $table->dropForeign(['tutor_id']);
+        $table->dropForeign(['student_id']);
+        $table->dropColumn('tutor_id');
+        $table->dropColumn('student_id');
+      });
     }
 }

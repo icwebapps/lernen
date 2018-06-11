@@ -15,11 +15,11 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Resource::class, function (Faker $faker) {
   return [
-    'name' => str_random(10),
-    'url' => str_random(10),
+    'name' => 'Resource ' . rand(0, 10000),
+    'url' => 'http://lernen.co.uk/fakepath/',
     'created_at' => $faker->date,
     'updated_at' => $faker->date,
-    'tutor_id' => 2,
+    'tutor_id' => factory(App\Tutor::class)->create()->id,
     'subject_id' => factory(App\Subject::class)->create()->id
   ];
 });
