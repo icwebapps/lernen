@@ -1,13 +1,13 @@
 @extends('layout')
 
-@section('title', 'Calendar')
+@section('title', 'Upcoming')
 
 @section('content')
 
 @component('header')
   @slot('title') Schedule @endslot
-    <div class="header-tab-item tab-selected">Upcoming</div>
     <a href="/calendar" style="text-decoration:none;"><div class="header-tab-item">Calendar</div><a>
+    <div class="header-tab-item tab-selected">Upcoming</div>
   @endcomponent
 
 <div class="main">
