@@ -18,6 +18,11 @@ export default class SubjectSidebar extends Component {
     return distinct;
   }
 
+  onAddSubject(name, level) {
+    axios.post('/subjects', { name: name, level: level })
+         .then(() => this.props.onAddSubject());
+  }
+
   render() {
     if (this.props.resources) {
       const colours= ["green", "red", "blue", "purple"];
@@ -47,11 +52,11 @@ export default class SubjectSidebar extends Component {
             )
           }
           {
-            this.props.addSubject ?
+            this.props.hasAdd ?
               <SubjectRow
                 editable={true}
                 colour={colours[count.length%4]}
-                onAddSubject={(e)=>{}} />
+                onAddSubject={(name, level)=>this.onAddSubject(name, level)} />
             : ''
           }
         </div>

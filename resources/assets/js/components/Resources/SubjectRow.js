@@ -26,7 +26,9 @@ export default class SubjectRow extends Component {
         </div>
         <div className="subject-list-files">
           { this.props.editable ?
-             <img src="/images/icons8-checkmark-filled-50.png" className="add-subject-input-image" />
+             <img src="/images/icons8-checkmark-filled-50.png"
+                  className="add-subject-input-image"
+                  onClick={(_)=>this.props.onAddSubject(this.state.editableName, this.state.editableLevel)} />
             : this.props.subject.count }
         </div>
       </div>

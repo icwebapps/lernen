@@ -82,8 +82,10 @@ export default class Resources extends Component {
     });
   }
 
-  onAddStudent() {
-    this.loadResources();
+  refreshResources() {
+    this.loadResources(() => {
+      this.setState({ addSubject: false });
+    });
   }
 
   render() {
@@ -93,8 +95,9 @@ export default class Resources extends Component {
           selected={this.state.subject}
           resources={this.state.resources}
           onChangeSubject={(subject)=>this.changeSubject(subject)}
+          hasAdd={this.state.addSubject}
           onBeginAddSubject={(_)=>this.beginAddSubject()}
-          addSubject={this.state.addSubject} />
+          onAddSubject={()=>this.refreshResources()} />
       </div>,
       <div className="panel-resources" key="panel-resources">
         <ResourcesTabSelector
@@ -109,7 +112,7 @@ export default class Resources extends Component {
           type={this.state.type}
           resources={this.state.resources}
           contacts={this.state.contacts}
-          onAddStudent={()=>this.onAddStudent()} />
+          onAddStudent={()=>this.refreshResources()} />
         <ResourcesUpload
           key="resources-upload"
           onUpload={(new_type)=>this.onUpload(new_type)}
