@@ -15,9 +15,10 @@
   @component('sidebar', ['selected' => 'calendar'])
   @endcomponent
 
-  <div class="width-fill flex-rows main">
+  <div class="width-scrollable">
     <div id="upcoming-widget">
     </div>
+  </div>
 
     <div class="footer">
       <div class="footer-left">
@@ -32,6 +33,8 @@
             <path d="M25,48C12.318,48,2,37.682,2,25S12.318,2,25,2s23,10.318,23,23S37.682,48,25,48z"></path>
           </svg></a>Chemistry</div>
         </div>
+      </div>
+      <div class="footer-right"></div>
       </div>
     </div>
   </div>

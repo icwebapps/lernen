@@ -25,7 +25,7 @@ export default class UpcomingColumn extends Component {
       </div>
       <div className="column-content">
         <div className="card accent-red">
-        <div className="card-left">{e.time}</div>
+        <div className="card-left">{e.time.match("[0-9][0-9]?:[0-9][0-9]")}</div>
         <div className="card-middle">
           <div className="card-title">{e.student.name}</div>
           <div className="card-sub">{e.location}</div>
