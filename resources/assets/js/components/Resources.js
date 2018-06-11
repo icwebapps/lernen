@@ -10,18 +10,26 @@ export default class Resources extends Component {
   constructor() {
     super();
     this.state = {
+      subjects: [],
       resources: [],
       contacts: [],
       type: false,
       subject: false,
       addSubject: false
     };
+    this.loadSubjects();
     this.loadResources();
     this.loadContacts();
   }
 
   typeChange(t) {
     this.setState({ type: t });
+  }
+
+  loadSubjects() {
+    axios.get('/subjects/list').then((response) => {
+      this.setState(response.data);
+    });
   }
 
   loadContacts() {
@@ -83,6 +91,7 @@ export default class Resources extends Component {
   }
 
   refreshResources() {
+    this.loadSubjects();
     this.loadResources(() => {
       this.setState({ addSubject: false });
     });
@@ -94,6 +103,7 @@ export default class Resources extends Component {
         <SubjectSidebar
           selected={this.state.subject}
           resources={this.state.resources}
+          subjects={this.state.subjects}
           onChangeSubject={(subject)=>this.changeSubject(subject)}
           hasAdd={this.state.addSubject}
           onBeginAddSubject={(_)=>this.beginAddSubject()}

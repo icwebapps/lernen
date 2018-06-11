@@ -38,6 +38,7 @@ Route::middleware(['auth'])->group(function () {
   Route::post('/resources', 'ResourceController@store');
   Route::post('/resources/{id}/students', 'ResourceController@add_student');
 
+  Route::get('/subjects/list', 'SubjectsController@list');  
   Route::post('/subjects', 'SubjectsController@create');
 });
 
