@@ -110,12 +110,12 @@ input[type="text"].error, input[type="password"].error {border: 1px solid #d2383
 .panel-subjects{width:430px;background:#fff;height:100%;display:flex;flex-direction:column}
 .add-subject{border-bottom:1px solid #DADADA;display:flex;justify-content:space-between;align-items:center;padding:15px 32px}
 .add-subject-title{font-weight:600;color:#353655;font-size:15px}
-.add-subject-button{height:28px}
+.add-subject-button{height:28px;cursor: pointer;}
 .subject-list-header-item{text-transform:uppercase;color:#A1B1CE;font-size:14px;font-weight:600;padding:10px}
 .subject-list-headers{display:flex}
 .subject-list{padding:20px}
 .subject-list-item{padding:10px;display:flex;margin-bottom:10px;border: 1px solid transparent;}
-.subject-list-letter{color:#fff;font-weight:600;padding:7px 10px;display:inline-block;font-size:14px;width:13px;text-align:center}
+.subject-list-letter{color:#fff;font-weight:600;padding: 7px 0;display:inline-block;font-size:14px;width: 37px;text-align:center;box-sizing: border-box;}
 .subject-list-letter.letter-green{background:#4DB94A}
 .subject-list-letter.letter-red{background:#B94A75}
 .subject-list-letter.letter-blue{background:#4687B5}
@@ -125,7 +125,7 @@ input[type="text"].error, input[type="password"].error {border: 1px solid #d2383
 .subject-list-files{width:30px}
 .subject-list-header-item.header-subject{width:218px}
 .subject-list-header-item.header-level{width:70px}
-.subject-list-item.item-selected,.subject-list-item:hover{cursor:pointer;border-color: #AAB1C6;border-radius:10px;}
+.subject-list-item.item-selected,.subject-list-item:not(.no-hover):hover{cursor:pointer;border-color: #AAB1C6;border-radius:10px;}
 .panel-resources{background:#fff;flex:1;border-left:1px solid #DADADA;padding:20px 30px}
 .resources-row{background:#F6F7FA;border-radius:10px;display:flex;padding:10px 20px;margin-bottom:15px;}
 .resources-table-header.resources-row{background:#fff}
@@ -192,3 +192,7 @@ input.bold-button {width: 165px;text-transform: uppercase;font-weight: 700;font-
 .modal-label {color: #2b2c2f;margin: 0 0 10px;}
 .modal-separator {margin-top: 25px;}
 .modal-add-student .contacts-list{border: 1px solid #E2E4E5;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;width: 309px;margin-top: -15px;padding-top: 14px;padding-bottom: 10px;}
+input.add-subject-input {font-size: 13px;padding: 4px 12px;}
+.subject-list-name input.add-subject-input { width: 85px;}
+.subject-list-level input.add-subject-input { width:57px;}
+.add-subject-input-image {width: 20px;cursor:pointer;}

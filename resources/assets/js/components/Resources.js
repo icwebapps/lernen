@@ -13,7 +13,8 @@ export default class Resources extends Component {
       resources: [],
       contacts: [],
       type: false,
-      subject: false
+      subject: false,
+      addSubject: false
     };
     this.loadResources();
     this.loadContacts();
@@ -69,6 +70,12 @@ export default class Resources extends Component {
     });
   }
   
+  beginAddSubject() {
+    this.setState({
+      addSubject: true
+    });
+  }
+  
   onUpload(new_type) {
     this.loadResources(() => {
       this.setState({ type: new_type });
@@ -85,7 +92,9 @@ export default class Resources extends Component {
         <SubjectSidebar
           selected={this.state.subject}
           resources={this.state.resources}
-          onChangeSubject={(subject)=>this.changeSubject(subject)} />
+          onChangeSubject={(subject)=>this.changeSubject(subject)}
+          onBeginAddSubject={(_)=>this.beginAddSubject()}
+          addSubject={this.state.addSubject} />
       </div>,
       <div className="panel-resources" key="panel-resources">
         <ResourcesTabSelector

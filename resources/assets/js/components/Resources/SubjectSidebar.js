@@ -26,7 +26,7 @@ export default class SubjectSidebar extends Component {
       return ([
         <div className="add-subject" key="add-subject">
           <div className="add-subject-title">Add Subject</div>
-          <img src="/images/icons8-plus-math-50.png" className="add-subject-button" />
+          <img src="/images/icons8-plus-math-50.png" className="add-subject-button" onClick={()=>this.props.onBeginAddSubject()} />
         </div>,
         
         <div className="subject-list" key="subject-list">
@@ -45,6 +45,14 @@ export default class SubjectSidebar extends Component {
                 resources={this.props.resources}
                 onChangeSubject={this.props.onChangeSubject} />
             )
+          }
+          {
+            this.props.addSubject ?
+              <SubjectRow
+                editable={true}
+                colour={colours[count.length%4]}
+                onAddSubject={(e)=>{}} />
+            : ''
           }
         </div>
       ]);

@@ -30,12 +30,12 @@ export default class Field extends Component {
   render() {
     return (
       <input
-        type={this.props.type}
+        type={this.props.type || "text"}
         placeholder={this.props.placeholder}
         name={this.props.name}
         value={this.props.value}
         onChange={(e) => this.onChange(e)}
-        className={ (this.state.error || this.props.error) ? "error" : "" }
+        className={ ((this.state.error || this.props.error) ? "error" : "") + " " + this.props.className }
         autoComplete={ this.props.autocomplete || '' } />
     ); 
   }
