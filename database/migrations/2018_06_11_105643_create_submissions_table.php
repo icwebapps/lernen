@@ -15,7 +15,7 @@ class CreateSubmissionsTable extends Migration
     {
       Schema::create('submissions', function (Blueprint $table) {
         $table->increments('id');
-        $table->integer('assignment_id');
+        $table->integer('assignment_id')->unsigned();
         $table->string('url');
         $table->integer('grade');
         $table->text('feedback');
