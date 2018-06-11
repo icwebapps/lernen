@@ -1,4 +1,4 @@
-@media (min-width: 320px) and (max-width: 480px) {
+@media (min-width: 320px) and (max-width: 1200px) {
 .site{position:relative;width:auto;height:auto;}
 .sidebar{height:50px;width:100%;display:flex;position:relative}
 .sidebar .nav{padding:0;display:flex;justify-content:center;width:100%}

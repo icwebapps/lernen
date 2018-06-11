@@ -62,9 +62,9 @@ body{font-family:'Open Sans',sans-serif;background: #EDEFF5;}
 .contact-options img {width: 25px;}
 .contact-item.item-selected{background:#5093E1}
 .contact-item.item-selected .contact-name,.contact-item.item-selected .contact-number{color:#fff}
-.contacts-list{overflow-y: hidden;}
+.contacts-list{overflow-y: hidden;margin-top: -10px;border-top: none;padding-top: 10px;}
 .search-box{text-align:center;padding:20px}
-input[type="text"], input[type="password"]{border:1px solid #E2E4E5;border-radius:20px;color:#B3B2BA;padding:12px 20px;width:270px;font-family:'Open Sans',sans-serif;font-size:16px;outline:none}
+input[type="text"], input[type="password"]{border:1px solid #E2E4E5;border-radius:20px;color: #6c6b71;padding:12px 20px;width:270px;font-family:'Open Sans',sans-serif;font-size:16px;outline:none;}
 .action-button{background:#50C14E;color:#fff;font-size:18px;border-radius:4px;padding:7px 13px;display:inline-block;margin-right:10px}
 .action-button img{height:24px;vertical-align:-6px;margin-left:8px}
 .person-buttons{margin:30px 0}
@@ -127,7 +127,7 @@ input[type="text"].error, input[type="password"].error {border: 1px solid #d2383
 .subject-list-header-item.header-level{width:70px}
 .subject-list-item.item-selected,.subject-list-item:hover{cursor:pointer;border-color: #AAB1C6;border-radius:10px;}
 .panel-resources{background:#fff;flex:1;border-left:1px solid #DADADA;padding:20px 30px}
-.resources-row{background:#F6F7FA;border-radius:10px;display:flex;padding:10px 20px;margin-bottom:15px;position: relative;}
+.resources-row{background:#F6F7FA;border-radius:10px;display:flex;padding:10px 20px;margin-bottom:15px;}
 .resources-table-header.resources-row{background:#fff}
 .resources-tabs{margin:0}
 .resources-table{margin:50px 0 0}
@@ -136,7 +136,7 @@ input[type="text"].error, input[type="password"].error {border: 1px solid #d2383
 .resources-faces-list{display:flex}
 .resources-faces-list img{width:35px;height:35px;border-radius:50%;margin-right:10px;cursor:pointer;}
 .resources-table-cell:not(.resources-faces-list){padding-top:6px}
-input.add-resource {width: 165px;text-transform: uppercase;font-weight: 700;font-size: 12px;margin: 20px 0;}
+input.bold-button {width: 165px;text-transform: uppercase;font-weight: 700;font-size: 12px;margin: 20px 0;}
 .dashboard-headers{padding:30px 15px 25px}
 .dashboard-header-item{height:15px;color:#313549;font-size:14px;border-bottom-width:3px;margin-right: 480px;}
 .dashboard-panels{display:flex;padding:0 30px}
@@ -184,7 +184,11 @@ input.add-resource {width: 165px;text-transform: uppercase;font-weight: 700;font
 .chat-messages-container{position:absolute;bottom:0;padding:15px;width:100%;box-sizing:border-box;display:flex;flex-direction:column;height: 100%;overflow-y: scroll;}
 .chat-message{border:1px solid #DADADA;background:#fff;border-radius:7px;font-size:14px;padding:8px 25px 8px 15px;margin:5px 0;max-width:200px}
 .chat-message.outgoing{background:#4990e0;color:#fff;text-align:right;align-self:flex-end}
-.modal-add-student{position:absolute;right: 0;z-index:1;background:#fff;border: 1px solid #4c90e0;margin: 45px 0 0 0;box-shadow: 0 0 5px #0000004d;}
-.modal-add-student .search-box input{color:#666;font-size:14px;padding:7px 17px;border-radius:0;border:0;border-bottom:1px solid #E2E4E5;background:none;width: 200px;}
-.modal-add-student .search-box{padding:0}
-.modal-add-student .contact-item{font-size:14px;padding:10px 18px}
+.modal-add-student{position:absolute;left: 50%;z-index:1;background:#fff;margin: 45px 0 0 0;box-shadow: 0 0 5px #0000004d;width: 450px;box-sizing: border-box;margin-left: -175px;margin-top: -150px;border-radius: 8px;padding: 25px 25px 12px;}
+.modal-add-student .search-box{padding:0;text-align: left;}
+.modal-add-student .contact-item{padding:10px 18px;}
+.modal-overlay {position: fixed;width: 100%;height: 100%;top: 0;left: 0;background: #0000008c;}
+.modal-title {font-size: 23px;font-weight: 600;color: #313549;padding-bottom: 17px;}
+.modal-label {color: #2b2c2f;margin: 0 0 10px;}
+.modal-separator {margin-top: 25px;}
+.modal-add-student .contacts-list{border: 1px solid #E2E4E5;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;width: 309px;margin-top: -15px;padding-top: 14px;padding-bottom: 10px;}

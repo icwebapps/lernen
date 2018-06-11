@@ -51,11 +51,11 @@ class ResourceController extends Controller
   {
     $assignment = new Assignment([
       'student_id' => $request->input('student_id'),
-      'subject_id' => 1,
+      'subject_id' => $request->subject_id,
       'date_set' => date('Y-m-d'),
-      'date_due' => date('Y-m-d'),
+      'date_due' => $request->due_date,
       'resource_id' => $resourceId,
-      'title' => Resource::find($resourceId)->name
+      'title' => $request->assignment_name
     ]);
     
     $assignment->save();
