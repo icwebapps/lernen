@@ -10,11 +10,14 @@ export default class Assignments extends Component {
       progress_bar_width: 0,
       file: null
     };
-    this.loadData();
+    this.loadAssignments();
   }
 
-  loadData() {
-    axios.get('/assignments/list').then((response) => {
+
+  loadAssignments() {
+    axios.get('/assignments/list', {
+      _token: $('meta[name="csrf-token"]').attr('content')
+    }).then((response) => {
       this.setState(response.data);
       this.changeStyle();
     });
@@ -34,12 +37,12 @@ export default class Assignments extends Component {
     this.setState({file: e.target.files[0]});
   }
 
-  onSubmit(e) {
+  onSubmit(e, id) {
     e.preventDefault();
     const formData = new FormData();
     formData.append('file', this.state.file);
-    formData.append('subject_id', this.props.subject);
-    axios.post('/answers', formData, {
+    formData.append('assignment_id', id);
+    axios.post('/assignments', formData, {
       headers: {
         'content-type': 'multipart/form-data'
       }
@@ -52,16 +55,8 @@ export default class Assignments extends Component {
   }
 
   onUpload(new_type) {
-    this.loadResources(() => {
+    this.loadAssignments(() => {
       this.setState({ type: new_type });
-    });
-  }
-
-  loadResources(callback=()=>{}) {
-    axios.get('/resources/list', {
-      _token: $('meta[name="csrf-token"]').attr('content')
-    }).then((response) => {
-      this.setState(response.data, () => this.setDefaults(callback));
     });
   }
 
@@ -91,15 +86,14 @@ export default class Assignments extends Component {
                   <div className="assignments-cell due-soon">{t.due}</div>
                   <div className="assignments-cell">
                     {/*<img src={"images/upload-icon.png"} onClick={() => this.chooseFile()}/>*/}
-                    <input type="file" name="file" onChange={(e)=>this.updateFile(e)} key="answer-file-upload" ref={ref => this.fileInput = ref} />
-                    <input type="button" value="Add Resource" onClick={(e)=>this.onSubmit(e)} className="add-resource" key="answer-file-submit" />
+                    <input type="file" name="file" onChange={(e)=>this.updateFile(e)} key="submission-file-upload" ref={ref => this.fileInput = ref} />
+                    <input type="button" value="Add Submission" onClick={(e)=>this.onSubmit(e, t.assignment_id)} className="add-resource" key="submission-file-submit" />
                   </div>
                 </div>
               )
             }
           })
         }
-
       </div>
     </div>
     );

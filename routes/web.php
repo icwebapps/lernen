@@ -20,6 +20,7 @@ Route::post('/login', 'Auth\LoginController@check_login');
 Route::middleware(['auth'])->group(function () {
   Route::get('/dashboard', 'DashboardController@index');
   Route::get('/assignments/list', 'AssignmentsController@list');
+  Route::post('/assignments', 'AssignmentsController@store');
   Route::get('/calendar', 'CalendarController@index');
   Route::get('/calendar/events', 'CalendarController@events');
   Route::get('/upcoming', 'UpcomingController@index');

@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
+use App\{Submission};
+
 
 class AssignmentsController extends Controller
 {
@@ -17,7 +22,8 @@ class AssignmentsController extends Controller
         'title' => $a->title,
         'due' => $a->date_due,
         'completed' => $a->completed,
-        'url' => $a->resource->url
+        'url' => $a->resource->url,
+        'assignment_id' => $a->id
       ];
     }
 
@@ -30,14 +36,13 @@ class AssignmentsController extends Controller
   public function store(Request $request)
   {
     $file = $request->file;
-    $storagePath = Storage::disk('s3')->put('student-solutions', $file, 'public');
-    $resource = new Resource;
-    $resource->url = 'http://' .  env('AWS_BUCKET') . '/'. $storagePath;
-    $path = pathinfo($file->getClientOriginalName());
-    $resource->name = $path['filename'];
-    $resource->subject_id = $request->subject_id;
-    $resource->tutor_id = Auth::user()->id;
-    $resource->save();
-    return json_encode(["status" => 1, "type" => $resource->type]);
+    $storagePath = Storage::disk('s3')->put('submissions', $file, 'public');
+    $submission = new Submission;
+    $submission->url = 'http://' .  env('AWS_BUCKET') . '/'. $storagePath;
+    $submission->assignment_id = $request->assignment_id;
+    $submission->grade = 0;
+    $submission->feedback = "";
+    $submission->save();
+    return json_encode(["status" => 1, "type" => $submission->type]);
   }
 }
