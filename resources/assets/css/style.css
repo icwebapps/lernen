@@ -34,7 +34,7 @@ body{font-family:'Open Sans',sans-serif;background: #EDEFF5;}
 .card-right{border-left:3px solid #EDEFF5;text-align:-webkit-center;width:87px}
 .card-right .card-graphic{border-radius:50%;width:55px;height:55px;display:inline-block;margin:20px 0}
 .key-colour svg{width:10px}
-.key-colour{margin-right:7px}
+.key-colour{margin-right:7px;}
 .key-item{color:#92A0BD;font-weight:600;font-size:14px;margin-right:40px}
 .calendar-key{display:flex}
 .footer-right{font-size:12px;font-weight:300;color:#92A0BD}
@@ -74,7 +74,7 @@ input[type="text"], input[type="password"]{border:1px solid #E2E4E5;border-radiu
 ::-webkit-scrollbar-thumb:hover {background: #c0c7d7;}
 .calendar-day{color:#ADAEBF;font-size:14px;flex:1;padding-left:15px}
 .calendar-cell{border:1px solid #DDD;background:#fff;flex:1;height:130px}
-.calendar-number{color:#AEB2BE;font-weight:600;font-size:13px;margin:20px 25px 0}
+.calendar-number{color:#AEB2BE;font-weight:600;font-size:13px;margin: 17px 21px 0;}
 #calendar-widget{display:flex;flex-direction:column;width:100%;background:#fff}
 .calendar-days{display:flex;padding:50px 10px 25px}
 .calendar-grid{display:flex;flex-direction:column}
@@ -83,21 +83,21 @@ input[type="text"], input[type="password"]{border:1px solid #E2E4E5;border-radiu
 .calendar-week:nth-of-type(1) .calendar-cell{border-top-width:2px}
 .calendar-week:nth-of-type(5) .calendar-cell{border-bottom-width:2px}
 .event-item{color:#777373;font-size:16px}
-.today-item{color:#ff4a4a;}
+.today-item{background: #dedede;width: 18px;text-align: center;border-radius: 50%;border: 1px solid #aaa;color: #313549;padding: 5px;margin: -5px;}
 .cell-event .calendar-number {color: #313549;}
-.calendar-events{padding:10px 23px 0}
+.calendar-events{padding: 8px 24px 0;}
 .calendar-cell.cell-event{background:#EDEFF5}
 .calendar-manage{background:#fff;border-top:2px solid #DCDCDC;display:flex;padding:30px 35px}
 .calendar-setting{font-size:16px;font-weight:600;color:#9FA6BF;margin-right:45px}
 .calendar-setting img{height:35px;vertical-align:middle;margin-right:3px}
-.calendar-overlay{position:absolute;z-index:1;background:#fff;border:2px solid #bbc1d0;box-shadow:1px 3px 5px #00000029;border-radius:7px;padding:27px 45px 40px 27px}
-.calendar-overlay-title{color:#ADAEBF;font-size:18px;padding-left:28px}
+.calendar-overlay{position: absolute;z-index:1;background:#fff;border:2px solid #bbc1d0;box-shadow:1px 3px 5px #00000029;border-radius:7px;padding: 27px 45px 30px 27px;max-width: 430px;}
+.calendar-overlay-title{color:#ADAEBF;font-size:18px;padding-left:28px;}
 .calendar-overlay-item-title{font-weight:600;font-size:18px}
 .calendar-overlay-item-sub{font-weight:600;color:#6A6D77;font-size:16px}
 .calendar-overlay-item-description{color:#B1B9CD;font-size:14px}
 .calendar-overlay:before{position:absolute;content:" ";border:20px solid transparent;border-right-color:#bbc1d0;top:0;margin:37px -67px}
 .calendar-overlay:after{position:absolute;content:" ";border:17px solid transparent;border-right-color:#fff;top:0;margin:40px -61px}
-.calendar-overlay-item{display:flex;margin:20px 0 0}
+.calendar-overlay-item{display: inline-flex;margin: 20px 20px 0 0;}
 .calendar-overlay-indent{margin-left:12px}
 .header.header-extended {height: 350px;}
 .header.header-extended .logo {height: 100px;margin: 200px 0 0;}

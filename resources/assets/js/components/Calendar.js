@@ -36,7 +36,7 @@ export default class Calendar extends Component {
   renderDays() {
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     return (
-      <div className="calendar-days">
+      <div key="calendar-days" className="calendar-days">
         { days.map(d => <div className="calendar-day" key={d}>{d}</div>) }
     </div>
     );
@@ -57,7 +57,7 @@ export default class Calendar extends Component {
   render() {
     return (
       [this.renderDays(),
-      this.state.start ? <div className="calendar-grid">{this.renderWeeks()}</div> : '']
+      this.state.start ? <div key="calendar-grid" className="calendar-grid">{this.renderWeeks()}</div> : '']
     );
   }
 }
