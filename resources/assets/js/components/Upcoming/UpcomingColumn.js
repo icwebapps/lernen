@@ -3,18 +3,9 @@ import ReactDOM from 'react-dom';
 import UpcomingCard from './UpcomingCard';
 
 export default class UpcomingColumn extends Component {
-  constructor(props) {
-    super();
-    this.state = { events: [] };
-    this.formatData(props);
-  }
-
-  formatData(props) {
-    console.log(props.events);
-  }
-  
   render() {
     return(
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       <div className="column">
@@ -53,6 +44,32 @@ export default class UpcomingColumn extends Component {
 =======
         </div>
 >>>>>>> Start data formatting for upcoming cards
+=======
+      <div className="column">
+        <div className="column-title">
+        {
+          this.props.today ? "Today" :
+            (this.props.tomorrow ? "Tomorrow" :
+                this.props.start.getMonth() + 1 + "/" + this.props.start.getDate())
+        }
+        </div>
+        <div className="column-content">
+        {
+        this.props.events.map(e => 
+            <div className="card accent-red">
+            <div className="card-left">{e.time.match("[0-9][0-9]?:[0-9][0-9]")}</div>
+            <div className="card-middle">
+              <div className="card-title">{e.student.name}</div>
+              <div className="card-sub">{e.location}</div>
+              <div className="card-text">{e.subject.name}</div>
+            </div>
+            <div className="card-right">
+              <img src={e.student.profile_picture} className="card-graphic" />
+            </div>
+            </div>
+          )
+        }
+>>>>>>> Fix upcoming column logic
         </div>
         <div className="column-content"> 
         {
@@ -63,6 +80,10 @@ export default class UpcomingColumn extends Component {
           
         </div>            
       </div>
+<<<<<<< HEAD
     );
+=======
+  );
+>>>>>>> Fix upcoming column logic
   }
 }
