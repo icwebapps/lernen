@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import SearchField from './Form/SearchField';
-import ContactsList from './Contacts/ContactsList';
+import ResultsList from './Search/ResultsList';
 import ChatWidget from './Chat/ChatWidget';
 
 export default class Contacts extends Component {
@@ -29,8 +29,8 @@ export default class Contacts extends Component {
     }
   }
 
-  searchName(e) {
-    this.setState({ q: e.target.value.toLowerCase() });
+  searchName(val) {
+    this.setState({ q: val.toLowerCase() });
   }
 
   openChat(contact) {
@@ -40,15 +40,15 @@ export default class Contacts extends Component {
 
   render() {
     return ([
-      <div className="panel-contacts">
+      <div key="panel-contacts" className="panel-contacts">
         <div className="search-box">
-          <SearchField placeholder="Search for students" onChange={e=>this.searchName(e)} />
+          <SearchField placeholder="Search for students" onChange={val=>this.searchName(val)} />
         </div>
         <div className="contacts-list">
-          <ContactsList contacts={this.state.contacts} q={this.state.q} onClick={(contact)=>this.openChat(contact)} hasChat="true" />
+          <ResultsList dataSource={this.state.contacts} q={this.state.q} onClick={(contact)=>this.openChat(contact)} hasChat="true" />
         </div>
       </div>,
-      <div className="panel-chat">
+      <div key="panel-chat" className="panel-chat">
         { this.state.talkingTo ? <ChatWidget userId={this.props.userId} isTutor={this.props.isTutor} talkingTo={this.state.talkingTo} /> : '' }
       </div>
     ]);

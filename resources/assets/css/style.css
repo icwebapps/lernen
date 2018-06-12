@@ -34,7 +34,7 @@ body{font-family:'Open Sans',sans-serif;background: #EDEFF5;}
 .card-right{border-left:3px solid #EDEFF5;text-align:-webkit-center;width:87px}
 .card-right .card-graphic{border-radius:50%;width:55px;height:55px;display:inline-block;margin:20px 0}
 .key-colour svg{width:10px}
-.key-colour{margin-right:7px}
+.key-colour{margin-right:7px;}
 .key-item{color:#92A0BD;font-weight:600;font-size:14px;margin-right:40px}
 .calendar-key{display:flex}
 .footer-right{font-size:12px;font-weight:300;color:#92A0BD}
@@ -74,7 +74,7 @@ input[type="text"], input[type="password"]{border:1px solid #E2E4E5;border-radiu
 ::-webkit-scrollbar-thumb:hover {background: #c0c7d7;}
 .calendar-day{color:#ADAEBF;font-size:14px;flex:1;padding-left:15px}
 .calendar-cell{border:1px solid #DDD;background:#fff;flex:1;height:130px}
-.calendar-number{color:#AEB2BE;font-weight:600;font-size:13px;margin:20px 25px 0}
+.calendar-number{color:#AEB2BE;font-weight:600;font-size:13px;margin: 17px 21px 0;}
 #calendar-widget{display:flex;flex-direction:column;width:100%;background:#fff}
 .calendar-days{display:flex;padding:50px 10px 25px}
 .calendar-grid{display:flex;flex-direction:column}
@@ -83,22 +83,22 @@ input[type="text"], input[type="password"]{border:1px solid #E2E4E5;border-radiu
 .calendar-week:nth-of-type(1) .calendar-cell{border-top-width:2px}
 .calendar-week:nth-of-type(5) .calendar-cell{border-bottom-width:2px}
 .event-item{color:#777373;font-size:16px}
-.today-item{color:#ff4a4a;}
+.today-item{background: #dedede;width: 18px;text-align: center;border-radius: 50%;border: 1px solid #aaa;color: #313549;padding: 5px;margin: -5px;}
 .cell-event .calendar-number {color: #313549;}
-.calendar-events{padding:10px 23px 0}
+.calendar-events{padding: 8px 24px 0;}
 .calendar-cell.cell-event{background:#EDEFF5}
-.calendar-manage{background:#fff;border-top:2px solid #DCDCDC;display:flex;padding:30px 35px}
+.calendar-manage{background:#fff;border-top:2px solid #DCDCDC;display:flex;padding:30px 35px;justify-content: space-between;}
 .calendar-setting{font-size:16px;font-weight:600;color:#9FA6BF;margin-right:45px}
-.calendar-setting img{height:35px;vertical-align:middle;margin-right:3px}
-.overlay{position:absolute;z-index:1;background:#fff;border:2px solid #bbc1d0;box-shadow:1px 3px 5px #00000029;border-radius:7px;top:320px;left:842px;padding:27px 45px 40px 27px}
-.overlay-title{color:#ADAEBF;font-size:18px;padding-left:28px}
-.overlay-item-title{font-weight:600;font-size:18px}
-.overlay-item-sub{font-weight:600;color:#6A6D77;font-size:16px}
-.overlay-item-description{color:#B1B9CD;font-size:14px}
-.overlay:before{position:absolute;content:" ";border:20px solid transparent;border-right-color:#bbc1d0;top:0;margin:37px -67px}
-.overlay:after{position:absolute;content:" ";border:17px solid transparent;border-right-color:#fff;top:0;margin:40px -61px}
-.overlay-item{display:flex;margin:20px 0 0}
-.overlay-indent{margin-left:12px}
+.calendar-setting img{height:35px;vertical-align:middle;margin-right:3px; cursor:pointer;}
+.calendar-overlay{position: absolute;z-index:1;background:#fff;border:2px solid #bbc1d0;box-shadow:1px 3px 5px #00000029;border-radius:7px;padding: 27px 45px 30px 27px;max-width: 430px;}
+.calendar-overlay-title{color:#ADAEBF;font-size:18px;padding-left:28px;}
+.calendar-overlay-item-title{font-weight:600;font-size:18px}
+.calendar-overlay-item-sub{font-weight:600;color:#6A6D77;font-size:16px}
+.calendar-overlay-item-description{color:#B1B9CD;font-size:14px}
+.calendar-overlay:before{position:absolute;content:" ";border:20px solid transparent;border-right-color:#bbc1d0;top:0;margin:37px -67px}
+.calendar-overlay:after{position:absolute;content:" ";border:17px solid transparent;border-right-color:#fff;top:0;margin:40px -61px}
+.calendar-overlay-item{display: inline-flex;margin: 20px 20px 0 0;}
+.calendar-overlay-indent{margin-left:12px}
 .header.header-extended {height: 350px;}
 .header.header-extended .logo {height: 100px;margin: 200px 0 0;}
 input[type="button"],input[type="submit"]{border: 1px solid #E4E5E6;background:#fff;font-family:'Open Sans',sans-serif;font-weight: 600;color: #279dff;font-size:14px;border-radius: 17px;padding:12px;width: 100%;outline: none;}
@@ -184,14 +184,14 @@ input.bold-button {width: 165px;text-transform: uppercase;font-weight: 700;font-
 .chat-messages-container{position:absolute;bottom:0;padding:15px;width:100%;box-sizing:border-box;display:flex;flex-direction:column;height: 100%;overflow-y: scroll;}
 .chat-message{border:1px solid #DADADA;background:#fff;border-radius:7px;font-size:14px;padding:8px 25px 8px 15px;margin:5px 0;max-width:200px}
 .chat-message.outgoing{background:#4990e0;color:#fff;text-align:right;align-self:flex-end}
-.modal-add-student{position:absolute;left: 50%;z-index:1;background:#fff;margin: 45px 0 0 0;box-shadow: 0 0 5px #0000004d;width: 450px;box-sizing: border-box;margin-left: -175px;margin-top: -150px;border-radius: 8px;padding: 25px 25px 12px;}
-.modal-add-student .search-box{padding:0;text-align: left;}
-.modal-add-student .contact-item{padding:10px 18px;}
+.modal-add-object{position: fixed;left: 50%;z-index:1;background:#fff;margin: 45px 0 0 0;box-shadow: 0 0 5px #0000004d;width: 450px;box-sizing: border-box;margin-left: -175px;top: 100px;border-radius: 8px;padding: 25px 25px 12px;}
+.modal-add-object .search-box{padding:0;text-align: left;}
+.modal-add-object .contact-item{padding:10px 18px;}
 .modal-overlay {position: fixed;width: 100%;height: 100%;top: 0;left: 0;background: #0000008c;}
 .modal-title {font-size: 23px;font-weight: 600;color: #313549;padding-bottom: 17px;}
 .modal-label {color: #2b2c2f;margin: 0 0 10px;}
 .modal-separator {margin-top: 25px;}
-.modal-add-student .contacts-list{border: 1px solid #E2E4E5;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;width: 309px;margin-top: -15px;padding-top: 14px;padding-bottom: 10px;}
+.modal-add-object .contacts-list{border: 1px solid #E2E4E5;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;width: 309px;margin-top: -15px;padding-top: 14px;padding-bottom: 10px;}
 input.add-subject-input {font-size: 13px;padding: 4px 12px;}
 .subject-list-name input.add-subject-input { width: 85px;}
 .subject-list-level input.add-subject-input { width:57px;}

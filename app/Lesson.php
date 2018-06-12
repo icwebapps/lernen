@@ -5,6 +5,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lesson extends Model
 {
+  protected $fillable = [
+    'tutor_id', 'student_id', 'date', 'time', 'location', 'subject_id'
+  ];
+
   public function student()
   {
     return $this->belongsTo('App\Student', 'student_id', 'user_id');

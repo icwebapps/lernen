@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
 
   Route::post('/submissions', 'SubmissionsController@store');
 
+  Route::post('/lessons', 'LessonsController@create');
 });
 
 

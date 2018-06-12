@@ -3,7 +3,7 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import SearchField from '../Form/SearchField';
 import Field from '../Form/Field';
-import ContactsList from '../Contacts/ContactsList';
+import ResultsList from '../Search/ResultsList';
 import moment from 'moment';
 
 export default class ModalAddStudent extends Component {
@@ -47,7 +47,7 @@ export default class ModalAddStudent extends Component {
   render() {
     return ([
       <div key="modal-overlay" className="modal-overlay" onClick={(_)=>this.props.onCancel()}></div>,
-      <div key="modal-add-student" className="modal-add-student">
+      <div key="modal-add-object" className="modal-add-object">
         <div className="modal-title">Set an assignment</div>
         <div className="modal-label">Name</div>
         <div className="search-box">
@@ -55,7 +55,7 @@ export default class ModalAddStudent extends Component {
         </div>
         { this.state.showContacts ?
             <div className="contacts-list">
-              <ContactsList minChars={1} contacts={this.props.contacts} q={this.state.q} onClick={(contact) => this.addContact(contact)} />
+              <ResultsList minChars={1} contacts={this.props.contacts} q={this.state.q} onClick={(contact) => this.addContact(contact)} />
             </div> : ''
         }
         <div className="modal-separator"></div>
@@ -65,7 +65,7 @@ export default class ModalAddStudent extends Component {
         <div className="modal-label">Due Date</div>
         <Field type="text" value={this.state.dueDate} name="due-date" onChange={(due)=>this.setState({ dueDate: due })} />
         <div className="modal-separator"></div>
-        <input type="button" value="Create Assignment" onClick={(e)=>this.submit()} className="add-assignment bold-button" key="add-assignment" />
+        <input type="button" value="Create Assignment" onClick={(e)=>this.submit()} className="add-button bold-button" key="add-assignment" />
       </div>
     ]);
   }
