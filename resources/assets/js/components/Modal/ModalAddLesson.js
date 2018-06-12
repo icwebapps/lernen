@@ -4,39 +4,56 @@ import ReactDOM from 'react-dom';
 import SearchField from '../Form/SearchField';
 import Field from '../Form/Field';
 import moment from 'moment';
-import ContactsList from '../Contacts/ContactsList';
+import ResultsList from '../Search/ResultsList';
 
 export default class ModalAddLesson extends Component {
   constructor(props) {
     super();
     this.state = {
-      q: '',
+      qSubject: '',
+      qContact: '',
       showContacts: false,
-      contact: false
+      showSubjects: false,
+      contact: false,
+      subject: false
     }
   }
 
   searchName(v) {
     const val = v.toLowerCase();
     if (val == '') {
-      this.setState({ q: '', showContacts: false });      
+      this.setState({ qContact: '', showContacts: false });      
     }
     else {
-      this.setState({ q: val, showContacts: true });
+      this.setState({ qContact: val, showContacts: true });
+    }
+  }
+
+  searchSubject(v) {
+    const val = v.toLowerCase();
+    if (val == '') {
+      this.setState({ qSubject: '', showSubjects: false });      
+    }
+    else {
+      this.setState({ qSubject: val, showSubjects: true });
     }
   }
 
   addContact(contact) {
-    this.setState({ q: contact.name, contact: contact, showContacts: false });
+    this.setState({ qContact: contact.name, contact: contact, showContacts: false });
+  }
+
+  selectSubject(subject) {
+    this.setState({ qSubject: subject.name, subject: subject, showSubjects: false });
   }
 
   submit() {
-    axios.post('/lessons/', {
+    axios.post('/lessons', {
       student_id: this.state.contact.id,
       date: this.state.date,
       time: this.state.time,
       location: this.state.location,
-      subject_id: this.props.subject
+      subject_id: this.state.subject.id
     }).then((response) => {
       this.props.onAddLesson();
       this.props.onCancel();
@@ -50,11 +67,11 @@ export default class ModalAddLesson extends Component {
         <div className="modal-title">Add a Lesson</div>
         <div className="modal-label">Student</div>
         <div className="search-box">
-          <SearchField placeholder="Search for students" onChange={val=>this.searchName(val)} value={this.state.q}/>
+          <SearchField placeholder="Search for students" onChange={val=>this.searchName(val)} value={this.state.qContact}/>
         </div>
         { this.state.showContacts ?
             <div className="contacts-list">
-              <ContactsList minChars={1} contacts={this.props.contacts} q={this.state.q} onClick={(contact) => this.addContact(contact)} />
+              <ResultsList minChars={1} dataSource={this.props.contacts} q={this.state.qContact} onClick={(contact) => this.addContact(contact)} />
             </div> : ''
         }
         <div className="modal-separator"></div>
@@ -68,7 +85,19 @@ export default class ModalAddLesson extends Component {
         <Field type="text" value={this.state.location} name="lesson-location" onChange={(location)=>this.setState({ location: location })} />
         <div className="modal-separator"></div>
         <div className="modal-label">Subject</div>
-        <Field type="text" value={this.state.subject} name="lesson-subject" onChange={(subject)=>this.setState({ subject: subject })} />
+        <div className="search-box">
+          <SearchField placeholder="Search for subjects" onChange={val=>this.searchSubject(val)} value={this.state.qSubject}/>
+        </div>
+        { this.state.showSubjects ?
+            <div className="contacts-list">
+              <ResultsList
+                minChars={1}
+                dataSource={this.props.subjects.map(s => { return { id: s.id, name: s.name + ' ' + s.level } })}
+                q={this.state.qSubject}
+                onClick={(subject) => this.selectSubject(subject)}
+              />
+            </div> : ''
+        }
         <div className="modal-separator"></div>
         <input type="button" value="Create Lesson" onClick={(e)=>this.submit()} className="add-button bold-button" key="add-lesson" />
       </div>

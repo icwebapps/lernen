@@ -71,7 +71,7 @@ export default class Calendar extends Component {
           key="modal-add-lesson"
           contacts={this.state.contacts}
           subjects={this.state.subjects}
-          onAddLesson={()=>{}}
+          onAddLesson={()=>this.loadData()}
           onCancel={()=>this.setState({ addLesson: false })}
         /> : ''
     ]);

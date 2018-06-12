@@ -3,7 +3,7 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import SearchField from '../Form/SearchField';
 import Field from '../Form/Field';
-import ContactsList from '../Contacts/ContactsList';
+import ResultsList from '../Search/ResultsList';
 import moment from 'moment';
 
 export default class ModalAddStudent extends Component {
@@ -55,7 +55,7 @@ export default class ModalAddStudent extends Component {
         </div>
         { this.state.showContacts ?
             <div className="contacts-list">
-              <ContactsList minChars={1} contacts={this.props.contacts} q={this.state.q} onClick={(contact) => this.addContact(contact)} />
+              <ResultsList minChars={1} contacts={this.props.contacts} q={this.state.q} onClick={(contact) => this.addContact(contact)} />
             </div> : ''
         }
         <div className="modal-separator"></div>

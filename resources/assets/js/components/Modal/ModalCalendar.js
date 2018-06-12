@@ -19,7 +19,7 @@ export default class ModalCalendar extends Component {
               <div className="calendar-overlay-indent">
                 <div className="calendar-overlay-item-title">{e.student}</div>
                 <div className="calendar-overlay-item-sub">{e.time}</div>
-                <div className="calendar-overlay-item-description">{e.location}<br />{e.subject.level} {e.subject.name}</div>
+                <div className="calendar-overlay-item-description">{e.location}<br />{e.subject.name} {e.subject.level}</div>
               </div>
             </div>
           )

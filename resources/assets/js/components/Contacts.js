@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import SearchField from './Form/SearchField';
-import ContactsList from './Contacts/ContactsList';
+import ResultsList from './Search/ResultsList';
 import ChatWidget from './Chat/ChatWidget';
 
 export default class Contacts extends Component {
@@ -45,7 +45,7 @@ export default class Contacts extends Component {
           <SearchField placeholder="Search for students" onChange={val=>this.searchName(val)} />
         </div>
         <div className="contacts-list">
-          <ContactsList contacts={this.state.contacts} q={this.state.q} onClick={(contact)=>this.openChat(contact)} hasChat="true" />
+          <ResultsList dataSource={this.state.contacts} q={this.state.q} onClick={(contact)=>this.openChat(contact)} hasChat="true" />
         </div>
       </div>,
       <div key="panel-chat" className="panel-chat">
