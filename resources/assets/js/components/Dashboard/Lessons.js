@@ -22,18 +22,19 @@ export default class Lessons extends Component {
     return this.state.lessons.filter(l => {
         const thisDay = new Date(this.state.today);
         const lessonDay = new Date(l.date);
-        return lessonDay.getDate() == thisDay.getDate() + 7
+        return lessonDay.getDate() == thisDay.getDate()
         && lessonDay.getMonth() == thisDay.getMonth();})
   }
   
   render() {
     return(
+      this.filterLessons().length > 0 ? 
       this.filterLessons().map( (l, i) => {
         return <UpcomingCard key={"card"+i} time={l.time} 
                              name={l.tutor.user.name} location={l.location} 
                              subject={l.subject} picture={l.student.user.profile_picture} />
         
-      })
+      }) : <h4>     No Lessons Today!     </h4>
     )
   }
   

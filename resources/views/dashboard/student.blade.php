@@ -17,7 +17,7 @@
     <div class="dashboard-headers">
       <div class="dashboard-header-item dashboard-item-long">Progress</div>
       <div class="dashboard-header-item">Assignments</div>
-      <div class="dashboard-header-item">Lessons</div>
+      <div class="dashboard-header-item">Today's Lessons</div>
     </div>
     <div class="dashboard-panels">
       <div class="dashboard-panel-item dashboard-item-long">
