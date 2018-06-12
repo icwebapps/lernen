@@ -4,18 +4,13 @@ import ReactDOM from 'react-dom';
 import SubjectRow from './SubjectRow';
 
 export default class SubjectSidebar extends Component {
-  removeDuplicates(subjects) {
-    return subjects.filter((subject, i, self) =>
-      i === self.findIndex((s) => s.name === subject.name && s.level === subject.level)
-    );
-  }
-
-  countSubjects(all, distinct) {
-    all.map((subject, i) => {
-      let distinctIndex = distinct.findIndex((s) => s.name === subject.name && s.level === subject.level);
-      distinct[distinctIndex].count += 1;
+  countSubjects(subjects, resources) {
+    resources.map((r, i) => {
+      let thisSubject = r.subject;
+      let subjectIndex = subjects.findIndex((s) => s.name === thisSubject.name && s.level === thisSubject.level);
+      subjects[subjectIndex].count += 1;
     });
-    return distinct;
+    return subjects;
   }
 
   onAddSubject(name, level) {
@@ -25,10 +20,9 @@ export default class SubjectSidebar extends Component {
 
   render() {
     if (this.props.resources) {
-      const colours= ["green", "red", "blue", "purple"];
-      let subjects = this.props.resources.map((r, _) => Object.assign(r.subject, {count:0}));
-      let unusued_subjects = this.props.subjects.map(s => Object.assign(s, {count:0}));
-      let count = this.countSubjects(subjects, this.removeDuplicates(Object.assign(unusued_subjects, subjects)));
+      const colours = ["green", "red", "blue", "purple"];
+      let all_subjects = this.props.subjects.map(s => Object.assign(s, {count:0}));
+      let count = this.countSubjects(all_subjects, this.props.resources);
       return ([
         <div className="add-subject" key="add-subject">
           <div className="add-subject-title">Add Subject</div>
