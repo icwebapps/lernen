@@ -48,23 +48,27 @@ export default class Assignments extends Component {
       }
     }).then((response) => {
       if (response.data.status == 1) {
-        this.onUpload(response.data.type);
+        this.onUpload(response.data.type, id);
         this.fileInput.value = null;
       }
     });
   }
 
-  onUpload(new_type) {
+  onUpload(new_type, id) {
     this.loadAssignments(() => {
       this.setState({ type: new_type });
     });
+  }
+
+  displayAssignments() {
+    return (this.state.tasks.filter(t => !t.completed).length.toString() + " assignments left");
   }
 
   render() {
     return (
     <div className="dashboard-panel-item flex-rows">
       <div className="assignments-progress">
-        {this.state.tasks.filter(t => !t.completed).length.toString() + " assignments left"}
+        {this.displayAssignments()}
         <div className="assignments-progress-bar">
           <div className="progress-complete" style={{ width: this.state.progress_bar_width + "%" }}/>
         </div>
