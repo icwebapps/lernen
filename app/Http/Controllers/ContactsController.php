@@ -13,6 +13,7 @@ class ContactsController extends Controller
 
   public function list()
   {
+    $todayDate = date("Y-m-d", strtotime("now"));
     if (Auth::user()->isTutor()) {
       $students = [];
       $lessons = Auth::user()->tutor->lessons;
@@ -22,7 +23,9 @@ class ContactsController extends Controller
       }
       $students = array_values($students);
       usort($students, [$this, 'sortAlphaByName']);
-      return json_encode([ "contacts" => $students ]);
+      return json_encode([ "contacts" => $students,
+                           "lessons" => $lessons,
+                           "today" => $todayDate]);
     }
     else {
       $tutors = [];
@@ -33,7 +36,9 @@ class ContactsController extends Controller
       }
       $tutors = array_values($tutors);
       usort($tutors, [$this, 'sortAlphaByName']);
-      return json_encode([ "contacts" => $tutors ]);
+      return json_encode([ "contacts" => $tutors,
+                           "lessons" => $lessons,
+                           "today" => $todayDate]);
     }
   }
 
