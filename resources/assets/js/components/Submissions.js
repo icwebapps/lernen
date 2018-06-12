@@ -21,13 +21,13 @@ export default class Submissions extends Component {
 render() {
   return (
     <div className="dashboard-panel-item flex-rows">
-      <div className="submissions-list">
+      <div className="assignments-list">
         {
           this.state.submissions.map((s) => {
             return (
-              <div className="submission-row">
-                <div className="submission-cell" style={{cursor: 'pointer'}}>
-                  <a href={s.url} download>{}</a>
+              <div className="assignments-row">
+                <div className="assignments-cell" style={{cursor: 'pointer'}}>
+                  <a href={s.url} download>{s.title}</a>
                 </div>
               </div>
             )

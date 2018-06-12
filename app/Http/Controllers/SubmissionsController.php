@@ -57,7 +57,11 @@ class SubmissionsController
           'assignments.submissions'
         ])->find($r->id)->assignments;
         foreach($assignments as $a) {
-          $submissions = array_merge($submissions, $a->submissions->all());
+          $title = $a->title;
+          $submissions = array_merge($submissions, $a->submissions->map(function ($sub) use ($title) {
+            $sub->title = $title;
+            return $sub;
+          })->all());
         }
       }
       return json_encode([ "submissions" => $submissions ]);
