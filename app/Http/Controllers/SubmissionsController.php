@@ -6,6 +6,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 use App\{
+  User, Resource
+};
+
+use App\{
   Assignment, Submission
 };
 
@@ -35,8 +39,33 @@ class SubmissionsController
       $subject->progress = $submissions[$subject->id] ?? ['count' => 0, 'total' => 0];
       return $subject;
     });
-      
+
     return json_encode(["subjects" => $subjects]);
+  }
+
+  public function list()
+  {
+    if (Auth::user()->isTutor()) {
+      $resources = User::with([
+        'tutor.resources'
+      ])->find(Auth::user()->id)->tutor->resources;
+
+      $submissions = [];
+
+      foreach($resources as $r) {
+        $assignments = Resource::with([
+          'assignments.submissions'
+        ])->find($r->id)->assignments;
+        foreach($assignments as $a) {
+          $submissions = array_merge($submissions, $a->submissions->all());
+        }
+      }
+      return json_encode([ "submissions" => $submissions ]);
+    }
+    else {
+      abort(404);
+    }
+
   }
 
   public function store(Request $request)
