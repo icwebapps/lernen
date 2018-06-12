@@ -55,7 +55,7 @@ export default class ModalAddStudent extends Component {
         </div>
         { this.state.showContacts ?
             <div className="contacts-list">
-              <ResultsList minChars={1} contacts={this.props.contacts} q={this.state.q} onClick={(contact) => this.addContact(contact)} />
+              <ResultsList minChars={1} dataSource={this.props.contacts} q={this.state.q} onClick={(contact) => this.addContact(contact)} />
             </div> : ''
         }
         <div className="modal-separator"></div>

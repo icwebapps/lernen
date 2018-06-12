@@ -20,4 +20,9 @@ class Assignment extends Model
   {
     return $this->belongsTo('App\Resource', 'resource_id', 'id');
   }
+
+  public function submissions()
+  {
+    return $this->hasMany('App\Submission');
+  }
 }

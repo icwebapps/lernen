@@ -17,13 +17,15 @@ class LessonsSeeder extends Seeder
     public function run()
     {
       // Tutor1 teaches all the students
-      $s = Student::all();
-      for ($i=0; $i<count($s); $i++) {
+      $students = Student::all();
+      $subjects = User::find(1)->tutor->subjects->all();      
+      for ($i=0; $i<count($students); $i++) {
         factory(Lesson::class)->create([
           'tutor_id' => 1,
-          'student_id' => $s[$i]->user_id,
+          'student_id' => $students[$i]->user_id,
           'date' => date("Y-m-d", strtotime("+7 days")),
-          'time' => '12:00:00'
+          'time' => '12:00:00',
+          'subject_id' => $subjects[array_rand($subjects)]
         ]);
       }
     }
