@@ -18,15 +18,21 @@ export default class SubjectSidebar extends Component {
     return distinct;
   }
 
+  onAddSubject(name, level) {
+    axios.post('/subjects', { name: name, level: level })
+         .then(() => this.props.onAddSubject());
+  }
+
   render() {
     if (this.props.resources) {
       const colours= ["green", "red", "blue", "purple"];
       let subjects = this.props.resources.map((r, _) => Object.assign(r.subject, {count:0}));
-      let count = this.countSubjects(subjects, this.removeDuplicates(subjects));
+      let unusued_subjects = this.props.subjects.map(s => Object.assign(s, {count:0}));
+      let count = this.countSubjects(subjects, this.removeDuplicates(Object.assign(unusued_subjects, subjects)));
       return ([
         <div className="add-subject" key="add-subject">
           <div className="add-subject-title">Add Subject</div>
-          <img src="/images/icons8-plus-math-50.png" className="add-subject-button" />
+          <img src="/images/icons8-plus-math-50.png" className="add-subject-button" onClick={()=>this.props.onBeginAddSubject()} />
         </div>,
         
         <div className="subject-list" key="subject-list">
@@ -45,6 +51,14 @@ export default class SubjectSidebar extends Component {
                 resources={this.props.resources}
                 onChangeSubject={this.props.onChangeSubject} />
             )
+          }
+          {
+            this.props.hasAdd ?
+              <SubjectRow
+                editable={true}
+                colour={colours[count.length%4]}
+                onAddSubject={(name, level)=>this.onAddSubject(name, level)} />
+            : ''
           }
         </div>
       ]);

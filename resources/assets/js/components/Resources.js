@@ -10,17 +10,26 @@ export default class Resources extends Component {
   constructor() {
     super();
     this.state = {
+      subjects: [],
       resources: [],
       contacts: [],
       type: false,
-      subject: false
+      subject: false,
+      addSubject: false
     };
+    this.loadSubjects();
     this.loadResources();
     this.loadContacts();
   }
 
   typeChange(t) {
     this.setState({ type: t });
+  }
+
+  loadSubjects() {
+    axios.get('/subjects/list').then((response) => {
+      this.setState(response.data);
+    });
   }
 
   loadContacts() {
@@ -69,14 +78,23 @@ export default class Resources extends Component {
     });
   }
   
+  beginAddSubject() {
+    this.setState({
+      addSubject: true
+    });
+  }
+  
   onUpload(new_type) {
     this.loadResources(() => {
       this.setState({ type: new_type });
     });
   }
 
-  onAddStudent() {
-    this.loadResources();
+  refreshResources() {
+    this.loadSubjects();
+    this.loadResources(() => {
+      this.setState({ addSubject: false });
+    });
   }
 
   render() {
@@ -85,7 +103,11 @@ export default class Resources extends Component {
         <SubjectSidebar
           selected={this.state.subject}
           resources={this.state.resources}
-          onChangeSubject={(subject)=>this.changeSubject(subject)} />
+          subjects={this.state.subjects}
+          onChangeSubject={(subject)=>this.changeSubject(subject)}
+          hasAdd={this.state.addSubject}
+          onBeginAddSubject={(_)=>this.beginAddSubject()}
+          onAddSubject={()=>this.refreshResources()} />
       </div>,
       <div className="panel-resources" key="panel-resources">
         <ResourcesTabSelector
@@ -100,7 +122,7 @@ export default class Resources extends Component {
           type={this.state.type}
           resources={this.state.resources}
           contacts={this.state.contacts}
-          onAddStudent={()=>this.onAddStudent()} />
+          onAddStudent={()=>this.refreshResources()} />
         <ResourcesUpload
           key="resources-upload"
           onUpload={(new_type)=>this.onUpload(new_type)}

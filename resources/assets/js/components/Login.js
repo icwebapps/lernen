@@ -14,9 +14,9 @@ export default class Login extends Component {
     };
   }
   
-  onChange(e) {
+  onChange(el, val) {
     const tempState = { error: '' };
-    tempState[e.target.name] = e.target.value;
+    tempState[el] = val;
     this.setState(tempState);
   }
 
@@ -42,8 +42,8 @@ export default class Login extends Component {
   render() {
     return (
       <form method="post" onSubmit={(e)=>this.onSubmit(e)}>
-        <EmailField required="true" value={this.state.email} onChange={(e) => this.onChange(e)} onError={(msg) => this.displayError(msg)}/> 
-        <PasswordField required="true" value={this.state.password} onChange={(e) => this.onChange(e)} onError={(msg) => this.displayError(msg)} />
+        <EmailField required="true" value={this.state.email} onChange={(val) => this.onChange('email', val)} onError={(msg) => this.displayError(msg)}/> 
+        <PasswordField required="true" value={this.state.password} onChange={(val) => this.onChange('password', val)} onError={(msg) => this.displayError(msg)} />
         <input type="submit" value="Log in" />
         { this.state.error != '' ? <div className="form-errors">{this.state.error}</div> : '' }
       </form>

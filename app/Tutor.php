@@ -25,4 +25,9 @@ class Tutor extends Model
   {
     return $this->hasMany('App\Resource', 'tutor_id', 'user_id');
   }
+
+  public function subjects()
+  {
+    return $this->hasMany('App\Subject', 'tutor_id', 'user_id');
+  }
 }

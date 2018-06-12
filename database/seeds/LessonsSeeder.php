@@ -16,11 +16,11 @@ class LessonsSeeder extends Seeder
      */
     public function run()
     {
-      // Create lessons with 15 different students in the next month for tutor 4
+      // Tutor1 teaches all the students
       $s = Student::all();
-      for ($i=0; $i<15; $i++) {
+      for ($i=0; $i<count($s); $i++) {
         factory(Lesson::class)->create([
-          'tutor_id' => 4,
+          'tutor_id' => 1,
           'student_id' => $s[$i]->user_id,
           'date' => date("Y-m-d", strtotime("+7 days")),
           'time' => '12:00:00'

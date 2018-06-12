@@ -26,6 +26,9 @@ class AddTutorIdToResourcesTable extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('resources');
+    Schema::table('resources', function (Blueprint $table) {
+      $table->dropForeign(['tutor_id']);
+      $table->dropColumn('tutor_id');
+    });
   }
 }

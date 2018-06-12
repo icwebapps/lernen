@@ -26,7 +26,7 @@ class AddSubjectsToResourcesTable extends Migration
      */
     public function down()
     {
-      Schema::table('lessons', function (Blueprint $table) {
+      Schema::table('resources', function (Blueprint $table) {
         $table->dropForeign(['subject_id']);
         $table->dropColumn('subject_id');
       });

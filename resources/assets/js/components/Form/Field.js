@@ -12,7 +12,7 @@ export default class Field extends Component {
   
   onChange(e) {
     const val = e.target.value;
-    this.props.onChange(e);
+    this.props.onChange(val);
     this.setState({ value: val, error: false });
     this.checkRequired(val);
   }
@@ -27,22 +27,15 @@ export default class Field extends Component {
     }
   }
 
-  getValue() {
-    if (this.props.value == null) {
-      return this.state.value;
-    }
-    return this.props.value;
-  }
-
   render() {
     return (
       <input
-        type={this.props.type}
+        type={this.props.type || "text"}
         placeholder={this.props.placeholder}
         name={this.props.name}
-        value={this.getValue()}
+        value={this.props.value}
         onChange={(e) => this.onChange(e)}
-        className={ (this.state.error || this.props.error) ? "error" : "" }
+        className={ ((this.state.error || this.props.error) ? "error" : "") + " " + this.props.className }
         autoComplete={ this.props.autocomplete || '' } />
     ); 
   }

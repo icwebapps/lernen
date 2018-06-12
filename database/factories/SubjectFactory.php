@@ -14,8 +14,11 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\Subject::class, function (Faker $faker) {
+  $subjects = ['Maths', 'Chemistry', 'Physics'];
+  $levels = ['A-Level', 'GCSE', '11+'];
   return [
-    'name' => str_random(10),
-    'level' => str_random(5)
+    'name' => $subjects[array_rand($subjects)],
+    'level' => $levels[array_rand($levels)],
+    'tutor_id' => factory(App\Tutor::class)->create()->user_id
   ];
 });

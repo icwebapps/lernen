@@ -25,6 +25,8 @@ class AddDefaultsForAssignmentsTable extends Migration
      */
     public function down()
     {
-        //
+      Schema::table('student_assignments', function (Blueprint $table) {
+        $table->boolean('completed')->default(NULL)->change();
+      });
     }
 }
