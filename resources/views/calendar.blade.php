@@ -17,15 +17,6 @@
   <div class="width-fill flex-rows">
     <div id="calendar-widget">
     </div>
-
-    <div class="calendar-manage">
-      <div class="calendar-setting">
-        <img src="/images/icons8-plus-50.png" /> Add Lesson
-      </div>
-      <div class="calendar-setting">
-        <img src="/images/icons8-search-50.png" /> Search
-      </div>
-    </div>
   </div>
 </div>
 </div>

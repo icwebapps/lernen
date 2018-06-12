@@ -3,18 +3,16 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import SearchField from '../Form/SearchField';
 import Field from '../Form/Field';
-import ContactsList from '../Contacts/ContactsList';
 import moment from 'moment';
+import ContactsList from '../Contacts/ContactsList';
 
-export default class ModalAddStudent extends Component {
+export default class ModalAddLesson extends Component {
   constructor(props) {
     super();
     this.state = {
       q: '',
       showContacts: false,
-      contact: false,
-      dueDate: moment().format("YYYY-MM-DD"),
-      assignmentName: props.resource.name
+      contact: false
     }
   }
 
@@ -33,13 +31,14 @@ export default class ModalAddStudent extends Component {
   }
 
   submit() {
-    axios.post('/resources/'+this.props.resource.id+'/students', {
+    axios.post('/lessons/', {
       student_id: this.state.contact.id,
-      due_date: this.state.dueDate,
-      assignment_name: this.state.assignmentName,
+      date: this.state.date,
+      time: this.state.time,
+      location: this.state.location,
       subject_id: this.props.subject
     }).then((response) => {
-      this.props.onAddStudent();
+      this.props.onAddLesson();
       this.props.onCancel();
     });
   }
@@ -48,8 +47,8 @@ export default class ModalAddStudent extends Component {
     return ([
       <div key="modal-overlay" className="modal-overlay" onClick={(_)=>this.props.onCancel()}></div>,
       <div key="modal-add-object" className="modal-add-object">
-        <div className="modal-title">Set an assignment</div>
-        <div className="modal-label">Name</div>
+        <div className="modal-title">Add a Lesson</div>
+        <div className="modal-label">Student</div>
         <div className="search-box">
           <SearchField placeholder="Search for students" onChange={val=>this.searchName(val)} value={this.state.q}/>
         </div>
@@ -59,13 +58,19 @@ export default class ModalAddStudent extends Component {
             </div> : ''
         }
         <div className="modal-separator"></div>
-        <div className="modal-label">Assignment Title</div>
-        <Field type="text" value={this.state.assignmentName} name="title" onChange={(name)=>this.setState({ assignmentName: name })} />
+        <div className="modal-label">Date</div>
+        <Field type="text" value={this.state.date} name="lesson-date" onChange={(date)=>this.setState({ date: date })} />
         <div className="modal-separator"></div>
-        <div className="modal-label">Due Date</div>
-        <Field type="text" value={this.state.dueDate} name="due-date" onChange={(due)=>this.setState({ dueDate: due })} />
+        <div className="modal-label">Time</div>
+        <Field type="text" value={this.state.time} name="lesson-time" onChange={(time)=>this.setState({ time: time })} />
         <div className="modal-separator"></div>
-        <input type="button" value="Create Assignment" onClick={(e)=>this.submit()} className="add-button bold-button" key="add-assignment" />
+        <div className="modal-label">Location</div>
+        <Field type="text" value={this.state.location} name="lesson-location" onChange={(location)=>this.setState({ location: location })} />
+        <div className="modal-separator"></div>
+        <div className="modal-label">Subject</div>
+        <Field type="text" value={this.state.subject} name="lesson-subject" onChange={(subject)=>this.setState({ subject: subject })} />
+        <div className="modal-separator"></div>
+        <input type="button" value="Create Lesson" onClick={(e)=>this.submit()} className="add-button bold-button" key="add-lesson" />
       </div>
     ]);
   }

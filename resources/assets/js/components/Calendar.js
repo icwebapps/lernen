@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import CalendarWeek from './Calendar/CalendarWeek';
+import ModalAddLesson from './Modal/ModalAddLesson';
 
 export default class Calendar extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      addLesson: false
+    };
     this.loadData();
   }
 
   loadData() {
-    axios.get('/calendar/events').then((response) => {
-      this.setState(response.data);
-    });
+    axios.get('/calendar/events').then((response) => { this.setState(response.data); });
+    axios.get('/contacts/list').then((response) => { this.setState(response.data); });
+    axios.get('/subjects/list').then((response) => { this.setState(response.data); });
   }
 
   componentWillMount() {
@@ -57,8 +60,21 @@ export default class Calendar extends Component {
   render() {
     return (
       [this.renderDays(),
-      this.state.start ? <div key="calendar-grid" className="calendar-grid">{this.renderWeeks()}</div> : '']
-    );
+      this.state.start ? <div key="calendar-grid" className="calendar-grid">{this.renderWeeks()}</div> : '',
+      <div key="calendar-manage" className="calendar-manage">
+        <div className="calendar-setting" onClick={(_)=>this.setState({ addLesson: true })}>
+          <img src="/images/icons8-plus-50.png" /> Add Lesson
+        </div>
+      </div>,
+      this.state.addLesson ?
+        <ModalAddLesson
+          key="modal-add-lesson"
+          contacts={this.state.contacts}
+          subjects={this.state.subjects}
+          onAddLesson={()=>{}}
+          onCancel={()=>this.setState({ addLesson: false })}
+        /> : ''
+    ]);
   }
 }
 
