@@ -6,16 +6,28 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-use App\{Submission};
+use App\{
+  Assignment, Submission, User
+};
 
 
 class AssignmentsController extends Controller
 {
 
-  public function list()
+  public function list(Request $request)
   {
     $tasks = [];
-    $assignments = Auth::user()->student->assignments;
+
+    if (!is_null($request->completed)) {
+      $query = User::with(['student.assignments' => function ($q) use ($request) {
+        $q->where('completed', $request->completed);
+      }])->find(Auth::user()->id);
+    }
+    else {
+      $query = Auth::user();
+    }
+
+    $assignments = $query->student->assignments;
 
     foreach ($assignments as $a) {
       $tasks[] = [
@@ -43,6 +55,10 @@ class AssignmentsController extends Controller
     $submission->grade = 0;
     $submission->feedback = "";
     $submission->save();
-    return json_encode(["status" => 1, "type" => $submission->type]);
+
+    $assignment = Assignment::find($request->assignment_id);
+    $assignment->completed = true;
+    $assignment->save();
+    return json_encode(["status" => 1]);
   }
 }
