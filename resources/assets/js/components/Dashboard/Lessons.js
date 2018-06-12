@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
+import UpcomingCard from '../Upcoming/UpcomingCard';
 
 export default class Lessons extends Component {
   constructor() {
@@ -29,26 +30,10 @@ export default class Lessons extends Component {
   
   render() {
     return(
-    <div className="dashboard-panel-item">
-    {this.filterLessons().length > 0 ? this.filterLessons().map((l) =>
-      <div className="card accent-red">
-        <div className="card-left">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="50px">
-          </svg>
-          {l.time}
-        </div>
-        <div className="card-middle">
-          <div className="card-title">{l.tutor.name}</div>
-          <div className="card-sub">{l.location}</div>
-          <div className="card-text">{l.subject}</div>
-        </div>
-        <div className="card-right">
-          <img src="images/jasonlipowicz.png" className="card-graphic"/>
-        </div>
-      </div>
-      ) : <h4>No Lessons Today</h4>
-    }    
-    </div>
+      this.filterLessons().map( (l, i) => {
+        return <UpcomingCard key={"card"+i} time={l.time} name={l.tutor.name} location = {l.location} subject = {l.subject} />
+        
+      })
     )
   }
   

@@ -83,5 +83,6 @@
 
       <div id="lesson-widget"></div>
       
+      
 </div>
 @endsection
