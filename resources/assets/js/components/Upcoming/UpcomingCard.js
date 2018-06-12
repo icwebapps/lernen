@@ -12,7 +12,7 @@ export default class UpcomingCard extends Component {
         <div className="card-text">{this.props.subject}</div>
       </div>  
       <div className="card-right">
-        <img src="images/jasonlipowicz.png" className="card-graphic" />
+        <img src={this.props.picture} className="card-graphic" />
       </div>              
       </div>
     )

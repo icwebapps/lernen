@@ -13,9 +13,7 @@ export default class Lessons extends Component {
   }
   
   loadData() {
-    axios.get('/students/list', {
-      _token: $('meta[name="csrf-token"]').attr('content')
-    }).then((response) => {
+    axios.get('/students/list').then((response) => {
       this.setState(response.data);
     });
   }
@@ -31,7 +29,9 @@ export default class Lessons extends Component {
   render() {
     return(
       this.filterLessons().map( (l, i) => {
-        return <UpcomingCard key={"card"+i} time={l.time} name={l.tutor.name} location = {l.location} subject = {l.subject} />
+        return <UpcomingCard key={"card"+i} time={l.time} 
+                             name={l.tutor.user.name} location={l.location} 
+                             subject={l.subject} picture={"http://assets.lernen.co.uk/profiles/3.jpg"} />
         
       })
     )
