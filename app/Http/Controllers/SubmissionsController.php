@@ -17,8 +17,11 @@ class SubmissionsController
     $assignments = Auth::user()->student->assignments;
     // Get all submissions, sum up grades and store per subject_id
     foreach ($assignments as $a) {
-      if (count($a->submissions) > 0) {
-        $recent_submission = $a->submissions->last();
+      $thisSubs = $a->submissions->filter(function ($sub) {
+        return !is_null($sub->grade);
+      });
+      if (count($thisSubs) > 0) {
+        $recent_submission = $thisSubs->last();
         $submissions[$a->subject_id] = [
           'count' => ($submissions[$a->subject_id]['count'] ?? 0) + 1,
           'total' => ($submissions[$a->subject_id]['total'] ?? 0) + $recent_submission->grade
@@ -43,7 +46,6 @@ class SubmissionsController
     $submission = new Submission;
     $submission->url = 'http://' .  env('AWS_BUCKET') . '/'. $storagePath;
     $submission->assignment_id = $request->assignment_id;
-    $submission->grade = 0;
     $submission->feedback = "";
     $submission->save();
 
