@@ -1,10 +1,27 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import ModalCalendar from '../Modal/ModalCalendar';
 
 export default class CalendarCell extends Component {
+  constructor() {
+    super();
+    this.state = {
+      modal: false
+    }
+  }
+  showModal(e) {
+    this.setState({ modal: true, x: e.screenX, y: e.screenY });
+  }
+
+  hideModal() {
+    this.setState({ modal: false });
+  }
+
   render() {
     return (
-      <div className={"calendar-cell " + (this.props.events.length > 0 ? "cell-event" : "") }>
+      <div className={"calendar-cell " + (this.props.events.length > 0 ? "cell-event" : "") }
+           onMouseMove={(e)=>this.showModal(e)} onMouseLeave={(_)=>this.hideModal()}
+           key="calendar-cell">
         <div className="calendar-number">
         <div className={this.props.ifToday=="true" ? "today-item" : ""}>{this.props.number}</div>
         </div>
@@ -22,6 +39,13 @@ export default class CalendarCell extends Component {
           </div>
           : ''
         }
+        { this.state.modal && this.props.events.length > 0 ?
+          <ModalCalendar
+            key="modal-calendar-cell"
+            x={this.state.x}
+            y={this.state.y}
+            {...this.props}
+          /> : '' }
       </div>
     )
   }
