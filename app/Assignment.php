@@ -16,6 +16,11 @@ class Assignment extends Model
     return $this->belongsTo('App\Student', 'student_id', 'user_id');
   }
 
+  public function subject()
+  {
+    return $this->belongsTo('App\Subject');
+  }
+
   public function resource()
   {
     return $this->belongsTo('App\Resource', 'resource_id', 'id');

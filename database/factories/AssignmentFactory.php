@@ -22,7 +22,9 @@ $factory->define(App\Assignment::class, function (Faker $faker) {
   $tutor_id = factory(Tutor::class)->create()->user_id;
   return [
     'student_id' => factory(Student::class)->create()->user_id,
-    'subject_id' => factory(Subject::class)->create()->id,
+    'subject_id' => factory(Subject::class)->create([
+      'tutor_id' => $tutor_id
+    ])->id,
     'date_set' => $date_set,
     'date_due' => date('Y-m-d', $date_due),
     'completed' => false,
