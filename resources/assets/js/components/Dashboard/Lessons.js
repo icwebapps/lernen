@@ -13,7 +13,7 @@ export default class Lessons extends Component {
   }
   
   loadData() {
-    axios.get('/students/list').then((response) => {
+    axios.get('/lessons/list').then((response) => {
       this.setState(response.data);
     });
   }
