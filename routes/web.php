@@ -40,6 +40,9 @@ Route::middleware(['auth'])->group(function () {
 
   Route::get('/subjects/list', 'SubjectsController@list');  
   Route::post('/subjects', 'SubjectsController@create');
+
+  Route::post('/submissions', 'SubmissionsController@store');
+
 });
 
 

@@ -25,7 +25,7 @@ $factory->define(App\Assignment::class, function (Faker $faker) {
     'subject_id' => factory(Subject::class)->create()->id,
     'date_set' => $date_set,
     'date_due' => date('Y-m-d', $date_due),
-    'completed' => $faker->boolean,
+    'completed' => false,
     'resource_id' => factory(Resource::class)->create([
       'tutor_id' => $tutor_id
     ]),

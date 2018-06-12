@@ -25,7 +25,6 @@ export default class ResourcesUpload extends Component {
         this.fileInput.value = null;
       }
     });
-
   }
 
   updateFile(e) {
