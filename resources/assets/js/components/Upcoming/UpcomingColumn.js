@@ -8,6 +8,7 @@ export default class UpcomingColumn extends Component {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <div className="column">
         <div className="column-title"> 
         {
@@ -46,6 +47,9 @@ export default class UpcomingColumn extends Component {
 >>>>>>> Start data formatting for upcoming cards
 =======
       <div className="column">
+=======
+      <div className="column" key={this.props.i + "-column"}>
+>>>>>>> Sort events into date columns
         <div className="column-title">
         {
           this.props.today ? "Today" :
@@ -60,7 +64,7 @@ export default class UpcomingColumn extends Component {
             <div className="card-left">{e.time.match("[0-9][0-9]?:[0-9][0-9]")}</div>
             <div className="card-middle">
               <div className="card-title">{e.student.name}</div>
-              <div className="card-sub">{e.location}</div>
+              <div className="card-sub">{e.location + " " + e.date}</div>
               <div className="card-text">{e.subject.name}</div>
             </div>
             <div className="card-right">

@@ -19,7 +19,7 @@ export default class Upcoming extends Component {
   }
 
   renderColumns() {
-    const todayDate = new Date(this.state.today);
+    let todayDate = new Date(this.state.today);
     return (
       [...Array(7)].map((_, i) => {
         let thisDay = new Date(todayDate);
@@ -28,10 +28,14 @@ export default class Upcoming extends Component {
           return e.date == thisDay.getDate() && e.month == thisDay.getMonth() + 1
         });
 <<<<<<< HEAD
+<<<<<<< HEAD
         return <UpcomingColumn key={"column"+i} i={i} start={thisDay} events={thisEvents} />
 =======
         return <UpcomingColumn key={"column"+i} start={thisDay} today={i == 0} tomorrow={i == 1} events={thisEvents} />
 >>>>>>> Fix upcoming column logic
+=======
+        return <UpcomingColumn key={"column"+i} i={i} start={thisDay} today={i == 0} tomorrow={i == 1} events={thisEvents} />
+>>>>>>> Sort events into date columns
       })
     );
   }
