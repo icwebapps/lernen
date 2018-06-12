@@ -21,4 +21,19 @@ class LessonsController
     return json_encode(["status" => 1]);
   }
 
+  public function list() {
+      
+    $todayDate = date("Y-m-d", strtotime("now"));
+    $lessons = Auth::user()->isTutor() ? Auth::user()->tutor->lessons : Auth::user()->student->lessons;
+
+    foreach ($lessons as $l) {
+      $thisTutor = $l->tutor->user;
+      $thisStudent = $l->student->user;
+    }
+
+    return json_encode([ "lessons" => $lessons, "today" => $todayDate]);
+
+  }
+  
+
 }

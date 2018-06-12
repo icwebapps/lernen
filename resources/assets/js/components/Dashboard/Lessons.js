@@ -31,7 +31,7 @@ export default class Lessons extends Component {
       this.filterLessons().map( (l, i) => {
         return <UpcomingCard key={"card"+i} time={l.time} 
                              name={l.tutor.user.name} location={l.location} 
-                             subject={l.subject} picture={"http://assets.lernen.co.uk/profiles/3.jpg"} />
+                             subject={l.subject} picture={l.student.user.profile_picture} />
         
       })
     )
