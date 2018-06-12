@@ -87,7 +87,7 @@ input[type="text"], input[type="password"]{border:1px solid #E2E4E5;border-radiu
 .cell-event .calendar-number {color: #313549;}
 .calendar-events{padding: 8px 24px 0;}
 .calendar-cell.cell-event{background:#EDEFF5}
-.calendar-manage{background:#fff;border-top:2px solid #DCDCDC;display:flex;padding:30px 35px}
+.calendar-manage{background:#fff;border-top:2px solid #DCDCDC;display:flex;padding:30px 35px;justify-content: space-between;}
 .calendar-setting{font-size:16px;font-weight:600;color:#9FA6BF;margin-right:45px}
 .calendar-setting img{height:35px;vertical-align:middle;margin-right:3px; cursor:pointer;}
 .calendar-overlay{position: absolute;z-index:1;background:#fff;border:2px solid #bbc1d0;box-shadow:1px 3px 5px #00000029;border-radius:7px;padding: 27px 45px 30px 27px;max-width: 430px;}

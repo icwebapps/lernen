@@ -19,19 +19,18 @@ export default class Calendar extends Component {
     axios.get('/subjects/list').then((response) => { this.setState(response.data); });
   }
 
-  componentWillMount() {
-    document.addEventListener("keydown", (e) => this._handleDownKey(e), false);
-  }
-
-  _handleDownKey(e) {
+  prevWeek() {
     if (this.state.start) {
       const newStart = new Date(this.state.start);
-      if (e.keyCode == 38) {
-        newStart.setDate(newStart.getDate() - 7);
-      }
-      else if (e.keyCode == 40) {
-        newStart.setDate(newStart.getDate() + 7);
-      }
+      newStart.setDate(newStart.getDate() - 7);
+      this.setState({ start: newStart });
+    }
+  }
+
+  nextWeek() {
+    if (this.state.start) {
+      const newStart = new Date(this.state.start);
+      newStart.setDate(newStart.getDate() + 7);
       this.setState({ start: newStart });
     }
   }
@@ -64,6 +63,10 @@ export default class Calendar extends Component {
       <div key="calendar-manage" className="calendar-manage">
         <div className="calendar-setting" onClick={(_)=>this.setState({ addLesson: true })}>
           <img src="/images/icons8-plus-50.png" /> Add Lesson
+        </div>
+        <div className="calendar-setting">
+          <img src="/images/icons8-sort-down-filled-50.png" onClick={(_)=>this.nextWeek()} />
+          <img src="/images/icons8-sort-up-filled-50.png" onClick={(_)=>this.prevWeek()} />
         </div>
       </div>,
       this.state.addLesson ?
