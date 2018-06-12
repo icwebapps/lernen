@@ -13,9 +13,7 @@ export default class Contacts extends Component {
   }
 
   loadData() {
-    axios.get('/contacts/list', {
-      _token: $('meta[name="csrf-token"]').attr('content') 
-    }).then((response) => {
+    axios.get('/contacts/list').then((response) => {
       this.setState(response.data);
       this.defaultTalkingTo(response.data.contacts);
     });

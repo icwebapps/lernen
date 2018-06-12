@@ -11,9 +11,7 @@ export default class Calendar extends Component {
   }
 
   loadData() {
-    axios.get('/calendar/events', {
-      _token: $('meta[name="csrf-token"]').attr('content') 
-    }).then((response) => {
+    axios.get('/calendar/events').then((response) => {
       this.setState(response.data);
     });
   }

@@ -22,10 +22,7 @@ export default class Login extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    axios.post('/login', {
-      ...this.state,
-      _token: $('meta[name="csrf-token"]').attr('content')
-    }).then((response) => {
+    axios.post('/login', this.state).then((response) => {
       if (response.data.login == 1) {
         location.href = '/dashboard';
       }

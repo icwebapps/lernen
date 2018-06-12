@@ -33,17 +33,13 @@ export default class Resources extends Component {
   }
 
   loadContacts() {
-    axios.get('/contacts/list', {
-      _token: $('meta[name="csrf-token"]').attr('content') 
-    }).then((response) => {
+    axios.get('/contacts/list').then((response) => {
       this.setState(response.data);
     });
   }
 
   loadResources(callback=()=>{}) {
-    axios.get('/resources/list', {
-      _token: $('meta[name="csrf-token"]').attr('content') 
-    }).then((response) => {
+    axios.get('/resources/list').then((response) => {
       this.setState(response.data, () => this.setDefaults(callback));
     });
   }
