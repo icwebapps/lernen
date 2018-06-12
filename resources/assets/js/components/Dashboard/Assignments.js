@@ -28,7 +28,7 @@ export default class Assignments extends Component {
     const formData = new FormData();
     formData.append('file', this.state.file);
     formData.append('assignment_id', id);
-    axios.post('/assignments', formData, {
+    axios.post('/submissions', formData, {
       headers: {
         'content-type': 'multipart/form-data'
       }

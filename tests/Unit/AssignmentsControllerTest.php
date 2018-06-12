@@ -4,7 +4,7 @@ namespace Tests\Unit;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Assignment;
 use Tests\TestCase;
-use App\{User, Student, Tutor};
+use App\{User, Student};
 
 class AssignmentsControllerTest extends TestCase
 {
@@ -12,10 +12,7 @@ class AssignmentsControllerTest extends TestCase
 
   public function testRetrieveTasks()
   {
-    $user = factory(User::class)->create();
-    $student = factory(Student::class)->create([
-      'user_id' => $user->id
-    ]);
+    $student = factory(Student::class)->create();
     factory(Assignment::class)->create([
       'student_id' => $student->user_id
     ]);
@@ -30,13 +27,28 @@ class AssignmentsControllerTest extends TestCase
 
   public function testRetrieveNoTasks()
   {
-    $user = factory(User::class)->create();
-    $student = factory(Student::class)->create([
-      'user_id' => $user->id
-    ]);
+    $student = factory(Student::class)->create();
 
     $response = $this->actingAs($student->user)->get('/assignments/list');
     $response->assertStatus(200);
     $response->assertJsonCount(0, 'tasks');
+  }
+
+  public function testRetrieveOnlyIncompleteTasks()
+  {
+    $student = factory(Student::class)->create();
+    factory(Assignment::class)->create([
+      'student_id' => $student->user_id,
+      'completed' => true
+    ]);
+
+    factory(Assignment::class)->create([
+      'student_id' => $student->user_id,
+      'completed' => false
+    ]);
+
+    $response = $this->actingAs($student->user)->get('/assignments/list?completed=false');
+    $response->assertStatus(200);
+    $response->assertJsonCount(1, 'tasks');
   }
 }
