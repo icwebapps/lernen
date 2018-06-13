@@ -16,11 +16,11 @@ export default class UpcomingColumn extends Component {
         <div className="column-content">
         {
           this.props.events.map((e, i) => 
-            <UpcomingCard key={"card"+i} time={e.time} student={e.student} location={e.location} subject={e.subject.name} />
-            )
+            <UpcomingCard key={"card"+i} time={e.time} user={e.student} location={e.location} subject={e.subject.name} />
+          )
         }
         </div>
       </div>
-  );
+    );
   }
 }
