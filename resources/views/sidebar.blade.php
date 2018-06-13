@@ -8,6 +8,11 @@
     </div>
     <div class="nav-item @if ($selected == "contacts") nav-selected @endif">
       <a href="/contacts"><img src="/images/icons8-address-book-2-filled-100.png" /></a>
+      @if ($unread_messages > 0)
+      <div class="sidebar-notification">
+        {{ $unread_messages }}
+      </div>
+      @endif
     </div>
     @if (Auth::user()->isTutor())
     <div class="nav-item @if ($selected == "resources") nav-selected @endif">
