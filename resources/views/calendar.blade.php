@@ -10,15 +10,11 @@
     <a href="/upcoming" style="text-decoration:none;"><div class="header-tab-item">Upcoming</div></a>
 @endcomponent
 
-<div class="main">
-  @component('sidebar', ['selected' => 'calendar'])
-  @endcomponent
-  
-  <div class="width-fill flex-rows">
-    <div id="calendar-widget" data-istutor="{{ Auth::user()->isTutor() }}">
-    </div>
-  </div>
-</div>
+<div id="calendar-widget"
+     class="main"
+     data-page="calendar"
+     data-userid="{{ Auth::user()->id }}"
+     data-istutor="{{ Auth::user()->isTutor() }}">
 </div>
 
 @endsection

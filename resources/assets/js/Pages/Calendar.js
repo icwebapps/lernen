@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import CalendarWeek from '../Calendar/CalendarWeek';
 import ModalAddLesson from '../Modal/ModalAddLesson';
+import Sidebar from '../Widgets/Sidebar';
 
 export default class Calendar extends Component {
   constructor(props) {
@@ -59,35 +60,41 @@ export default class Calendar extends Component {
   }
 
   render() {
-    return (
-      [this.renderDays(),
-      this.state.start ? <div key="calendar-grid" className="calendar-grid">{this.renderWeeks()}</div> : '',
-      <div key="calendar-manage" className="calendar-manage">
-        {
-          this.props.isTutor ?
-          <div className="calendar-setting" onClick={(_)=>this.setState({ addLesson: true })}>
-            <img src="/images/icons8-plus-50.png" /> Add Lesson
+    return ([
+      <Sidebar selected={this.props.page} isTutor={this.props.isTutor} />,
+      <div className="width-fill flex-rows">
+        <div className="calendar-container">
+          {this.renderDays()}
+          {this.state.start ? <div key="calendar-grid" className="calendar-grid">{this.renderWeeks()}</div> : ''}
+          <div key="calendar-manage" className="calendar-manage">
+            {
+              this.props.isTutor ?
+              <div className="calendar-setting" onClick={(_)=>this.setState({ addLesson: true })}>
+                <img src="/images/icons8-plus-50.png" /> Add Lesson
+              </div>
+              : <div className="calendar-setting"></div>
+            }
+            <div className="calendar-setting">
+              <img src="/images/icons8-sort-down-filled-50.png" onClick={(_)=>this.nextWeek()} />
+              <img src="/images/icons8-sort-up-filled-50.png" onClick={(_)=>this.prevWeek()} />
+            </div>
           </div>
-          : <div className="calendar-setting"></div>
-        }
-        <div className="calendar-setting">
-          <img src="/images/icons8-sort-down-filled-50.png" onClick={(_)=>this.nextWeek()} />
-          <img src="/images/icons8-sort-up-filled-50.png" onClick={(_)=>this.prevWeek()} />
+          {this.state.addLesson ?
+            <ModalAddLesson
+              key="modal-add-lesson"
+              contacts={this.state.contacts}
+              subjects={this.state.subjects}
+              onAddLesson={()=>this.loadData(this.props)}
+              onCancel={()=>this.setState({ addLesson: false })}
+            /> : ''
+          }
         </div>
-      </div>,
-      this.state.addLesson ?
-        <ModalAddLesson
-          key="modal-add-lesson"
-          contacts={this.state.contacts}
-          subjects={this.state.subjects}
-          onAddLesson={()=>this.loadData(this.props)}
-          onCancel={()=>this.setState({ addLesson: false })}
-        /> : ''
+      </div>
     ]);
   }
 }
 
 if (document.getElementById('calendar-widget')) {
   var el = document.getElementById('calendar-widget');
-  ReactDOM.render(<Calendar isTutor={el.dataset.istutor} />, el);
+  ReactDOM.render(<Calendar userId={el.dataset.userid} isTutor={el.dataset.istutor} page={el.dataset.page} />, el);
 }
