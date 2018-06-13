@@ -52,8 +52,8 @@ export default class UpcomingColumn extends Component {
 >>>>>>> Sort events into date columns
         <div className="column-title">
         {
-          this.props.today ? "Today" :
-            (this.props.tomorrow ? "Tomorrow" :
+          this.props.i == 0 ? "Today" :
+            (this.props.i == 1 ? "Tomorrow" :
                 this.props.start.getMonth() + 1 + "/" + this.props.start.getDate())
         }
         </div>
@@ -85,9 +85,13 @@ export default class UpcomingColumn extends Component {
         </div>            
       </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
     );
 =======
   );
 >>>>>>> Fix upcoming column logic
+=======
+    );
+>>>>>>> Use i instead of today value
   }
 }

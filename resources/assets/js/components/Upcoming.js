@@ -29,6 +29,7 @@ export default class Upcoming extends Component {
         });
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         return <UpcomingColumn key={"column"+i} i={i} start={thisDay} events={thisEvents} />
 =======
         return <UpcomingColumn key={"column"+i} start={thisDay} today={i == 0} tomorrow={i == 1} events={thisEvents} />
@@ -36,6 +37,9 @@ export default class Upcoming extends Component {
 =======
         return <UpcomingColumn key={"column"+i} i={i} start={thisDay} today={i == 0} tomorrow={i == 1} events={thisEvents} />
 >>>>>>> Sort events into date columns
+=======
+        return <UpcomingColumn key={"column"+i} i={i} start={thisDay} events={thisEvents} />
+>>>>>>> Use i instead of today value
       })
     );
   }
