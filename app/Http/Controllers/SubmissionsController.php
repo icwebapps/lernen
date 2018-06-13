@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 use App\{
-  User, Resource
-};
-
-use App\{
-  Assignment, Submission
+  User, Resource, Assignment, Submission
 };
 
 class SubmissionsController
@@ -46,22 +42,14 @@ class SubmissionsController
   public function list()
   {
     if (Auth::user()->isTutor()) {
-      $resources = User::with([
-        'tutor.resources'
-      ])->find(Auth::user()->id)->tutor->resources;
+      $resources = Auth::user()->tutor->resources;
 
       $submissions = [];
 
-      foreach($resources as $r) {
-        $assignments = Resource::with([
-          'assignments.submissions'
-        ])->find($r->id)->assignments;
-        foreach($assignments as $a) {
-          $title = $a->title;
-          $submissions = array_merge($submissions, $a->submissions->map(function ($sub) use ($title) {
-            $sub->title = $title;
-            return $sub;
-          })->all());
+      foreach ($resources as $r) {
+        $assignments = $r->load('assignments.submissions')->assignments;
+        foreach ($assignments as $a) {
+          $submissions = array_merge($submissions, $a->submissions->load('assignment')->all());
         }
       }
       return json_encode([ "submissions" => $submissions ]);

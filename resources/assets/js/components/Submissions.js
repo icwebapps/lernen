@@ -27,7 +27,7 @@ render() {
             return (
               <div className="assignments-row">
                 <div className="assignments-cell" style={{cursor: 'pointer'}}>
-                  <a href={s.url} download>{s.title}</a>
+                  <a href={s.url} download>{s.assignment.title}</a>
                 </div>
               </div>
             )
