@@ -6,8 +6,8 @@
 
 @component('header')
   @slot('title') Schedule @endslot
-    <a href="/upcoming" style="text-decoration:none;"><div class="header-tab-item">Upcoming</div></a>
     <div class="header-tab-item tab-selected">Calendar</div>
+    <a href="/upcoming" style="text-decoration:none;"><div class="header-tab-item">Upcoming</div></a>
 @endcomponent
 
 <div class="main">

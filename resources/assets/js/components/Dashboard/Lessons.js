@@ -29,10 +29,10 @@ export default class Lessons extends Component {
   render() {
     return(
       this.filterLessons().length > 0 ? 
-      this.filterLessons().map( (l, i) => {
+      this.filterLessons().map((l, i) => {
         return <UpcomingCard key={"card"+i} time={l.time} 
-                             name={l.tutor.user.name} location={l.location} 
-                             subject={l.subject} picture={l.student.user.profile_picture} />
+                             user={l.tutor.user} location={l.location} 
+                             subject={l.subject} />
         
       }) : <h4>     No Lessons Today!     </h4>
     )
