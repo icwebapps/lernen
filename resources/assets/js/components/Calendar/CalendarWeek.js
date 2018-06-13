@@ -25,7 +25,7 @@ export default class CalendarWeek extends Component {
             });
             const ifToday = thisDate.getDate() == this.props.today.getDate() 
               && this.props.today.getMonth() == thisDate.getMonth() ? "true" : "false";
-            return <CalendarCell key={"cell"+i} number={thisDate.getDate()} ifToday={ifToday} events={todaysEvents}/>;
+            return <CalendarCell key={"cell"+i} number={thisDate.getDate()} ifToday={ifToday} events={todaysEvents} isTutor={this.props.isTutor}/>;
           })
       }
       </div>

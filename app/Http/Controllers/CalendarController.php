@@ -33,6 +33,7 @@ class CalendarController extends Controller
         'year' => date('Y', strtotime($l->date)),
         'time' => $l->time,
         'student' => $l->student->user,
+        'tutor' => $l->tutor->user,
         'location' => $l->location,
         'subject' => $l->subject
       ];

@@ -53,7 +53,7 @@ export default class Calendar extends Component {
       [...Array(this.state.weeksToShow)].map((_, i) => {
         const thisWeekStart = new Date(startDate);
         thisWeekStart.setDate(startDate.getDate() + i*7);
-        return <CalendarWeek key={"week"+i} start={thisWeekStart} today={todayDate} events={this.state.events} />
+        return <CalendarWeek key={"week"+i} start={thisWeekStart} today={todayDate} events={this.state.events} isTutor={this.props.isTutor} />
       })
     );
   }
