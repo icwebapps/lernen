@@ -13,6 +13,7 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+require('./components/Sidebar');
 require('./components/Login');
 require('./components/Calendar');
 require('./components/Contacts');
