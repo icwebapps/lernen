@@ -58,7 +58,7 @@ body{font-family:'Open Sans',sans-serif;background: #EDEFF5;}
 .contact-item{font-size:17px;display: flex;justify-content: space-between;padding: 20px 25px;cursor:pointer;}
 .contact-item:hover{background: #f1f1f1;}
 .contact-options{color:#B5BDCA;font-size: 12px;font-weight: 600;margin: 4px 0 0;}
-.contact-name{color:#6B6C71;font-weight: 300;}
+.contact-name{color:#6B6C71;font-weight: 300;margin-top: 4px;}
 .contact-options img {width: 25px;}
 .contact-item.item-selected{background:#5093E1}
 .contact-item.item-selected .contact-name,.contact-item.item-selected .contact-number{color:#fff}
@@ -196,3 +196,4 @@ input.add-subject-input {font-size: 13px;padding: 4px 12px;}
 .subject-list-name input.add-subject-input { width: 85px;}
 .subject-list-level input.add-subject-input { width:57px;}
 .add-subject-input-image {width: 20px;cursor:pointer;}
+.contact-notification {background: #d40f0f;color: white;padding: 4px 0;border-radius: 50%;width: 32px;height: 32px;text-align: center;box-sizing: border-box;}

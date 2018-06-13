@@ -19,6 +19,7 @@ class ContactsController extends Controller
       $lessons = Auth::user()->tutor->lessons;
       foreach ($lessons as $l) {
         $thisStudent = $l->student->user;
+        $thisStudent->unread = Auth::user()->tutor->messages()->where('student_id', $thisStudent->id)->studentSent()->unread()->count();
         $students[$thisStudent->id] = $thisStudent;
       }
       $students = array_values($students);
@@ -30,6 +31,7 @@ class ContactsController extends Controller
       $lessons = Auth::user()->student->lessons;
       foreach ($lessons as $l) {
         $thisTutor = $l->tutor->user;
+        $thisTutor->unread = Auth::user()->student->messages()->where('tutor_id', $thisTutor->id)->tutorSent()->unread()->count();
         $tutors[$thisTutor->id] = $thisTutor;
       }
       $tutors = array_values($tutors);

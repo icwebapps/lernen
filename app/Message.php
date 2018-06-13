@@ -20,4 +20,16 @@ class Message extends Model
   public function tutor() {
     return $this->belongsTo('App\Tutor', 'tutor_id', 'user_id');
   }
+
+  public function scopeTutorSent($query) {
+    return $query->where('tutor_sent', 1);
+  }
+
+  public function scopeStudentSent($query) {
+    return $query->where('tutor_sent', 0);
+  }
+
+  public function scopeUnread($query) {
+    return $query->where('seen', 0);
+  }
 }
