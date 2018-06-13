@@ -70,4 +70,13 @@ class ChatController extends Controller
     broadcast(new MessageSent($user, $message))->toOthers();
     return ['status' => 1];
   }
+
+  public function unread()
+  {
+    $unread = (Auth::user()->isTutor()) ?
+    Auth::user()->tutor->messages()->studentSent()->unread()->count() :
+    Auth::user()->student->messages()->tutorSent()->unread()->count();
+    
+    return ['unread' => $unread];
+  }
 }
