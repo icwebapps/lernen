@@ -5,18 +5,20 @@ import CalendarWeek from './Calendar/CalendarWeek';
 import ModalAddLesson from './Modal/ModalAddLesson';
 
 export default class Calendar extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       addLesson: false
     };
-    this.loadData();
+    this.loadData(props);
   }
 
-  loadData() {
+  loadData(props) {
     axios.get('/calendar/events').then((response) => { this.setState(response.data); });
     axios.get('/contacts/list').then((response) => { this.setState(response.data); });
-    axios.get('/subjects/list').then((response) => { this.setState(response.data); });
+    if (props.isTutor) {
+      axios.get('/subjects/list').then((response) => { this.setState(response.data); });
+    }
   }
 
   prevWeek() {
@@ -61,9 +63,13 @@ export default class Calendar extends Component {
       [this.renderDays(),
       this.state.start ? <div key="calendar-grid" className="calendar-grid">{this.renderWeeks()}</div> : '',
       <div key="calendar-manage" className="calendar-manage">
-        <div className="calendar-setting" onClick={(_)=>this.setState({ addLesson: true })}>
-          <img src="/images/icons8-plus-50.png" /> Add Lesson
-        </div>
+        {
+          this.props.isTutor ?
+          <div className="calendar-setting" onClick={(_)=>this.setState({ addLesson: true })}>
+            <img src="/images/icons8-plus-50.png" /> Add Lesson
+          </div>
+          : <div className="calendar-setting"></div>
+        }
         <div className="calendar-setting">
           <img src="/images/icons8-sort-down-filled-50.png" onClick={(_)=>this.nextWeek()} />
           <img src="/images/icons8-sort-up-filled-50.png" onClick={(_)=>this.prevWeek()} />
@@ -74,7 +80,7 @@ export default class Calendar extends Component {
           key="modal-add-lesson"
           contacts={this.state.contacts}
           subjects={this.state.subjects}
-          onAddLesson={()=>this.loadData()}
+          onAddLesson={()=>this.loadData(this.props)}
           onCancel={()=>this.setState({ addLesson: false })}
         /> : ''
     ]);
@@ -82,5 +88,6 @@ export default class Calendar extends Component {
 }
 
 if (document.getElementById('calendar-widget')) {
-  ReactDOM.render(<Calendar />, document.getElementById('calendar-widget'));
+  var el = document.getElementById('calendar-widget');
+  ReactDOM.render(<Calendar isTutor={el.dataset.istutor} />, el);
 }

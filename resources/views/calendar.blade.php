@@ -15,7 +15,7 @@
   @endcomponent
   
   <div class="width-fill flex-rows">
-    <div id="calendar-widget">
+    <div id="calendar-widget" data-istutor="{{ Auth::user()->isTutor() }}">
     </div>
   </div>
 </div>
