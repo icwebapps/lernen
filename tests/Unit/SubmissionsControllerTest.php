@@ -3,10 +3,11 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use App\{Student, Assignment, Lesson, Submission, Subject, Tutor, Resource};
 
+
 class SubmissionsControllerTest extends TestCase
 {
 
-  public function testListWithElements()
+  public function testSubmittingNewAssignment()
   {
     $student = factory(Student::class)->create();
     $assignment = factory(Assignment::class)->create([
@@ -100,4 +101,21 @@ class SubmissionsControllerTest extends TestCase
       "tutor_id" => $tutor->user_id
     ]);
   }
+  public function testListWithElements()
+  {
+    $tutor = factory(Tutor::class)->create();
+    $resource = factory(Resource::class)->create([
+      'tutor_id' => $tutor->user_id
+    ]);
+    $assignment = factory(Assignment::class)->create([
+      'resource_id' => $resource->id
+    ]);
+    factory(Submission::class)->create([
+      'assignment_id' => $assignment->id
+    ]);
+    $response = $this->actingAs($tutor->user)->get('/submissions/list');
+    $response->assertStatus(200);
+    $response->assertJsonCount(1, 'submissions');
+  }
+
 }
