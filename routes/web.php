@@ -45,6 +45,7 @@ Route::middleware(['auth'])->group(function () {
 
   Route::get('/submissions/progress', 'SubmissionsController@progress');  
   Route::post('/submissions', 'SubmissionsController@store');
+  Route::get('/submissions/list', 'SubmissionsController@list');
 
   Route::post('/lessons', 'LessonsController@create');
 });
