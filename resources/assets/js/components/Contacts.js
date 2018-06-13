@@ -9,13 +9,13 @@ export default class Contacts extends Component {
   constructor() {
     super();
     this.state = { contacts: [], q: '' };
-    this.loadData();
+    this.loadData((contacts) => this.defaultTalkingTo(contacts));
   }
 
-  loadData() {
+  loadData(then=(c)=>{}) {
     axios.get('/contacts/list').then((response) => {
       this.setState(response.data);
-      this.defaultTalkingTo(response.data.contacts);
+      then(response.data.contacts);
     });
   }
 
@@ -24,6 +24,7 @@ export default class Contacts extends Component {
       contacts.map(c => {
         if (c.id == this.props.talkingToId) {
           this.setState({ talkingTo: c });
+          this.seenMessages(c);
         }
       });
     }
@@ -36,6 +37,13 @@ export default class Contacts extends Component {
   openChat(contact) {
     history.pushState({}, "", "/contacts/"+contact.id);
     this.setState({ talkingTo: contact });
+    this.seenMessages(contact);
+  }
+  
+  seenMessages(contact) {
+    axios.post('/messages/seen', {
+      id: contact.id
+    }).then(() => this.loadData());
   }
 
   render() {

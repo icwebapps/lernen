@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
 
   Route::get('/messages/{talkingTo}', 'ChatController@fetch');
   Route::post('/messages', 'ChatController@send');
+  Route::post('/messages/seen', 'ChatController@seen');  
 
   Route::get('/students', 'ContactsController@index');
   Route::get('/students/list', 'ContactsController@list');

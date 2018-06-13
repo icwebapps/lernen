@@ -30,6 +30,6 @@ class Message extends Model
   }
 
   public function scopeUnread($query) {
-    return $query->where('seen', 0)->count();
+    return $query->where('seen', 0);
   }
 }

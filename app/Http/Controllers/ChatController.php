@@ -23,6 +23,25 @@ class ChatController extends Controller
     }
   }
 
+  public function seen(Request $request)
+  {
+    $user = Auth::user();
+    
+    if ($user->isTutor()) {
+      $student_id = $request->input('id');
+      Auth::user()->tutor->messages()->where('student_id', $student_id)->studentSent()->unread()->update([
+        'seen' => true
+      ]);
+    }
+    else {
+      $tutor_id = $request->input('id');
+      Auth::user()->student->messages()->where('tutor_id', $tutor_id)->tutorSent()->unread()->update([
+        'seen' => true
+      ]);
+    }
+    return json_encode(['status' => 1]);
+  }
+
   public function send(Request $request)
   {
     $user = Auth::user();
