@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
-
 
 use App\{
   Assignment, Submission
@@ -12,6 +11,34 @@ use App\{
 
 class SubmissionsController
 {
+  public function progress()
+  {
+    $submissions = [];
+    $assignments = Auth::user()->student->assignments;
+    // Get all submissions, sum up grades and store per subject_id
+    foreach ($assignments as $a) {
+      $thisSubs = $a->submissions->filter(function ($sub) {
+        return !is_null($sub->grade);
+      });
+      if (count($thisSubs) > 0) {
+        $recent_submission = $thisSubs->last();
+        $submissions[$a->subject_id] = [
+          'count' => ($submissions[$a->subject_id]['count'] ?? 0) + 1,
+          'total' => ($submissions[$a->subject_id]['total'] ?? 0) + $recent_submission->grade
+        ];
+      }
+    }
+    // Get all the subjects taken by student and merge in progress stats
+    $subjects = Auth::user()->student->lessons->map(function ($lesson) {
+      return $lesson->subject;
+    })->map(function ($subject) use ($submissions) {
+      $subject->progress = $submissions[$subject->id] ?? ['count' => 0, 'total' => 0];
+      return $subject;
+    });
+      
+    return json_encode(["subjects" => $subjects]);
+  }
+
   public function store(Request $request)
   {
     $file = $request->file;
@@ -19,7 +46,6 @@ class SubmissionsController
     $submission = new Submission;
     $submission->url = 'http://' .  env('AWS_BUCKET') . '/'. $storagePath;
     $submission->assignment_id = $request->assignment_id;
-    $submission->grade = 0;
     $submission->feedback = "";
     $submission->save();
 

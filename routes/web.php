@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/subjects/list', 'SubjectsController@list');  
   Route::post('/subjects', 'SubjectsController@create');
 
+  Route::get('/submissions/progress', 'SubmissionsController@progress');  
   Route::post('/submissions', 'SubmissionsController@store');
 
   Route::post('/lessons', 'LessonsController@create');

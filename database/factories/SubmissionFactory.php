@@ -14,7 +14,6 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(Submission::class, function (Faker $faker) {
-
   return [
     'assignment_id' => factory(Assignment::class)->create(),
     'url' => 'http://lernen.co.uk/fakepath/',
