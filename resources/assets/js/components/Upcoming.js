@@ -18,7 +18,7 @@ export default class Upcoming extends Component {
     });
   }
 
-  renderColumns() {
+  render() {
     let todayDate = new Date(this.state.today);
     return (
       [...Array(7)].map((_, i) => {
@@ -27,26 +27,8 @@ export default class Upcoming extends Component {
         let thisEvents = this.state.events.filter(e => {
           return e.date == thisDay.getDate() && e.month == thisDay.getMonth() + 1
         });
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        return <UpcomingColumn key={"column"+i} i={i} start={thisDay} events={thisEvents} />
-=======
-        return <UpcomingColumn key={"column"+i} start={thisDay} today={i == 0} tomorrow={i == 1} events={thisEvents} />
->>>>>>> Fix upcoming column logic
-=======
-        return <UpcomingColumn key={"column"+i} i={i} start={thisDay} today={i == 0} tomorrow={i == 1} events={thisEvents} />
->>>>>>> Sort events into date columns
-=======
-        return <UpcomingColumn key={"column"+i} i={i} start={thisDay} events={thisEvents} />
->>>>>>> Use i instead of today value
+        return <UpcomingColumn key={"column-"+i} i={i} start={thisDay} events={thisEvents} />
       })
-    );
-  }
-
-  render() {
-    return (
-      this.renderColumns()
     );
   }
 
