@@ -17,6 +17,7 @@ export default class Sidebar extends Component {
 
   render() {
     return (
+    <div className="sidebar">
       <div className="nav">
         <div className={"nav-item " + (this.props.selected == "dashboard" ? "nav-selected" : "")}>
           <a href="/dashboard"><img src="/images/icons8-dashboard-50.png" /></a>
@@ -43,11 +44,7 @@ export default class Sidebar extends Component {
           <a href="/account"><img src="/images/icons8-male-user-50.png" /></a>
         </div>
       </div>
+    </div>
     );
   }
-}
-
-if (document.getElementById('sidebar-widget')) {
-  var el = document.getElementById('sidebar-widget');
-  ReactDOM.render(<Sidebar isTutor={el.dataset.istutor} selected={el.dataset.selected} />, el);
 }

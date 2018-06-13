@@ -13,7 +13,6 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./Widgets/Sidebar');
 require('./Pages/Login');
 require('./Pages/Calendar');
 require('./Pages/Contacts');

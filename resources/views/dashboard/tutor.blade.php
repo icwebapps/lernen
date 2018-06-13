@@ -10,9 +10,6 @@
 @endcomponent
 
 <div class="main">
-  @component('sidebar', ['selected' => 'dashboard'])
-  @endcomponent
-
   <div class="width-fill flex-rows">
     <div class="dashboard-headers">
       <div class="dashboard-header-item">Submissions</div>

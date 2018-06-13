@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import SearchField from '../Form/SearchField';
 import ResultsList from '../Search/ResultsList';
 import ChatWidget from '../Chat/ChatWidget';
+import Sidebar from '../Widgets/Sidebar';
 
 export default class Contacts extends Component {
   constructor() {
@@ -48,16 +49,19 @@ export default class Contacts extends Component {
 
   render() {
     return ([
-      <div key="panel-contacts" className="panel-contacts">
-        <div className="search-box">
-          <SearchField placeholder="Search for students" onChange={val=>this.searchName(val)} />
+      <Sidebar selected={this.props.page} isTutor={this.props.isTutor} />,
+      <div className="width-fill">
+        <div key="panel-contacts" className="panel-contacts">
+          <div className="search-box">
+            <SearchField placeholder="Search for students" onChange={val=>this.searchName(val)} />
+          </div>
+          <div className="contacts-list">
+            <ResultsList dataSource={this.state.contacts} q={this.state.q} onClick={(contact)=>this.openChat(contact)} hasChat={true} />
+          </div>
         </div>
-        <div className="contacts-list">
-          <ResultsList dataSource={this.state.contacts} q={this.state.q} onClick={(contact)=>this.openChat(contact)} hasChat={true} />
+        <div key="panel-chat" className="panel-chat">
+          { this.state.talkingTo ? <ChatWidget userId={this.props.userId} isTutor={this.props.isTutor} talkingTo={this.state.talkingTo} /> : '' }
         </div>
-      </div>,
-      <div key="panel-chat" className="panel-chat">
-        { this.state.talkingTo ? <ChatWidget userId={this.props.userId} isTutor={this.props.isTutor} talkingTo={this.state.talkingTo} /> : '' }
       </div>
     ]);
   }
@@ -65,5 +69,5 @@ export default class Contacts extends Component {
 
 if (document.getElementById('contacts-widget')) {
   var el = document.getElementById('contacts-widget');
-  ReactDOM.render(<Contacts userId={el.dataset.userid} isTutor={el.dataset.istutor} talkingToId={el.dataset.talkingtoid} />, el);
+  ReactDOM.render(<Contacts userId={el.dataset.userid} isTutor={el.dataset.istutor} talkingToId={el.dataset.talkingtoid} page={el.dataset.page} />, el);
 }
