@@ -45,7 +45,7 @@ export default class Contacts extends Component {
           <SearchField placeholder="Search for students" onChange={val=>this.searchName(val)} />
         </div>
         <div className="contacts-list">
-          <ResultsList dataSource={this.state.contacts} q={this.state.q} onClick={(contact)=>this.openChat(contact)} hasChat="true" />
+          <ResultsList dataSource={this.state.contacts} q={this.state.q} onClick={(contact)=>this.openChat(contact)} hasChat={true} />
         </div>
       </div>,
       <div key="panel-chat" className="panel-chat">
