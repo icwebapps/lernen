@@ -22,7 +22,7 @@ export default class Lessons extends Component {
     return this.state.lessons.filter(l => {
         const thisDay = new Date(this.state.today);
         const lessonDay = new Date(l.date);
-        return lessonDay.getDate() == thisDay.getDate() +6
+        return lessonDay.getDate() == thisDay.getDate()
         && lessonDay.getMonth() == thisDay.getMonth();})
   }
   

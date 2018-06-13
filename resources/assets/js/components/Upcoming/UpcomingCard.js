@@ -5,7 +5,7 @@ export default class UpcomingCard extends Component {
   render() {
     return (
       <div className="card accent-red">
-        <div className="card-left">{this.props.time}</div>
+        <div className="card-left">{this.props.time.match()}</div>
         <div className="card-middle">
           <div className="card-title">{this.props.user.name}</div>
           <div className="card-sub">{this.props.location}</div>
