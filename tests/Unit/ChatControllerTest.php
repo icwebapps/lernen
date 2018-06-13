@@ -51,4 +51,18 @@ class ChatControllerTest extends TestCase
       'message' => 'This is a test message'
     ]);
   }
+
+  public function testSeenMessage()
+  {
+    $message = factory(Message::class)->create();
+    $this->assertDatabaseHas('messages', [
+      'id' => $message->id,
+      'seen' => 0
+    ]);
+    $this->actingAs($message->tutor->user)->post('messages/seen', [ 'id' => $message->student->user_id ]);
+    $this->assertDatabaseHas('messages', [
+      'id' => $message->id,
+      'seen' => 1
+    ]);
+  }
 }
