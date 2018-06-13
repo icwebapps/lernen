@@ -12,8 +12,6 @@
 
 @component('header')
   @slot('title') {{ $title }} @endslot
-    <div class="header-tab-item tab-selected">Alphabetically</div>
-    <div class="header-tab-item">Recent</div>
 @endcomponent
 
 

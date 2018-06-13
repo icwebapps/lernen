@@ -15,12 +15,11 @@
   @component('sidebar', ['selected' => 'calendar'])
   @endcomponent
 
-  <div class="width-scrollable">
-    <div id="upcoming-widget">
+  <div class="width-fill flex-rows">
+    <div class="width-scrollable" id="upcoming-widget">
     </div>
-  </div>
 
-  <div class="footer">
+    <div class="footer">
       <div class="footer-left">
         <div class="calendar-key">
           <div class="key-item"><a class="key-colour accent-red">
@@ -41,6 +40,9 @@
         </div>
       </div>
     </div>
+
+  </div>
+
 </div>
 
 @endsection
