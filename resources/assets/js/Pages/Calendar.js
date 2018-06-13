@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
-import CalendarWeek from './Calendar/CalendarWeek';
-import ModalAddLesson from './Modal/ModalAddLesson';
+import CalendarWeek from '../Calendar/CalendarWeek';
+import ModalAddLesson from '../Modal/ModalAddLesson';
 
 export default class Calendar extends Component {
   constructor(props) {

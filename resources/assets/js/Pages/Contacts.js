@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
-import SearchField from './Form/SearchField';
-import ResultsList from './Search/ResultsList';
-import ChatWidget from './Chat/ChatWidget';
+import SearchField from '../Form/SearchField';
+import ResultsList from '../Search/ResultsList';
+import ChatWidget from '../Chat/ChatWidget';
 
 export default class Contacts extends Component {
   constructor() {

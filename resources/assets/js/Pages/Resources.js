@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import ResourcesTable from './Resources/ResourcesTable';
-import ResourcesUpload from './Resources/ResourcesUpload';
-import ResourcesRow from './Resources/ResourcesRow';
-import ResourcesTabSelector from './Resources/ResourcesTabSelector';
-import SubjectSidebar from './Resources/SubjectSidebar';
+import ResourcesTable from '../Resources/ResourcesTable';
+import ResourcesUpload from '../Resources/ResourcesUpload';
+import ResourcesRow from '../Resources/ResourcesRow';
+import ResourcesTabSelector from '../Resources/ResourcesTabSelector';
+import SubjectSidebar from '../Resources/SubjectSidebar';
 
 export default class Resources extends Component {
   constructor() {
