@@ -13,6 +13,7 @@ class ContactsController extends Controller
 
   public function list()
   {
+
     if (Auth::user()->isTutor()) {
       $students = [];
       $lessons = Auth::user()->tutor->lessons;
