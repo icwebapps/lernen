@@ -152,11 +152,11 @@ input.bold-button {width: 165px;text-transform: uppercase;font-weight: 700;font-
 .subject-performance.rating-excellent .subject-performance-circle span,.subject-performance.rating-excellent .subject-performance-circle .bar,.subject-performance.rating-excellent .subject-performance-circle .fill{border-color:#4db53c!important;color:#4db53c}
 .subject-performance.rating-good .subject-performance-circle span,.subject-performance.rating-good .subject-performance-circle .bar,.subject-performance.rating-good .subject-performance-circle .fill{border-color:#a2d058!important;color:#a2d058}
 .subject-performance.rating-ok .subject-performance-circle span,.subject-performance.rating-ok .subject-performance-circle .bar,.subject-performance.rating-ok .subject-performance-circle .fill{border-color:#daa920!important;color:#daa920}
-.subject-performance.rating-improvement .subject-performance-circle span,.subject-performance.rating-improvement .subject-performance-circle .bar,.subject-performance.rating-improvement .subject-performance-circle .fill{border-color:#b94a4a!important;color:#b94a4a}
+.subject-performance.rating-poor .subject-performance-circle span,.subject-performance.rating-poor .subject-performance-circle .bar,.subject-performance.rating-poor .subject-performance-circle .fill{border-color:#b94a4a!important;color:#b94a4a}
 .subject-performance.rating-excellent .subject-performance-rating{background:#4db53c}
 .subject-performance.rating-good .subject-performance-rating{background:#a2d058}
 .subject-performance.rating-ok .subject-performance-rating{background:#daa920}
-.subject-performance.rating-improvement .subject-performance-rating{background:#b94a4a}
+.subject-performance.rating-poor .subject-performance-rating{background:#b94a4a}
 .subject-performance-name{color:#73787D;font-size:21px;padding-bottom:18px}
 .subject-performance{display:flex;flex-direction:column;width: 290px;height: 210px;}
 .subject-performance-caption{text-transform:uppercase;color:#A1B1CE;font-size:14px;font-weight:600;padding:10px 0;display:flex}

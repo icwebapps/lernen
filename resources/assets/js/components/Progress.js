@@ -21,7 +21,7 @@ export default class Progress extends Component {
     if (number >= 90) return "excellent";
     if (number >= 70) return "good";
     if (number >= 50) return "ok";
-    return "improvement";
+    return "poor";
   }
 
   render() {
