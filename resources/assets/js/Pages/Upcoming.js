@@ -32,7 +32,7 @@ export default class Upcoming extends Component {
             let thisEvents = this.state.events.filter(e => {
               return e.date == thisDay.getDate() && e.month == thisDay.getMonth() + 1
             });
-            return <UpcomingColumn key={"column-"+i} i={i} start={thisDay} events={thisEvents} />
+            return thisEvents.length > 0 ? <UpcomingColumn key={"column-"+i} i={i} start={thisDay} events={thisEvents} /> : null;
           })
         }
         </div>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import Sidebar from '../Widgets/Sidebar';
 import Submissions from '../Widgets/Submissions';
-import IconDot from '../Icons/IconDot';
+import IconClock from '../Icons/IconClock';
 
 export default class DashboardTutor extends Component {
   render() {
@@ -19,7 +19,7 @@ export default class DashboardTutor extends Component {
           <div className="dashboard-panel-item">
             <div className="card accent-red">
               <div className="card-left">
-                <IconDot />
+                <IconClock />
                 11:00
               </div>
               <div className="card-middle">
@@ -33,7 +33,7 @@ export default class DashboardTutor extends Component {
             </div>
             <div className="card accent-red">
               <div className="card-left">
-                <IconDot />
+                <IconClock />
                 11:00
               </div>
               <div className="card-middle">
