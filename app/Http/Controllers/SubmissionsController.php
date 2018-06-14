@@ -11,6 +11,11 @@ use App\{
 
 class SubmissionsController
 {
+  public function index()
+  {
+    return view('submissions');
+  }
+
   public function progress()
   {
     $submissions = [];
