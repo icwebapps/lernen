@@ -48,7 +48,10 @@ export default class Sidebar extends Component {
           <div className={"nav-item " + (this.props.selected == "resources" ? "nav-selected" : "")}>
             <a href="/resources"><img src="/images/icons8-open-50.png" /></a>
           </div>
-          : ''
+          :
+          <div className={"nav-item " + (this.props.selected == "submissions" ? "nav-selected" : "")}>
+            <a href="/submissions"><img src="/images/icons8-grades-50.png" /></a>
+          </div>
         }
         <div className={"nav-item " + (this.props.selected == "account" ? "nav-selected" : "")}>
           <a href="/account"><img src="/images/icons8-male-user-50.png" /></a>
