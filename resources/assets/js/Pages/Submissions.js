@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import Sidebar from '../Widgets/Sidebar';
+import ModalViewFeedback from "../Modal/ModalViewFeedback";
+
 
 export default class Submissions extends Component {
   constructor() {
     super();
     this.state = {
-      submissions: []
+      submissions: [],
+      viewFeedback: false,
+      selectedFeedback: ""
     };
     this.loadSubmissions()
   }
@@ -24,6 +28,16 @@ export default class Submissions extends Component {
     if (number >= 50) return "ok";
     return "poor";
   }
+
+  openViewFeedback(s) {
+    if (this.state.viewFeedback) {
+      this.setState({ selectedFeedback: "", viewFeedback: false });
+    }
+    else {
+      this.setState({ selectedFeedback: s.feedback, viewFeedback: true });
+    }
+  }
+
 
 
   render() {
@@ -45,6 +59,9 @@ export default class Submissions extends Component {
                         Submitted on 10th June 2018 14:20<br/>
                         <a href={s.url}>{s.assignment.title + "_v1.pdf"}</a>
                       </div>
+                      <div className="assignments-cell" >
+                        <input type="button" value="Feedback" onClick={()=>this.openViewFeedback(s)} className="add-resource bold-button" style={{cursor: 'pointer'}} key="resource-file-submit" />
+                      </div>
                     </div>
                     <div className={"card-right rating-" + this.getRating(s.grade)}>
                       <small>Grade</small>
@@ -56,6 +73,10 @@ export default class Submissions extends Component {
             )
           })
         }
+        { this.state.viewFeedback ?
+          <ModalViewFeedback prop={{'feedback': this.state.selectedFeedback}}
+                            onCancel={()=>this.openViewFeedback()}
+          /> : '' }
       </div>
     ]);
   }

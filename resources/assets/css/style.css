@@ -209,7 +209,7 @@ input.add-subject-input {font-size: 13px;padding: 4px 12px;}
 .notifications-overlay-item .clearall {width: 16px;margin: 0;vertical-align: -3px;margin-right: 5px;}
 .submission-card .card-title a{color:#313549}
 .submission-card .card-sub{font-weight:400;font-size:11px;line-height:13px;margin:3px 0 0}
-.card.submission-card{height:80px}
+.card.submission-card{height:140px}
 .submission-card .card-sub a{color:#878485;text-decoration:none}
 .submission-card .card-sub a:hover{text-decoration:underline}
 .submission-card .card-right{text-align:center;width:initial;flex:1;padding:20px 0 0;font-size:18px;font-weight:600}
