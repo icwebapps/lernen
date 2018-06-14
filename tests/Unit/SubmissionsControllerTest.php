@@ -19,7 +19,7 @@ class SubmissionsControllerTest extends TestCase
       'completed' => false
     ]);
 
-    $response = $this->actingAs($student->user)->post('/submissions/store', [
+    $response = $this->actingAs($student->user)->post('/submissions', [
       'assignment_id' => $assignment->id,
     ]);
 
