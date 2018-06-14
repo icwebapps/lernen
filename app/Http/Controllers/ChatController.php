@@ -77,6 +77,6 @@ class ChatController extends Controller
     Auth::user()->tutor->messages()->studentSent()->unread()->count() :
     Auth::user()->student->messages()->tutorSent()->unread()->count();
     
-    return ['unread' => $unread];
+    return ['unread_messages' => $unread];
   }
 }

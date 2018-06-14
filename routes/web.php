@@ -50,7 +50,7 @@ Route::middleware(['auth'])->group(function () {
 
   Route::post('/lessons', 'LessonsController@create');
 
-  Route::get('/notifications', 'NotificationsController@index');
+  Route::get('/notifications/{type}', 'NotificationsController@index');
 });
 
 

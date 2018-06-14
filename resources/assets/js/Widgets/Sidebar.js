@@ -6,7 +6,8 @@ export default class Sidebar extends Component {
   constructor() {
     super();
     this.state = {
-      unread: 0
+      unread_messages: 0,
+      notifications: []
     };
     this.loadData();
   }
@@ -19,6 +20,7 @@ export default class Sidebar extends Component {
 
   loadData() {
     axios.get('/messages/unread').then((response) => this.setState(response.data));
+    axios.get('/notifications/unread').then((response) => this.setState(response.data));    
   }
 
   render() {
@@ -34,8 +36,8 @@ export default class Sidebar extends Component {
         <div className={"nav-item " + (this.props.selected == "contacts" ? "nav-selected" : "")}>
           <a href="/contacts"><img src="/images/icons8-address-book-2-filled-100.png" /></a>
           {
-            this.state.unread > 0 ?
-            <div className="sidebar-notification">{this.state.unread}</div>
+            this.state.unread_messages > 0 ?
+            <div className="sidebar-notification">{this.state.unread_messages}</div>
             : ''
           }
         </div>
@@ -49,6 +51,14 @@ export default class Sidebar extends Component {
         <div className={"nav-item " + (this.props.selected == "account" ? "nav-selected" : "")}>
           <a href="/account"><img src="/images/icons8-male-user-50.png" /></a>
         </div>
+      </div>
+      <div className="nav-item notifications">
+        <img src={"/images/icons8-notification-100"+(this.state.notifications.length == 0 ? "-faded" : "")+".png"} />
+        {
+          this.state.notifications.length > 0 ?
+            <div className="sidebar-notification">{this.state.notifications.length}</div>
+          : ''
+        }
       </div>
     </div>
     );

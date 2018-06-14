@@ -10,4 +10,9 @@ class Notification extends Model
   {
     return $this->belongsTo('App\User');
   }
+
+  public function scopeUnread($query)
+  {
+    return $query->where('seen', 0);
+  }
 }
