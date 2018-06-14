@@ -89,7 +89,11 @@ class SubmissionsController
 
   public function feedback(Request $request)
   {
-
+    $submission = Submission::find($request->submission_id);
+    $submission->grade = $request->grade;
+    $submission->feedback = $request->feedback;
+    $submission->save();
+    return json_encode(["status" => 1]);
   }
 
 }

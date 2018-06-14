@@ -48,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/submissions/progress', 'SubmissionsController@progress');  
   Route::post('/submissions/store', 'SubmissionsController@store');
   Route::get('/submissions/list', 'SubmissionsController@list');
-  Route::post('/submissions', 'SubmissionsController@feedback');
+  Route::post('/submissions/feedback', 'SubmissionsController@feedback');
 
   Route::post('/lessons', 'LessonsController@create');
 
