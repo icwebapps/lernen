@@ -28,13 +28,17 @@ export default class Lessons extends Component {
   
   render() {
     return(
-      this.filterLessons().length > 0 ? 
-      this.filterLessons().map((l, i) => {
-        return <UpcomingCard key={"card"+i} time={l.time} 
-                             user={l.tutor.user} location={l.location} 
-                             subject={l.subject} />
-        
-      }) : <h4>     No Lessons Today!     </h4>
+      <div className="dashboard-panel-item">
+        {
+          this.filterLessons().length > 0 ? 
+          this.filterLessons().map((l, i) => {
+            return <UpcomingCard key={"card"+i} time={l.time} 
+                                user={l.tutor.user} location={l.location} 
+                                subject={l.subject} />
+            
+          }) : "No lessons today"
+        }
+      </div>
     )
   }
   

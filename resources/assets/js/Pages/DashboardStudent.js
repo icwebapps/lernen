@@ -14,12 +14,10 @@ export default class DashboardStudent extends Component {
         <div className="dashboard-headers">
           <div className="dashboard-header-item dashboard-item-long">Progress</div>
           <div className="dashboard-header-item">Assignments</div>
-          <div className="dashboard-header-item">Today&#39;s Lessons</div>
+          <div className="dashboard-header-item">Lessons</div>
         </div>
         <div className="dashboard-panels">
-          <div className="dashboard-panel-item dashboard-item-long">
-            <Progress />
-          </div>
+          <Progress />
           <Assignments />
           <Lessons />
         </div>
