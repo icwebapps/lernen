@@ -45,7 +45,3 @@ export default class Progress extends Component {
     });
   }
 }
-
-if (document.getElementById('progress-widget')) {
-  ReactDOM.render(<Progress/>, document.getElementById('progress-widget'));
-}

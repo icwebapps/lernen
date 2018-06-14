@@ -61,8 +61,8 @@ export default class Calendar extends Component {
 
   render() {
     return ([
-      <Sidebar selected={this.props.page} isTutor={this.props.isTutor} />,
-      <div className="width-fill flex-rows">
+      <Sidebar key="sidebar" selected={this.props.page} isTutor={this.props.isTutor} />,
+      <div className="width-fill flex-rows" key="calendar-main">
         <div className="calendar-container">
           {this.renderDays()}
           {this.state.start ? <div key="calendar-grid" className="calendar-grid">{this.renderWeeks()}</div> : ''}

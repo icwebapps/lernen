@@ -3,12 +3,18 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 
 export default class Sidebar extends Component {
-  constructor(props) {
+  constructor() {
     super();
     this.state = {
       unread: 0
     };
-    this.loadData(props);
+    this.loadData();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.update !== prevProps.update) {
+      this.loadData();
+    }
   }
 
   loadData() {
