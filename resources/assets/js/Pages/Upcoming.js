@@ -22,8 +22,8 @@ export default class Upcoming extends Component {
   render() {
     let todayDate = new Date(this.state.today);
     return ([
-      <Sidebar selected={this.props.page} isTutor={this.props.isTutor} />,
-      <div className="width-fill flex-rows">
+      <Sidebar key="sidebar" selected={this.props.page} isTutor={this.props.isTutor} />,
+      <div key="upcoming-main" className="width-fill flex-rows">
         <div className="width-scrollable">
         {
           [...Array(7)].map((_, i) => {

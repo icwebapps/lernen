@@ -9,12 +9,12 @@ import Progress from '../Widgets/Progress';
 export default class DashboardStudent extends Component {
   render() {
     return ([
-      <Sidebar selected={this.props.page} isTutor={this.props.isTutor} />,
-      <div className="width-fill flex-rows">
+      <Sidebar key="sidebar" selected={this.props.page} isTutor={this.props.isTutor} />,
+      <div key="dashboard-student-main" className="width-fill flex-rows">
         <div className="dashboard-headers">
           <div className="dashboard-header-item dashboard-item-long">Progress</div>
           <div className="dashboard-header-item">Assignments</div>
-          <div className="dashboard-header-item">Today's Lessons</div>
+          <div className="dashboard-header-item">Today&#39;s Lessons</div>
         </div>
         <div className="dashboard-panels">
           <div className="dashboard-panel-item dashboard-item-long">

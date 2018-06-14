@@ -96,8 +96,8 @@ export default class Resources extends Component {
 
   render() {
     return ([
-      <Sidebar selected={this.props.page} isTutor={this.props.isTutor} />,
-      <div className="width-fill">
+      <Sidebar key="sidebar" selected={this.props.page} isTutor={this.props.isTutor} />,
+      <div key="resources-main" className="width-fill">
         <div className="panel-subjects" key="panel-subjects">
           <SubjectSidebar
             selected={this.state.subject}

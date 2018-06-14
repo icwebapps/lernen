@@ -8,8 +8,8 @@ import IconDot from '../Icons/IconDot';
 export default class DashboardTutor extends Component {
   render() {
     return ([
-      <Sidebar selected={this.props.page} isTutor={this.props.isTutor} />,
-      <div className="width-fill flex-rows">
+      <Sidebar key="sidebar" selected={this.props.page} isTutor={this.props.isTutor} />,
+      <div key="dashboard-tutor-main" className="width-fill flex-rows">
         <div className="dashboard-headers">
           <div className="dashboard-header-item">Submissions</div>
           <div className="dashboard-header-item">Lessons</div>

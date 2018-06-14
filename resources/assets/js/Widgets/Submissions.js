@@ -21,9 +21,9 @@ export default class Submissions extends Component {
       <div className="dashboard-panel-item flex-rows">
         <div className="assignments-list">
           {
-            this.state.submissions.map((s) => {
+            this.state.submissions.map((s, i) => {
               return (
-                <div className="assignments-row">
+                <div key={"submission"+i} className="assignments-row">
                   <div className="assignments-cell" style={{cursor: 'pointer'}}>
                     <a href={s.url} download>{s.assignment.title}</a>
                   </div>

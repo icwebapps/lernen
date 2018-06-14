@@ -52,8 +52,8 @@ export default class Contacts extends Component {
 
   render() {
     return ([
-      <Sidebar selected={this.props.page} isTutor={this.props.isTutor} update={this.state.sidebarReload} />,
-      <div className="width-fill">
+      <Sidebar key="sidebar" selected={this.props.page} isTutor={this.props.isTutor} update={this.state.sidebarReload} />,
+      <div key="contacts-main" className="width-fill">
         <div key="panel-contacts" className="panel-contacts">
           <div className="search-box">
             <SearchField placeholder="Search for students" onChange={val=>this.searchName(val)} />
