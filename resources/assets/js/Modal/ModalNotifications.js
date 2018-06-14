@@ -10,13 +10,13 @@ export default class ModalNotifications extends Component {
       <div className="notifications-overlay-content">
         {
           this.props.notifications.map((n, i) =>
-            <div key={"notification"+i} class="notifications-overlay-item">
+            <div key={"notification"+i} className="notifications-overlay-item">
               {n.message}
             </div>
           )
         }
-        <div class="notifications-overlay-item nohover">
-          <img src="/images/icons8-delete-50.png" class="clearall" /> Clear All
+        <div className="notifications-overlay-item nohover">
+          <img src="/images/icons8-delete-50.png" className="clearall" /> Clear All
         </div>
       </div>
     </div>);

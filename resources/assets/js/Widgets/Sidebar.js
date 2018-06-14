@@ -8,7 +8,8 @@ export default class Sidebar extends Component {
     super();
     this.state = {
       unread_messages: 0,
-      notifications: []
+      notifications: [],
+      showNotifications: false
     };
     this.loadData();
   }
@@ -53,14 +54,16 @@ export default class Sidebar extends Component {
           <a href="/account"><img src="/images/icons8-male-user-50.png" /></a>
         </div>
       </div>
-      <div className="nav-item notifications">
+      <div className="nav-item notifications" onMouseEnter={()=>this.setState({ showNotifications: true })} onMouseLeave={()=>this.setState({ showNotifications: false })}>
         <img src={"/images/icons8-notification-100"+(this.state.notifications.length == 0 ? "-faded" : "")+".png"} />
         {
           this.state.notifications.length > 0 ?
             <div className="sidebar-notification">{this.state.notifications.length}</div>
           : ''
         }
-        <ModalNotifications notifications={this.state.notifications} />
+        { this.state.showNotifications && this.state.notifications.length > 0 ?
+          <ModalNotifications notifications={this.state.notifications} />
+          : null }
       </div>
     </div>
     );
