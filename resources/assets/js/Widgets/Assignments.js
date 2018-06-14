@@ -78,7 +78,3 @@ export default class Assignments extends Component {
     );
   }
 }
-
-if (document.getElementById('assignment-widget')) {
-  ReactDOM.render(<Assignments/>, document.getElementById('assignment-widget'));
-}

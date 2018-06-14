@@ -38,9 +38,4 @@ export default class Lessons extends Component {
     )
   }
   
-
-}
-
-if (document.getElementById('lesson-widget')) {
-  ReactDOM.render(<Lessons/>, document.getElementById('lesson-widget'));
 }

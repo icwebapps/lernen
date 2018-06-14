@@ -36,7 +36,3 @@ export default class Submissions extends Component {
     );
   }
 }
-
-if (document.getElementById('submission-widget')) {
-  ReactDOM.render(<Submissions/>, document.getElementById('submission-widget'));
-}

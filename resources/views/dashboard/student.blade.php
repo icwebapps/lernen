@@ -9,23 +9,10 @@
   @slot('text') <div class="page-title page-dark">Welcome {{ explode(" ", Auth::user()->name)[0] }}</div> @endslot
 @endcomponent
 
-<div class="main">
-  @component('sidebar', ["selected"=>"dashboard"])
-  @endcomponent
-  
-  <div class="width-fill flex-rows">
-    <div class="dashboard-headers">
-      <div class="dashboard-header-item dashboard-item-long">Progress</div>
-      <div class="dashboard-header-item">Assignments</div>
-      <div class="dashboard-header-item">Today's Lessons</div>
-    </div>
-    <div class="dashboard-panels">
-      <div class="dashboard-panel-item dashboard-item-long" id="progress-widget">
-      </div>
-
-      <div id="assignment-widget"></div>
-
-      <div id="lesson-widget"></div>
-      
+<div id="dashboard-student-widget"
+     class="main"
+     data-page="dashboard"
+     data-userid="{{ Auth::user()->id }}"
+     data-istutor="{{ Auth::user()->isTutor() }}">
 </div>
 @endsection
