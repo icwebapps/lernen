@@ -56,7 +56,7 @@ export default class Submissions extends Component {
                         <a href={s.assignment.resource.url} download>{s.assignment.title}</a>
                       </div>
                       <div className="card-sub">
-                        Submitted on 10th June 2018 14:20<br/>
+                        {/*Submitted on 10th June 2018 14:20<br/>*/}
                         <a href={s.url}>{s.assignment.title + "_v1.pdf"}</a>
                       </div>
                       <div className="assignments-cell" >
