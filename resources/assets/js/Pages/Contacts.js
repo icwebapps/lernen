@@ -9,7 +9,7 @@ import Sidebar from '../Widgets/Sidebar';
 export default class Contacts extends Component {
   constructor() {
     super();
-    this.state = { contacts: [], q: '' };
+    this.state = { contacts: [], q: '', sidebarReload: 0 };
     this.loadData((contacts) => this.defaultTalkingTo(contacts));
   }
 
@@ -44,12 +44,15 @@ export default class Contacts extends Component {
   seenMessages(contact) {
     axios.post('/messages/seen', {
       id: contact.id
-    }).then(() => this.loadData());
+    }).then(() => {
+      this.loadData();
+      this.setState({ sidebarReload: this.state.sidebarReload + 1 });
+    });
   }
 
   render() {
     return ([
-      <Sidebar selected={this.props.page} isTutor={this.props.isTutor} />,
+      <Sidebar selected={this.props.page} isTutor={this.props.isTutor} update={this.state.sidebarReload} />,
       <div className="width-fill">
         <div key="panel-contacts" className="panel-contacts">
           <div className="search-box">
