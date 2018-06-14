@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom";
 import React, { Component } from 'react';
 
-
 export default class Submissions extends Component {
   constructor() {
     super();
@@ -11,36 +10,32 @@ export default class Submissions extends Component {
     this.loadSubmissions();
   }
 
-
   loadSubmissions() {
     axios.get('/submissions/list').then((response) => {
       this.setState(response.data);
     });
   }
 
-render() {
-  return (
-    <div className="dashboard-panel-item flex-rows">
-      <div className="assignments-list">
-        {
-          this.state.submissions.map((s) => {
-            return (
-              <div className="assignments-row">
-                <div className="assignments-cell" style={{cursor: 'pointer'}}>
-                  <a href={s.url} download>{s.assignment.title}</a>
+  render() {
+    return (
+      <div className="dashboard-panel-item flex-rows">
+        <div className="assignments-list">
+          {
+            this.state.submissions.map((s) => {
+              return (
+                <div className="assignments-row">
+                  <div className="assignments-cell" style={{cursor: 'pointer'}}>
+                    <a href={s.url} download>{s.assignment.title}</a>
+                  </div>
                 </div>
-              </div>
-            )
-          })
-        }
+              )
+            })
+          }
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
-
-}
-
-
 
 if (document.getElementById('submission-widget')) {
   ReactDOM.render(<Submissions/>, document.getElementById('submission-widget'));

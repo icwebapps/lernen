@@ -15,13 +15,11 @@
 @endcomponent
 
 
-<div class="main">
-  @component('sidebar', ['selected' => 'contacts'])
-  @endcomponent
-
-  <div class="width-fill">
-    <div id="contacts-widget" data-talkingtoid="{{ $talkingToId }}" data-userid="{{ Auth::user()->id }}" data-istutor="{{ Auth::user()->isTutor() }}"></div>
-  </div>
-</div>
+<div id="contacts-widget"
+     class="main"
+     data-page="contacts"
+     data-talkingtoid="{{ $talkingToId }}"
+     data-userid="{{ Auth::user()->id }}"
+     data-istutor="{{ Auth::user()->isTutor() }}">
 </div>
 @endsection

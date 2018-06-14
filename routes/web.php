@@ -27,9 +27,10 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/contacts/{id?}', 'ContactsController@index')->where('id', '[0-9]+');
   Route::get('/contacts/list', 'ContactsController@list');
 
-  Route::get('/messages/{talkingTo}', 'ChatController@fetch');
+  Route::get('/messages/{talkingTo}', 'ChatController@fetch')->where('talkingTo', '[0-9]+');
   Route::post('/messages', 'ChatController@send');
-  Route::post('/messages/seen', 'ChatController@seen');  
+  Route::post('/messages/seen', 'ChatController@seen');
+  Route::get('/messages/unread', 'ChatController@unread');
 
   Route::get('/students', 'ContactsController@index');
   Route::get('/students/list', 'ContactsController@list');

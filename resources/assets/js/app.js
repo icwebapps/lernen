@@ -13,12 +13,12 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/Login');
-require('./components/Calendar');
-require('./components/Contacts');
-require('./components/Upcoming');
-require('./components/Resources');
-require('./components/Assignments');
-require('./components/Dashboard/Lessons');
-require('./components/Progress');
-require('./components/Submissions');
+require('./Pages/Login');
+require('./Pages/Calendar');
+require('./Pages/Contacts');
+require('./Pages/Upcoming');
+require('./Pages/Resources');
+require('./Widgets/Assignments');
+require('./Dashboard/Lessons');
+require('./Widgets/Progress');
+require('./Pages/Submissions');

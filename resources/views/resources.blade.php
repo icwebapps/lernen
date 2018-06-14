@@ -8,12 +8,11 @@
   @slot('title') Resources @endslot
 @endcomponent
 
-<div class="main">
-  @component('sidebar', ['selected' => 'resources'])
-  @endcomponent
-
-  <div class="width-fill" id="resources-widget">
-  </div>
+<div class="main"
+     id="resources-widget"
+     data-page="resources"
+     data-userid="{{ Auth::user()->id }}"
+     data-istutor="{{ Auth::user()->isTutor() }}">
 </div>
   
 @endsection
