@@ -39,20 +39,18 @@ export default class Submissions extends Component {
           {
             this.state.submissions.map((s, i) => {
               return (
-                // (s.grade == null) ?
-                  <div className="assignments-row" key={"assignment-row-"+i}>
-                    <div className="assignments-cell" style={{cursor: 'pointer'}}>
-                      <a href={s.url} download>{s.assignment.title}</a>
-                    </div>
-                    <div className="assignments-cell" style={{cursor: 'pointer'}}>
-                      <input type="button" value="Leave Feedback" onClick={()=>this.openAddFeedback()} className="add-resource bold-button" key="resource-file-submit" />
-                    </div>
-                    { this.state.addFeedback ?
-                      <ModalAddFeedback submissionID={s.id}
-                        onCancel={()=>this.openAddFeedback()}
-                      /> : '' }
+                <div className="assignments-row" key={"assignment-row-"+i}>
+                  <div className="assignments-cell" style={{cursor: 'pointer'}}>
+                    <a href={s.url} download>{s.assignment.title}</a>
                   </div>
-                  // : ''
+                  <div className="assignments-cell" style={{cursor: 'pointer'}}>
+                    <input type="button" value="Leave Feedback" onClick={()=>this.openAddFeedback()} className="add-resource bold-button" key="resource-file-submit" />
+                  </div>
+                  { this.state.addFeedback ?
+                    <ModalAddFeedback submissionID={s.id}
+                      onCancel={()=>this.openAddFeedback()}
+                    /> : '' }
+                </div>
               )
             })
           }

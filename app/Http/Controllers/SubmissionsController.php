@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 use App\{
-  User, Resource, Assignment, Submission, Notification
+  Assignment, Submission, Notification
 };
 
 class SubmissionsController
