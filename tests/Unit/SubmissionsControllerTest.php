@@ -19,7 +19,7 @@ class SubmissionsControllerTest extends TestCase
       'completed' => false
     ]);
 
-    $response = $this->actingAs($student->user)->post('/submissions', [
+    $response = $this->actingAs($student->user)->post('/submissions/store', [
       'assignment_id' => $assignment->id,
     ]);
 
@@ -45,8 +45,7 @@ class SubmissionsControllerTest extends TestCase
       'subject_id' => $assignment->subject_id
     ]);
     $submission = factory(Submission::class)->create([
-      'assignment_id' => $assignment->id,
-      'grade' => NULL
+      'assignment_id' => $assignment->id
     ]);
     $response = $this->actingAs($assignment->student->user)->get('/submissions/progress');
     $response->assertStatus(200);
@@ -116,6 +115,35 @@ class SubmissionsControllerTest extends TestCase
     $response = $this->actingAs($tutor->user)->get('/submissions/list');
     $response->assertStatus(200);
     $response->assertJsonCount(1, 'submissions');
+  }
+
+  public function testSubmissionMarked()
+  {
+    $tutor = factory(Tutor::class)->create();
+    $student = factory(Student::class)->create();
+    $subject = factory(Subject::class)->create(['tutor_id' => $tutor->user_id ]);
+    $assignment = factory(Assignment::class)->create([
+      'subject_id' => $subject->id,
+      'student_id' => $student->user_id,
+      'resource_id' => factory(Resource::class)->create(['tutor_id' => $tutor->user_id ])->id
+    ]);
+
+    $submission = factory(Submission::class)->create([
+      'assignment_id' => $assignment->id
+    ]);
+    $response = $this->actingAs($tutor->user)->post('/submissions/feedback', [
+      'grade' => 90,
+      'feedback' => "Very well done!",
+      'submission_id' => $submission->id
+    ]);
+
+    $response->assertStatus(200);
+    $this->assertDatabaseHas('submissions', [
+      'assignment_id' => $assignment->id,
+      'grade' => 90,
+      'feedback' =>"Very well done!"
+    ]);
+
   }
 
 }
