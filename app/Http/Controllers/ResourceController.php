@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\{User, Assignment, Subject, Resource};
+use App\{User, Assignment, Subject, Resource, Notification};
 
 class ResourceController extends Controller
 {
@@ -56,6 +56,12 @@ class ResourceController extends Controller
       'date_due' => $request->due_date,
       'resource_id' => $resourceId,
       'title' => $request->assignment_name
+    ]);
+
+    Notification::create([
+      'user_id' => $request->input('student_id'),
+      'message' => "You have received an assignment from " . Auth::user()->name . " (" . Subject::find($request->subject_id)->full . ")",
+      'url' => '/dashboard'
     ]);
     
     $assignment->save();

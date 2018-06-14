@@ -9,6 +9,10 @@ class Subject extends Model
   protected $fillable = [
     'name', 'level', 'tutor_id'
   ];
+
+  protected $appends = [
+    'full'
+  ];
   
   public function lessons()
   {
@@ -18,5 +22,10 @@ class Subject extends Model
   public function tutor()
   {
     return $this->belongsTo('App\Tutor', 'tutor_id', 'user_id');
-  }  
+  }
+
+  public function getFullAttribute()
+  {
+    return $this->name . ' ' . $this->level;
+  }
 }

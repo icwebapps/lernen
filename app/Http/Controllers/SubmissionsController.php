@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 use App\{
-  User, Resource, Assignment, Submission
+  User, Resource, Assignment, Submission, Notification
 };
 
 class SubmissionsController
@@ -73,6 +73,12 @@ class SubmissionsController
     $assignment = Assignment::find($request->assignment_id);
     $assignment->completed = true;
     $assignment->save();
+
+    Notification::create([
+      'user_id' => $assignment->resource->tutor->user_id,
+      'message' => Auth::user()->name . " has submitted " . $assignment->title . " for you to grade",
+      'url' => '/dashboard'
+    ]);
     return ["status" => 1];
   }
 
