@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
+import ModalNotifications from '../Modal/ModalNotifications';
 
 export default class Sidebar extends Component {
   constructor() {
@@ -59,6 +60,7 @@ export default class Sidebar extends Component {
             <div className="sidebar-notification">{this.state.notifications.length}</div>
           : ''
         }
+        <ModalNotifications notifications={this.state.notifications} />
       </div>
     </div>
     );
