@@ -60,9 +60,15 @@ class SubmissionsController
       return [ "submissions" => $submissions ];
     }
     else {
-      abort(404);
-    }
+      $assignments = Auth::user()->student->assignments;
 
+
+      $submissions = [];
+      foreach ($assignments as $a) {
+        $submissions = array_merge($submissions, $a->submissions()->whereNotNull('grade')->get()->load('assignment.resource')->all());
+      }
+      return [ "submissions" => $submissions ];
+    }
   }
 
   public function create(Request $request)

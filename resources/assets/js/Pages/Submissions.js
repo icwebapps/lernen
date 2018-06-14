@@ -2,35 +2,81 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import Sidebar from '../Widgets/Sidebar';
+import ModalViewFeedback from "../Modal/ModalViewFeedback";
+
 
 export default class Submissions extends Component {
   constructor() {
     super();
     this.state = {
+      submissions: [],
+      viewFeedback: false,
+      selectedFeedback: ""
     };
+    this.loadSubmissions()
   }
+
+  loadSubmissions() {
+    axios.get('/submissions/list').then((response) => {
+      this.setState(response.data);
+    });
+  }
+
+  getRating(number) {
+    if (number >= 90) return "excellent";
+    if (number >= 70) return "good";
+    if (number >= 50) return "ok";
+    return "poor";
+  }
+
+  openViewFeedback(s) {
+    if (this.state.viewFeedback) {
+      this.setState({ selectedFeedback: "", viewFeedback: false });
+    }
+    else {
+      this.setState({ selectedFeedback: s.feedback, viewFeedback: true });
+    }
+  }
+
+
 
   render() {
     return ([
       <Sidebar key="sidebar" selected={this.props.page} isTutor={this.props.isTutor} />,
-      <div key="submissions-main" class="width-scrollable">
-        <div class="column">
-          <div class="column-title">Maths A-Level</div>
-          <div class="column-content">
-            <div class="card submission-card">
-              <div class="card-middle">
-                <div class="card-title"><a href="">Simplifying Fractions</a></div>
-                <div class="card-sub">
-                  Submitted on 10th June 2018 14:20<br />
-                  <a href="">simplifying_fractions_v1.pdf</a>
+      <div key="submissions-main" className="width-scrollable">
+        {
+          this.state.submissions.map((s) => {
+            return (
+              <div className="column">
+                {/*<div className="column-title">Maths A-Level</div>*/}
+                <div className="column-content">
+                  <div className="card submission-card">
+                    <div className="card-middle">
+                      <div className="card-title">
+                        <a href={s.assignment.resource.url} download>{s.assignment.title}</a>
+                      </div>
+                      <div className="card-sub">
+                        {/*Submitted on 10th June 2018 14:20<br/>*/}
+                        <a href={s.url}>{s.assignment.title + "_v1.pdf"}</a>
+                      </div>
+                      <div className="assignments-cell" >
+                        <input type="button" value="Feedback" onClick={()=>this.openViewFeedback(s)} className="add-resource bold-button" style={{cursor: 'pointer'}} key="resource-file-submit" />
+                      </div>
+                    </div>
+                    <div className={"card-right rating-" + this.getRating(s.grade)}>
+                      <small>Grade</small>
+                      {s.grade}
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="card-right rating-excellent">
-                <small>Grade</small>94%
-              </div>                
-            </div>
-          </div>
-        </div>
+            )
+          })
+        }
+        { this.state.viewFeedback ?
+          <ModalViewFeedback feedback={this.state.selectedFeedback}
+                            onCancel={()=>this.openViewFeedback()}
+          /> : '' }
       </div>
     ]);
   }
