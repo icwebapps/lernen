@@ -7,6 +7,12 @@ export default class ModalNotifications extends Component {
     axios.post('/notifications/clear').then(() => this.props.onClearAll());
   }
 
+  clickNotification(n) {
+    axios.post('/notifications/clear', {
+      id: n.id
+    }).then(() => location.href = n.url);    
+  }
+
   render() {
     return (
     <div className="notifications-overlay">
@@ -14,7 +20,7 @@ export default class ModalNotifications extends Component {
       <div className="notifications-overlay-content">
         {
           this.props.notifications.map((n, i) =>
-            <div key={"notification"+i} className="notifications-overlay-item">
+            <div key={"notification"+i} className="notifications-overlay-item" onClick={()=>this.clickNotification(n)}>
               {n.message}
             </div>
           )

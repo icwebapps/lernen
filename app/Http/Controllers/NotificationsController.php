@@ -25,9 +25,13 @@ class NotificationsController extends Controller
     ];
   }
 
-  public function clear()
+  public function clear(Request $request)
   {
-    $notifications = Auth::user()->notifications()->unread()->update([
+    $unread = Auth::user()->notifications()->unread();
+    if ($request->input('id')) {
+      $unread = $unread->where('id', $request->input('id'));
+    }
+    $unread->update([
       'seen' => true
     ]);
   }

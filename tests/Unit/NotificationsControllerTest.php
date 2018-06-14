@@ -33,16 +33,29 @@ class NotificationsControllerTest extends TestCase
     $response->assertJsonCount(2, 'notifications');
   }
 
-  public function testClear()
+  public function testClearAll()
   {
     $user = factory(User::class)->create();
-    $notification_unread = factory(Notification::class)->create([ 'user_id' => $user->id ]);
-    $notification_read = factory(Notification::class)->create([ 'user_id' => $user->id, 'seen' => true ]);
+    $notification1 = factory(Notification::class)->create([ 'user_id' => $user->id ]);
+    $notification2 = factory(Notification::class)->create([ 'user_id' => $user->id ]);
 
     $response = $this->actingAs($user)->post('/notifications/clear');
     $response->assertStatus(200);
 
     $response2 = $this->actingAs($user)->get('/notifications/unread');
     $response2->assertJsonCount(0, 'notifications');
+  }
+
+  public function testClearOne()
+  {
+    $user = factory(User::class)->create();
+    $notification1 = factory(Notification::class)->create([ 'user_id' => $user->id ]);
+    $notification2 = factory(Notification::class)->create([ 'user_id' => $user->id ]);
+
+    $response = $this->actingAs($user)->post('/notifications/clear', ['id' => $notification1->id ]);
+    $response->assertStatus(200);
+
+    $response2 = $this->actingAs($user)->get('/notifications/unread');
+    $response2->assertJsonCount(1, 'notifications');
   }
 }
