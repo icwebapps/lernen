@@ -32,6 +32,11 @@ class User extends Authenticatable
     return $this->hasOne('App\Tutor');
   }
 
+  public function notifications()
+  {
+    return $this->hasMany('App\Notification');
+  }
+
   public function isTutor()
   {
     return !is_null($this->tutor);
