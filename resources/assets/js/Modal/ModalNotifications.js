@@ -3,6 +3,10 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 
 export default class ModalNotifications extends Component {
+  clearAll() {
+    axios.post('/notifications/clear').then(() => this.props.onClearAll());
+  }
+
   render() {
     return (
     <div className="notifications-overlay">
@@ -15,7 +19,7 @@ export default class ModalNotifications extends Component {
             </div>
           )
         }
-        <div className="notifications-overlay-item nohover">
+        <div className="notifications-overlay-item nohover" onClick={()=>this.clearAll()}>
           <img src="/images/icons8-delete-50.png" className="clearall" /> Clear All
         </div>
       </div>

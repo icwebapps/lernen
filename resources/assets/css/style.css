@@ -204,6 +204,6 @@ input.add-subject-input {font-size: 13px;padding: 4px 12px;}
 .notifications-overlay{left: 110px;bottom: 25px;padding: 27px 0 30px;}
 .notifications-overlay:before{margin: 16px -40px;bottom: 0;top: initial;}
 .notifications-overlay:after{margin: 19px -34px;bottom: 0;top: initial;}
-.notifications-overlay-item{font-size: 14px;margin: 14px 0 -2px;max-width: 280px;padding: 7px 28px;}
-.notifications-overlay-item:not(.nohover):hover{cursor:pointer;background:#f1f1f1;}
+.notifications-overlay-item{cursor:pointer;font-size: 14px;margin: 14px 0 -2px;max-width: 280px;padding: 7px 28px;}
+.notifications-overlay-item:not(.nohover):hover{background:#f1f1f1;}
 .notifications-overlay-item .clearall {width: 16px;margin: 0;vertical-align: -3px;margin-right: 5px;}

@@ -62,7 +62,7 @@ export default class Sidebar extends Component {
           : ''
         }
         { this.state.showNotifications && this.state.notifications.length > 0 ?
-          <ModalNotifications notifications={this.state.notifications} />
+          <ModalNotifications notifications={this.state.notifications} onClearAll={()=>this.loadData()} />
           : null }
       </div>
     </div>

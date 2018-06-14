@@ -24,4 +24,11 @@ class NotificationsController extends Controller
       'notifications' => $notifications
     ];
   }
+
+  public function clear()
+  {
+    $notifications = Auth::user()->notifications()->unread()->update([
+      'seen' => true
+    ]);
+  }
 }
