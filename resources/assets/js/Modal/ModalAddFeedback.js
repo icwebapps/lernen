@@ -13,15 +13,7 @@ export default class ModalAddFeedback extends Component {
   }
 
   submit() {
-    const formData = new FormData();
-    formData.append('grade', this.state.grade);
-    formData.append('feedback', this.state.feedback);
-    formData.append('submission_id', this.state.submission_id);
-    axios.post('/submissions/feedback', formData, {
-      headers: {
-        'content-type': 'multipart/form-data'
-      }
-    }).then((response) => {
+    axios.post('/submissions/feedback', this.state).then((response) => {
       if (response.data.status == 1) {
         this.props.onCancel();
       }

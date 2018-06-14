@@ -54,7 +54,7 @@ class SubmissionsController
       foreach ($resources as $r) {
         $assignments = $r->load('assignments.submissions')->assignments;
         foreach ($assignments as $a) {
-          $submissions = array_merge($submissions, $a->submissions->where('grade', null)->load('assignment')->all());
+          $submissions = array_merge($submissions, $a->submissions()->whereNull('grade')->get()->load('assignment')->all());
         }
       }
       return [ "submissions" => $submissions ];
@@ -65,7 +65,7 @@ class SubmissionsController
 
   }
 
-  public function store(Request $request)
+  public function create(Request $request)
   {
     $file = $request->file;
     $storagePath = Storage::disk('s3')->put('submissions', $file, 'public');
@@ -93,7 +93,7 @@ class SubmissionsController
     $submission->grade = $request->grade;
     $submission->feedback = $request->feedback;
     $submission->save();
-    return json_encode(["status" => 1]);
+    return ["status" => 1];
   }
 
 }
