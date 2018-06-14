@@ -25,23 +25,29 @@ export default class Progress extends Component {
   }
 
   render() {
-    return this.state.subjects.map((s, i) => {
-      const average = Math.ceil(s.progress.total / s.progress.count);
-      const rotate = average/100*360;
-      return <div key={"subject-performance"+i} className={"subject-performance rating-"+this.getRating(average)}>
-      <div className="subject-performance-name">{s.name}</div>
-      <div className={"circle subject-performance-circle " + (average > 50 ? "over50" : "")}>
-        <span>{average}%</span>
-        <div className="slice">
-          <div className="bar" style={{ transform: "rotate("+rotate+"deg)" }}></div>
-          <div className="fill"></div>
+    return (
+      <div className="dashboard-panel-item dashboard-item-long">
+      {
+        this.state.subjects.map((s, i) => {
+          const average = Math.ceil(s.progress.total / s.progress.count);
+          const rotate = average/100*360;
+          return <div key={"subject-performance"+i} className={"subject-performance rating-"+this.getRating(average)}>
+          <div className="subject-performance-name">{s.name}</div>
+          <div className={"circle subject-performance-circle " + (average > 50 ? "over50" : "")}>
+            <span>{average}%</span>
+            <div className="slice">
+              <div className="bar" style={{ transform: "rotate("+rotate+"deg)" }}></div>
+              <div className="fill"></div>
+            </div>
+          </div>
+          <div className="subject-performance-caption">
+            Performance:
+            <div className="subject-performance-rating">{this.getRating(average)}</div>
+          </div>
         </div>
+        })
+      }
       </div>
-      <div className="subject-performance-caption">
-        Performance:
-        <div className="subject-performance-rating">{this.getRating(average)}</div>
-      </div>
-    </div>
-    });
+    );
   }
 }
