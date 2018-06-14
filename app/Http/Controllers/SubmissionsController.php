@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 use App\{
-  User, Resource, Assignment, Submission, Notification
+  Assignment, Submission, Notification
 };
 
 class SubmissionsController
@@ -54,7 +54,7 @@ class SubmissionsController
       foreach ($resources as $r) {
         $assignments = $r->load('assignments.submissions')->assignments;
         foreach ($assignments as $a) {
-          $submissions = array_merge($submissions, $a->submissions->load('assignment')->all());
+          $submissions = array_merge($submissions, $a->submissions()->whereNull('grade')->get()->load('assignment')->all());
         }
       }
       return [ "submissions" => $submissions ];
@@ -65,7 +65,7 @@ class SubmissionsController
 
   }
 
-  public function store(Request $request)
+  public function create(Request $request)
   {
     $file = $request->file;
     $storagePath = Storage::disk('s3')->put('submissions', $file, 'public');
@@ -83,6 +83,21 @@ class SubmissionsController
       'user_id' => $assignment->resource->tutor->user_id,
       'message' => Auth::user()->name . " has submitted " . $assignment->title . " for you to grade",
       'url' => '/dashboard'
+    ]);
+    return ["status" => 1];
+  }
+
+  public function feedback(Request $request)
+  {
+    $submission = Submission::find($request->submission_id);
+    $submission->grade = $request->grade;
+    $submission->feedback = $request->feedback;
+    $submission->save();
+
+    Notification::create([
+      'user_id' => $submission->assignment->student->user_id,
+      'message' => Auth::user()->name . " has graded " . $submission->assignment->title . ". You obtained " . $submission->grade . "%",
+      'url' => '/submissions'
     ]);
     return ["status" => 1];
   }

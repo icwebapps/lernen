@@ -1,14 +1,30 @@
 import ReactDOM from "react-dom";
 import React, { Component } from 'react';
+import ModalAddFeedback from "../Modal/ModalAddFeedback";
+import axios from "axios/index";
+
+
 
 export default class Submissions extends Component {
   constructor() {
     super();
     this.state = {
-      submissions: []
+      submissions: [],
+      addFeedback: false,
+      selectedSubmission: null
     };
     this.loadSubmissions();
   }
+
+  openAddFeedback(s) {
+    if (this.state.addFeedback) {
+      this.setState({ selectedSubmission: null, addFeedback: false });
+    }
+    else {
+      this.setState({ selectedSubmission: s.id, addFeedback: true });
+    }
+  }
+
 
   loadSubmissions() {
     axios.get('/submissions/list').then((response) => {
@@ -16,23 +32,35 @@ export default class Submissions extends Component {
     });
   }
 
+
+
   render() {
     return (
       <div className="dashboard-panel-item flex-rows">
-        <div className="assignments-list">
+        <div className="assignments-list submissions-list">
           {
             this.state.submissions.map((s, i) => {
               return (
-                <div key={"submission"+i} className="assignments-row">
+                <div className="assignments-row" key={"assignment-row-"+i}>
                   <div className="assignments-cell" style={{cursor: 'pointer'}}>
                     <a href={s.url} download>{s.assignment.title}</a>
                   </div>
+                  <div className="assignments-cell" style={{cursor: 'pointer'}}>
+                    <input type="button" value="Leave Feedback" onClick={()=>this.openAddFeedback(s)} className="add-resource bold-button" key="resource-file-submit" />
+                  </div>
+
                 </div>
               )
             })
           }
+          { this.state.addFeedback ?
+            <ModalAddFeedback submissionID={this.state.selectedSubmission}
+                              onCancel={()=>this.openAddFeedback()}
+                              onSubmit={()=>this.loadSubmissions()}
+            /> : '' }
         </div>
       </div>
     );
   }
+
 }

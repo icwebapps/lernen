@@ -215,3 +215,4 @@ input.add-subject-input {font-size: 13px;padding: 4px 12px;}
 .submission-card .card-right{text-align:center;width:initial;flex:1;padding:20px 0 0;font-size:18px;font-weight:600}
 .submission-card .card-middle{width:230px}
 .submission-card .card-right small{display:block;font-weight:400;font-size:11px;color:#b2abce}
+.submissions-list input[type="text"]{width: 20px;}
