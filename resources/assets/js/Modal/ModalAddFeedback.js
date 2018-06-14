@@ -16,6 +16,7 @@ export default class ModalAddFeedback extends Component {
     axios.post('/submissions/feedback', this.state).then((response) => {
       if (response.data.status == 1) {
         this.props.onCancel();
+        this.props.onSubmit();
       }
     });
   }

@@ -10,17 +10,18 @@ export default class Submissions extends Component {
     super();
     this.state = {
       submissions: [],
-      addFeedback: false
+      addFeedback: false,
+      selectedSubmission: null
     };
     this.loadSubmissions();
   }
 
-  openAddFeedback() {
+  openAddFeedback(s) {
     if (this.state.addFeedback) {
-      this.setState({ addFeedback: false });
+      this.setState({ selectedSubmission: null, addFeedback: false });
     }
     else {
-      this.setState({ addFeedback: true });
+      this.setState({ selectedSubmission: s.id, addFeedback: true });
     }
   }
 
@@ -30,6 +31,7 @@ export default class Submissions extends Component {
       this.setState(response.data);
     });
   }
+
 
 
   render() {
@@ -44,16 +46,18 @@ export default class Submissions extends Component {
                     <a href={s.url} download>{s.assignment.title}</a>
                   </div>
                   <div className="assignments-cell" style={{cursor: 'pointer'}}>
-                    <input type="button" value="Leave Feedback" onClick={()=>this.openAddFeedback()} className="add-resource bold-button" key="resource-file-submit" />
+                    <input type="button" value="Leave Feedback" onClick={()=>this.openAddFeedback(s)} className="add-resource bold-button" key="resource-file-submit" />
                   </div>
-                  { this.state.addFeedback ?
-                    <ModalAddFeedback submissionID={s.id}
-                      onCancel={()=>this.openAddFeedback()}
-                    /> : '' }
+
                 </div>
               )
             })
           }
+          { this.state.addFeedback ?
+            <ModalAddFeedback submissionID={this.state.selectedSubmission}
+                              onCancel={()=>this.openAddFeedback()}
+                              onSubmit={()=>this.loadSubmissions()}
+            /> : '' }
         </div>
       </div>
     );
