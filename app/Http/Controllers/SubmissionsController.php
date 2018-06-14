@@ -87,4 +87,9 @@ class SubmissionsController
     return ["status" => 1];
   }
 
+  public function feedback(Request $request)
+  {
+
+  }
+
 }
