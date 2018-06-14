@@ -39,7 +39,7 @@ class ChatController extends Controller
         'seen' => true
       ]);
     }
-    return json_encode(['status' => 1]);
+    return ['status' => 1];
   }
 
   public function send(Request $request)
@@ -77,6 +77,6 @@ class ChatController extends Controller
     Auth::user()->tutor->messages()->studentSent()->unread()->count() :
     Auth::user()->student->messages()->tutorSent()->unread()->count();
     
-    return ['unread' => $unread];
+    return ['unread_messages' => $unread];
   }
 }

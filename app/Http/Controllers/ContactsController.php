@@ -24,7 +24,7 @@ class ContactsController extends Controller
       }
       $students = array_values($students);
       usort($students, [$this, 'sortAlphaByName']);
-      return json_encode([ "contacts" => $students ]);
+      return [ "contacts" => $students ];
     }
     else {
       $tutors = [];
@@ -36,7 +36,7 @@ class ContactsController extends Controller
       }
       $tutors = array_values($tutors);
       usort($tutors, [$this, 'sortAlphaByName']);
-      return json_encode([ "contacts" => $tutors ]);
+      return [ "contacts" => $tutors ];
     }
   }
 

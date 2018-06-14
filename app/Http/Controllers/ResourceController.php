@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\{User, Assignment, Subject, Resource};
+use App\{User, Assignment, Subject, Resource, Notification};
 
 class ResourceController extends Controller
 {
@@ -26,7 +26,7 @@ class ResourceController extends Controller
         'tutor.resources.assignments.student.user',
         'tutor.resources.subject'
       ])->find(Auth::user()->id)->tutor->resources;
-      return json_encode([ "resources" => $resources ]);
+      return [ "resources" => $resources ];
     }
     else {
       abort(404);
@@ -44,7 +44,7 @@ class ResourceController extends Controller
     $resource->subject_id = $request->subject_id;
     $resource->tutor_id = Auth::user()->id;
     $resource->save();
-    return json_encode(["status" => 1, "type" => $resource->type]);
+    return ["status" => 1, "type" => $resource->type];
   }
 
   public function add_student(Request $request, $resourceId) 
@@ -57,8 +57,14 @@ class ResourceController extends Controller
       'resource_id' => $resourceId,
       'title' => $request->assignment_name
     ]);
+
+    Notification::create([
+      'user_id' => $request->input('student_id'),
+      'message' => "You have received an assignment from " . Auth::user()->name . " (" . Subject::find($request->subject_id)->full . ")",
+      'url' => '/dashboard'
+    ]);
     
     $assignment->save();
-    return json_encode(["status" => 1]);
+    return ["status" => 1];
   }
 }

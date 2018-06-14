@@ -12,7 +12,7 @@ class SubjectsController extends Controller
   public function list() 
   {
     if (Auth::user()->isTutor()) {
-      return json_encode(['subjects' => Auth::user()->tutor->subjects ]);
+      return ['subjects' => Auth::user()->tutor->subjects ];
     }
     else {
       abort(404);
@@ -26,6 +26,6 @@ class SubjectsController extends Controller
       'level' => $request->input('level'),
       'tutor_id' => Auth::user()->tutor->user_id
     ]);
-    return json_encode(["status" => 1]);
+    return ["status" => 1];
   }
 }

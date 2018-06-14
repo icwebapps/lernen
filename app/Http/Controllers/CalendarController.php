@@ -39,12 +39,12 @@ class CalendarController extends Controller
       ];
     }
 
-    return json_encode([
+    return [
       'events' => $events,
       'start' => $startDate,
       'today' => $todayDate,
       'weeksToShow' => $weeksToShow
-    ]);
+    ];
 
   }
 }
