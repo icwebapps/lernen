@@ -26,7 +26,7 @@ class ResourceController extends Controller
         'tutor.resources.assignments.student.user',
         'tutor.resources.subject'
       ])->find(Auth::user()->id)->tutor->resources;
-      return json_encode([ "resources" => $resources ]);
+      return [ "resources" => $resources ];
     }
     else {
       abort(404);
@@ -44,7 +44,7 @@ class ResourceController extends Controller
     $resource->subject_id = $request->subject_id;
     $resource->tutor_id = Auth::user()->id;
     $resource->save();
-    return json_encode(["status" => 1, "type" => $resource->type]);
+    return ["status" => 1, "type" => $resource->type];
   }
 
   public function add_student(Request $request, $resourceId) 
@@ -59,6 +59,6 @@ class ResourceController extends Controller
     ]);
     
     $assignment->save();
-    return json_encode(["status" => 1]);
+    return ["status" => 1];
   }
 }

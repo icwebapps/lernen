@@ -39,7 +39,7 @@ class ChatController extends Controller
         'seen' => true
       ]);
     }
-    return json_encode(['status' => 1]);
+    return ['status' => 1];
   }
 
   public function send(Request $request)

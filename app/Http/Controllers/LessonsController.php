@@ -18,7 +18,7 @@ class LessonsController
       'location' => $request->input('location'),
       'subject_id' => $request->input('subject_id')
     ]);
-    return json_encode(["status" => 1]);
+    return ["status" => 1];
   }
 
   public function list() {
@@ -27,7 +27,7 @@ class LessonsController
     $lessons = Auth::user()->isTutor() ? Auth::user()->tutor->lessons : Auth::user()->student->lessons;
 
     $lessons->load(['student.user', 'tutor.user']);
-    return json_encode([ "lessons" => $lessons, "today" => $todayDate]);
+    return [ "lessons" => $lessons, "today" => $todayDate];
 
   }
   

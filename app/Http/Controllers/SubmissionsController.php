@@ -36,7 +36,7 @@ class SubmissionsController
       return $subject;
     });
 
-    return json_encode(["subjects" => $subjects]);
+    return ["subjects" => $subjects];
   }
 
   public function list()
@@ -52,7 +52,7 @@ class SubmissionsController
           $submissions = array_merge($submissions, $a->submissions->load('assignment')->all());
         }
       }
-      return json_encode([ "submissions" => $submissions ]);
+      return [ "submissions" => $submissions ];
     }
     else {
       abort(404);
@@ -73,7 +73,7 @@ class SubmissionsController
     $assignment = Assignment::find($request->assignment_id);
     $assignment->completed = true;
     $assignment->save();
-    return json_encode(["status" => 1]);
+    return ["status" => 1];
   }
 
 }
