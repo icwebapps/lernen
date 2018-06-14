@@ -48,7 +48,7 @@ export default class Submissions extends Component {
           this.state.submissions.map((s) => {
             return (
               <div className="column">
-                <div className="column-title">Maths A-Level</div>
+                {/*<div className="column-title">Maths A-Level</div>*/}
                 <div className="column-content">
                   <div className="card submission-card">
                     <div className="card-middle">
@@ -74,7 +74,7 @@ export default class Submissions extends Component {
           })
         }
         { this.state.viewFeedback ?
-          <ModalViewFeedback prop={{'feedback': this.state.selectedFeedback}}
+          <ModalViewFeedback feedback={this.state.selectedFeedback}
                             onCancel={()=>this.openViewFeedback()}
           /> : '' }
       </div>
