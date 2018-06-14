@@ -18,6 +18,14 @@ export default class Submissions extends Component {
     });
   }
 
+  getRating(number) {
+    if (number >= 90) return "excellent";
+    if (number >= 70) return "good";
+    if (number >= 50) return "ok";
+    return "poor";
+  }
+
+
   render() {
     return ([
       <Sidebar key="sidebar" selected={this.props.page} isTutor={this.props.isTutor} />,
@@ -38,9 +46,9 @@ export default class Submissions extends Component {
                         <a href={s.url}>{s.assignment.title + "_v1.pdf"}</a>
                       </div>
                     </div>
-                    <div className="card-right rating-excellent">
+                    <div className={"card-right rating-" + this.getRating(s.grade)}>
                       <small>Grade</small>
-                      94%
+                      {s.grade}
                     </div>
                   </div>
                 </div>
