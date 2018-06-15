@@ -93,11 +93,21 @@ export default class Feedback extends Component {
       <Sidebar key="sidebar" selected={this.props.page} isTutor={this.props.isTutor} />,
       <div key="feeback-main" className="width-scrollable" style={{display: 'block'}} onClick={(e)=>this.startComment(e)} onScroll={(e)=>this.handleScroll(e)}>
         {
-          this.state.pages.map((p, i) => {
+          this.state.pages.map((p, pageNum) => {
             return (
-            <div key={"page"+i} className="feedback-page-item" onMouseMove={(e)=>this.onHover(e, i)} onMouseLeave={()=>this.onLeave()}>
+            <div key={"page"+pageNum} className="feedback-page-item" onMouseMove={(e)=>this.onHover(e, pageNum)} onMouseLeave={()=>this.onLeave()}>
               <img src={"data:image/png;base64,"+p.data} />
-              <div className="feedback-annotate">{this.renderComment(i)}
+              <div className="feedback-annotate">
+                {this.renderComment(pageNum)}
+                {
+                  this.state.feedback.map((f, i) => 
+                    f.page == pageNum ?
+                    <div key={"feedback"+i} className="feedback-saved" style={{ top: f.position }}>
+                      {f.message}
+                    </div>
+                    : null
+                  )
+                }
               </div>
             </div>
             )
