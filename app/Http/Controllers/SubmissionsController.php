@@ -93,19 +93,4 @@ class SubmissionsController
     return ["status" => 1];
   }
 
-  public function feedback(Request $request)
-  {
-    $submission = Submission::find($request->submission_id);
-    $submission->grade = $request->grade;
-    $submission->feedback = $request->feedback;
-    $submission->save();
-
-    Notification::create([
-      'user_id' => $submission->assignment->student->user_id,
-      'message' => Auth::user()->name . " has graded " . $submission->assignment->title . ". You obtained " . $submission->grade . "%",
-      'url' => '/submissions'
-    ]);
-    return ["status" => 1];
-  }
-
 }
