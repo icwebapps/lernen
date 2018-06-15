@@ -17,6 +17,7 @@ export default class Submissions extends Component {
     });
   }
 
+
   render() {
     return (
       <div className="dashboard-panel-item flex-rows">
@@ -30,7 +31,7 @@ export default class Submissions extends Component {
                   </div>
                   <div className="assignments-cell" style={{cursor: 'pointer'}}>
                     <a href={"/feedback/"+s.id}>
-                    <input type="button" value="Leave Feedback" className="add-resource bold-button" key="resource-file-submit" />
+                      <input type="button" value="Leave Feedback" className="add-resource bold-button" key="resource-file-submit" />
                     </a>
                   </div>
 
