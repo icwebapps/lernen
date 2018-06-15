@@ -1,38 +1,21 @@
 import ReactDOM from "react-dom";
 import React, { Component } from 'react';
-import ModalAddFeedback from "../Modal/ModalAddFeedback";
 import axios from "axios/index";
-
-
 
 export default class Submissions extends Component {
   constructor() {
     super();
     this.state = {
-      submissions: [],
-      addFeedback: false,
-      selectedSubmission: null
+      submissions: []
     };
     this.loadSubmissions();
   }
-
-  openAddFeedback(s) {
-    if (this.state.addFeedback) {
-      this.setState({ selectedSubmission: null, addFeedback: false });
-    }
-    else {
-      this.setState({ selectedSubmission: s.id, addFeedback: true });
-    }
-  }
-
 
   loadSubmissions() {
     axios.get('/submissions/list').then((response) => {
       this.setState(response.data);
     });
   }
-
-
 
   render() {
     return (
@@ -46,18 +29,15 @@ export default class Submissions extends Component {
                     <a href={s.url} download>{s.assignment.title}</a>
                   </div>
                   <div className="assignments-cell" style={{cursor: 'pointer'}}>
-                    <input type="button" value="Leave Feedback" onClick={()=>this.openAddFeedback(s)} className="add-resource bold-button" key="resource-file-submit" />
+                    <a href={"/feedback/"+s.id}>
+                    <input type="button" value="Leave Feedback" className="add-resource bold-button" key="resource-file-submit" />
+                    </a>
                   </div>
 
                 </div>
               )
             })
           }
-          { this.state.addFeedback ?
-            <ModalAddFeedback submissionID={this.state.selectedSubmission}
-                              onCancel={()=>this.openAddFeedback()}
-                              onSubmit={()=>this.loadSubmissions()}
-            /> : '' }
         </div>
       </div>
     );

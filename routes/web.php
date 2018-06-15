@@ -48,12 +48,16 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/submissions/progress', 'SubmissionsController@progress');  
   Route::post('/submissions', 'SubmissionsController@create');
   Route::get('/submissions/list', 'SubmissionsController@list');
-  Route::post('/submissions/feedback', 'SubmissionsController@feedback');
 
   Route::post('/lessons', 'LessonsController@create');
 
   Route::post('/notifications/clear', 'NotificationsController@clear');
   Route::get('/notifications/{type}', 'NotificationsController@index');
+
+  Route::get('/feedback/{submission}', 'FeedbackController@index');
+  Route::get('/feedback/{submission}/list', 'FeedbackController@list');
+  Route::post('/feedback/{submission}', 'FeedbackController@save');
+  Route::get('/feedback/{id}/pages', 'FeedbackController@pages');
 });
 
 

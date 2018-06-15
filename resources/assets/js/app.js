@@ -21,3 +21,4 @@ require('./Pages/Resources');
 require('./Pages/DashboardTutor');
 require('./Pages/DashboardStudent');
 require('./Pages/Submissions');
+require('./Pages/Feedback');
