@@ -54,6 +54,9 @@ Route::middleware(['auth'])->group(function () {
 
   Route::post('/notifications/clear', 'NotificationsController@clear');
   Route::get('/notifications/{type}', 'NotificationsController@index');
+
+  Route::get('/feedback/{submission}', 'FeedbackController@index');
+  Route::get('/submissions/{id}/pages', 'FeedbackController@pages');
 });
 
 
