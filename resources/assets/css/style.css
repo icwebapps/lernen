@@ -220,3 +220,8 @@ input.add-subject-input {font-size: 13px;padding: 4px 12px;}
 .feedback-page-item img {background: white;height:842px;}
 .feedback-annotate {width: 50px;position: relative;}
 .feedback-annotate img {background: none;width: 30px;top: 0;position: absolute;height:auto;}
+.feedback-form{position:absolute;margin:-20px 45px}
+textarea{border:1px solid #E2E4E5;border-radius:20px;color:#6c6b71;padding:12px 20px;width:270px;font-family:'Open Sans',sans-serif;font-size:16px;outline:none;resize:none}
+.feedback-form input[type="button"]{width:140px;cursor:pointer;margin-top:10px}
+.feedback-form .bold-button{margin-right:30px;color:#fff;background:#279cff}
+.feedback-form input[type="button"]:hover{opacity:.7}
