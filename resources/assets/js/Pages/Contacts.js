@@ -76,6 +76,6 @@ export default class Contacts extends Component {
 }
 
 if (document.getElementById('contacts-widget')) {
-  var el = document.getElementById('contacts-widget');
+  let el = document.getElementById('contacts-widget');
   ReactDOM.render(<Contacts userId={el.dataset.userid} isTutor={el.dataset.istutor} talkingToId={el.dataset.talkingtoid} page={el.dataset.page} />, el);
 }

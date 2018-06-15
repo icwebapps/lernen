@@ -11,6 +11,16 @@ export default class Submissions extends Component {
     this.loadSubmissions();
   }
 
+  openAddFeedback(s) {
+    if (this.state.addFeedback) {
+      this.setState({ selectedSubmission: null, addFeedback: false });
+    }
+    else {
+      this.setState({ selectedSubmission: s.id, addFeedback: true });
+    }
+  }
+
+
   loadSubmissions() {
     axios.get('/submissions/list').then((response) => {
       this.setState(response.data);
@@ -36,6 +46,7 @@ export default class Submissions extends Component {
                   </div>
 
                 </div>
+
               )
             })
           }
