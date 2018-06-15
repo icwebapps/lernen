@@ -56,7 +56,9 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/notifications/{type}', 'NotificationsController@index');
 
   Route::get('/feedback/{submission}', 'FeedbackController@index');
-  Route::get('/submissions/{id}/pages', 'FeedbackController@pages');
+  Route::get('/feedback/{submission}/list', 'FeedbackController@list');
+  Route::post('/feedback/{submission}', 'FeedbackController@save');
+  Route::get('/feedback/{id}/pages', 'FeedbackController@pages');
 });
 
 

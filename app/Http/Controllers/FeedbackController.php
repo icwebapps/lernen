@@ -27,4 +27,28 @@ class FeedbackController
     }
     return ['pages' => $pages];
   }
+
+  public function list($submission) {
+    $sub = Submission::find($submission);
+    if (empty($sub->feedback)) {
+      $sub->feedback = [];
+    }
+    return ['feedback' => $sub->feedback];
+  }
+
+  public function save($submission, Request $request) {
+    $sub = Submission::find($submission);
+    if (empty($sub->feedback)) {
+      $sub->feedback = [];
+    }
+    $arr = $sub->feedback;
+    $arr[] = [
+      'message' => $request->input('message'),
+      'page' => $request->input('page'),
+      'position' => $request->input('position')
+    ];
+    $sub->feedback = $arr;
+    $sub->save();
+    return ['status' => 1];
+  }
 }

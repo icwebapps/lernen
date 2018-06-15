@@ -12,16 +12,23 @@ export default class Feedback extends Component {
       hover: [null, null],
       scroll: 0,
       addComment: false,
-      comments: []
+      feedback: []
     };
   }
 
   componentDidMount() {
-    this.loadPages();  
+    this.loadPages();
+    this.loadFeedback();
   }
 
   loadPages() {
-    axios.get('/submissions/'+this.props.submissionId+'/pages').then((response) => {
+    axios.get('/feedback/'+this.props.submissionId+'/pages').then((response) => {
+      this.setState(response.data);
+    });
+  }
+
+  loadFeedback() {
+    axios.get('/feedback/'+this.props.submissionId+'/list').then((response) => {
       this.setState(response.data);
     });
   }
@@ -55,14 +62,25 @@ export default class Feedback extends Component {
     this.setState({ addComment: false });
   }
 
+  saveFeedback() {
+    axios.post('/feedback/' + this.props.submissionId, {
+      message: this.state.thisFeedback,
+      page: this.state.hover[0],
+      position: this.state.hover[1]
+    }).then(() => {
+      this.setState({ addComment: false, hover: [null, null] });
+      this.loadFeedback();
+    })
+  }
+
   renderComment(i) {
     if (this.state.hover[0] == i) {
       return ([
         <img src="/images/icons8-plus-math-50.png" style={{top: Math.max(this.state.hover[1], 0)}} />,
         this.state.addComment ?
           <div className="feedback-form" style={{top: Math.max(this.state.hover[1], 0)}}>
-            <MultillineField className="feedback-text" />
-            <input type="button" value="Save" onClick={(e)=>{}} className="save-feedback bold-button" />
+            <MultillineField className="feedback-text" onChange={(val)=>this.setState({thisFeedback: val})} />
+            <input type="button" value="Save" onClick={(_)=>this.saveFeedback()} className="save-feedback bold-button" />
             <input type="button" value="Cancel" onClick={(_)=>this.stopComment()} className="cancel-feedback" />
           </div>
         : null
