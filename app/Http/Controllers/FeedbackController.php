@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Imagick;
 
-use App\{Submission};
+use App\{Submission, Notification};
 
 class FeedbackController
 {
@@ -44,6 +44,8 @@ class FeedbackController
     $arr = $sub->feedback;
     $arr[] = [
       'message' => $request->input('message'),
+      'marks' => $request->input('marks'),
+      'totalMarks' => $request->input('totalMarks'),
       'page' => $request->input('page'),
       'position' => $request->input('position')
     ];
@@ -52,19 +54,30 @@ class FeedbackController
     return ['status' => 1];
   }
 
-  /* public function finish(Request $request)
+  public function finish($submission, Request $request)
   {
-    $submission = Submission::find($request->submission_id);
-    $submission->grade = $request->grade;
-    $submission->feedback = $request->feedback;
-    $submission->save();
+    $sub = Submission::find($submission);
+    $feedback = $sub->feedback;
+    $runningCount = 0;
+    $runningTotal = 0;
+    foreach ($feedback as $x) {
+      $runningCount += floatval($x['marks']);
+      $runningTotal += floatval($x['totalMarks']);
+    }
+    if ($runningTotal == 0) {
+      $sub->grade = 0;
+    }
+    else {
+      $sub->grade = round($runningCount / $runningTotal, 2) * 100;
+    }
+    $sub->save();
 
     Notification::create([
-      'user_id' => $submission->assignment->student->user_id,
-      'message' => Auth::user()->name . " has graded " . $submission->assignment->title . ". You obtained " . $submission->grade . "%",
+      'user_id' => $sub->assignment->student->user_id,
+      'message' => Auth::user()->name . " has graded " . $sub->assignment->title . ". You obtained " . $sub->grade . "%",
       'url' => '/submissions'
     ]);
     return ["status" => 1];
-  }*/
+  }
 
 }

@@ -15,7 +15,7 @@ class FeedbackControllerTest extends TestCase
       'feedback' => [[], []]
     ]);
 
-    $response = $this->actingAs($submission->student->user)->get('/feedback/'.$submission->id.'/list');
+    $response = $this->actingAs($submission->assignment->student->user)->get('/feedback/'.$submission->id.'/list');
     $response->assertStatus(200);
     $response->assertJsonCount(2, 'feedback');
   }
@@ -27,11 +27,13 @@ class FeedbackControllerTest extends TestCase
     $data = [
       'message' => 'Test one',
       'page' => 0,
-      'position' => 100
+      'position' => 100,
+      'totalMarks' => 50,
+      'marks' => 30
     ];
-    $this->actingAs($submission->student->user)->post('/feedback/'.$submission->id, $data);
+    $this->actingAs($submission->assignment->student->user)->post('/feedback/'.$submission->id, $data);
 
-    $response = $this->actingAs($submission->student->user)->get('/feedback/'.$submission->id.'/list');
+    $response = $this->actingAs($submission->assignment->student->user)->get('/feedback/'.$submission->id.'/list');
     $response->assertStatus(200);
     $response->assertExactJson([
       'feedback' => [$data]

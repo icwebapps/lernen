@@ -58,6 +58,7 @@ Route::middleware(['auth'])->group(function () {
   Route::get('/feedback/{submission}/list', 'FeedbackController@list');
   Route::post('/feedback/{submission}', 'FeedbackController@save');
   Route::get('/feedback/{id}/pages', 'FeedbackController@pages');
+  Route::post('/feedback/{submission}/finish', 'FeedbackController@finish');
 });
 
 

@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import Sidebar from '../Widgets/Sidebar';
 import MultillineField from '../Form/MultilineField';
+import Field from '../Form/Field';
 
 export default class Feedback extends Component {
   constructor() {
@@ -34,26 +35,26 @@ export default class Feedback extends Component {
   }
 
   onHover(e, i) {
-    if (!this.state.addComment) {
+    if (!this.state.addComment && this.props.isTutor) {
       this.setState({ hover: [i, e.clientY + (this.state.scroll - 851*i) - 167] })
     }
   }
 
   onLeave() {
-    if (!this.state.addComment) {
+    if (!this.state.addComment && this.props.isTutor) {
       this.setState({ hover: [null, null] });
     }
   }
 
   handleScroll(event) {
-    if (!this.state.addComment) {
+    if (!this.state.addComment && this.props.isTutor) {
       let scrollTop = event.target.scrollTop;
       this.setState({ scroll: scrollTop });
     }
   }
 
   startComment(event) {
-    if (!this.state.addComment) {
+    if (!this.state.addComment && this.props.isTutor) {
       this.setState({ addComment: true });
     }
   }
@@ -65,12 +66,26 @@ export default class Feedback extends Component {
   saveFeedback() {
     axios.post('/feedback/' + this.props.submissionId, {
       message: this.state.thisFeedback,
+      marks: this.state.marks,
+      totalMarks: this.state.totalMarks,
       page: this.state.hover[0],
       position: this.state.hover[1]
     }).then(() => {
       this.setState({ addComment: false, hover: [null, null] });
       this.loadFeedback();
     })
+  }
+
+  submit() {
+    axios.post('/feedback/' + this.props.submissionId + '/finish').then(() => location.href = '/');
+  }
+
+  renderMarks() {
+    let count = 0, total = 0;
+    this.state.feedback.map(f => {
+      count += parseFloat(f.marks); total += parseFloat(f.totalMarks);
+    });
+    return ["Marks: ", <b>{count}/{total}</b>, <br />, <br />]
   }
 
   renderComment(i) {
@@ -80,6 +95,9 @@ export default class Feedback extends Component {
         this.state.addComment ?
           <div className="feedback-form" style={{top: Math.max(this.state.hover[1], 0)}}>
             <MultillineField className="feedback-text" onChange={(val)=>this.setState({thisFeedback: val})} />
+            <Field placeholder="Marks achieved" className="feedback-half feedback-marks" onChange={(val)=>this.setState({marks: val})}/>
+            <div className="feedback-marks-separator">/</div>
+            <Field placeholder="Possible marks" className="feedback-half feedback-total" onChange={(val)=>this.setState({totalMarks: val})} />
             <input type="button" value="Save" onClick={(_)=>this.saveFeedback()} className="save-feedback bold-button" />
             <input type="button" value="Cancel" onClick={(_)=>this.stopComment()} className="cancel-feedback" />
           </div>
@@ -92,6 +110,7 @@ export default class Feedback extends Component {
     return ([
       <Sidebar key="sidebar" selected={this.props.page} isTutor={this.props.isTutor} />,
       <div key="feeback-main" className="width-scrollable" style={{display: 'block'}} onClick={(e)=>this.startComment(e)} onScroll={(e)=>this.handleScroll(e)}>
+        { !this.props.isTutor ? this.renderMarks() : null }
         {
           this.state.pages.map((p, pageNum) => {
             return (
@@ -104,6 +123,7 @@ export default class Feedback extends Component {
                     f.page == pageNum ?
                     <div key={"feedback"+i} className="feedback-saved" style={{ top: f.position }}>
                       {f.message}
+                      <br /><b>{f.marks} / {f.totalMarks}</b>
                     </div>
                     : null
                   )
@@ -112,6 +132,11 @@ export default class Feedback extends Component {
             </div>
             )
           })
+        }
+        {
+          this.props.isTutor ?
+          <input type="button" className="feedback-submit" value="Submit Feedback" onClick={()=>this.submit()} /> :
+          <input type="button" className="feedback-submit" value="Back" onClick={()=>location.href='/submissions'} />
         }
       </div>
     ]);
