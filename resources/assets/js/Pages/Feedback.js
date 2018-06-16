@@ -35,26 +35,26 @@ export default class Feedback extends Component {
   }
 
   onHover(e, i) {
-    if (!this.state.addComment) {
+    if (!this.state.addComment && this.props.isTutor) {
       this.setState({ hover: [i, e.clientY + (this.state.scroll - 851*i) - 167] })
     }
   }
 
   onLeave() {
-    if (!this.state.addComment) {
+    if (!this.state.addComment && this.props.isTutor) {
       this.setState({ hover: [null, null] });
     }
   }
 
   handleScroll(event) {
-    if (!this.state.addComment) {
+    if (!this.state.addComment && this.props.isTutor) {
       let scrollTop = event.target.scrollTop;
       this.setState({ scroll: scrollTop });
     }
   }
 
   startComment(event) {
-    if (!this.state.addComment) {
+    if (!this.state.addComment && this.props.isTutor) {
       this.setState({ addComment: true });
     }
   }
@@ -80,6 +80,14 @@ export default class Feedback extends Component {
     axios.post('/feedback/' + this.props.submissionId + '/finish').then(() => location.href = '/');
   }
 
+  renderMarks() {
+    let count = 0, total = 0;
+    this.state.feedback.map(f => {
+      count += parseFloat(f.marks); total += parseFloat(f.totalMarks);
+    });
+    return ["Marks: ", <b>{count}/{total}</b>, <br />, <br />]
+  }
+
   renderComment(i) {
     if (this.state.hover[0] == i) {
       return ([
@@ -102,6 +110,7 @@ export default class Feedback extends Component {
     return ([
       <Sidebar key="sidebar" selected={this.props.page} isTutor={this.props.isTutor} />,
       <div key="feeback-main" className="width-scrollable" style={{display: 'block'}} onClick={(e)=>this.startComment(e)} onScroll={(e)=>this.handleScroll(e)}>
+        { !this.props.isTutor ? this.renderMarks() : null }
         {
           this.state.pages.map((p, pageNum) => {
             return (
@@ -124,7 +133,11 @@ export default class Feedback extends Component {
             )
           })
         }
-        <input type="button" className="feedback-submit" value="Submit Feedback" onClick={()=>this.submit()} />
+        {
+          this.props.isTutor ?
+          <input type="button" className="feedback-submit" value="Submit Feedback" onClick={()=>this.submit()} /> :
+          <input type="button" className="feedback-submit" value="Back" onClick={()=>location.href='/submissions'} />
+        }
       </div>
     ]);
   }
