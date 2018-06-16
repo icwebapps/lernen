@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import Sidebar from '../Widgets/Sidebar';
 import MultillineField from '../Form/MultilineField';
+import Field from '../Form/Field';
 
 export default class Feedback extends Component {
   constructor() {
@@ -65,12 +66,18 @@ export default class Feedback extends Component {
   saveFeedback() {
     axios.post('/feedback/' + this.props.submissionId, {
       message: this.state.thisFeedback,
+      marks: this.state.marks,
+      totalMarks: this.state.totalMarks,
       page: this.state.hover[0],
       position: this.state.hover[1]
     }).then(() => {
       this.setState({ addComment: false, hover: [null, null] });
       this.loadFeedback();
     })
+  }
+
+  submit() {
+    axios.post('/feedback/' + this.props.submissionId + '/finish').then(() => location.href = '/');
   }
 
   renderComment(i) {
@@ -80,6 +87,9 @@ export default class Feedback extends Component {
         this.state.addComment ?
           <div className="feedback-form" style={{top: Math.max(this.state.hover[1], 0)}}>
             <MultillineField className="feedback-text" onChange={(val)=>this.setState({thisFeedback: val})} />
+            <Field placeholder="Marks achieved" className="feedback-half feedback-marks" onChange={(val)=>this.setState({marks: val})}/>
+            <div className="feedback-marks-separator">/</div>
+            <Field placeholder="Possible marks" className="feedback-half feedback-total" onChange={(val)=>this.setState({totalMarks: val})} />
             <input type="button" value="Save" onClick={(_)=>this.saveFeedback()} className="save-feedback bold-button" />
             <input type="button" value="Cancel" onClick={(_)=>this.stopComment()} className="cancel-feedback" />
           </div>
@@ -104,6 +114,7 @@ export default class Feedback extends Component {
                     f.page == pageNum ?
                     <div key={"feedback"+i} className="feedback-saved" style={{ top: f.position }}>
                       {f.message}
+                      <br /><b>{f.marks} / {f.totalMarks}</b>
                     </div>
                     : null
                   )
@@ -113,6 +124,7 @@ export default class Feedback extends Component {
             )
           })
         }
+        <input type="button" className="feedback-submit" value="Submit Feedback" onClick={()=>this.submit()} />
       </div>
     ]);
   }
