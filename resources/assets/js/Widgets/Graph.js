@@ -28,12 +28,19 @@ export default class Graph extends Component {
         data.push({x: i++, y: s.grade});
       }
     });
+
+
+
+    let ticks = [];
+    for(let i = 0; i <= 10; ++i ){
+      ticks.push(10 * i );
+    }
     return (
       <div className="graph">
-        <XYPlot height={300} width={300}>
+        <XYPlot yDomain={[0, 100]} height={300} width={300}>
           <LineSeries data={data} />
-          <XAxis />
-          <YAxis />
+          <XAxis tickValues={[0, 1, 3, 4, 5]} tickLabelAngle={-90} tickFormat={v => `Value is ${v}`}/>
+          <YAxis tickValues={ticks}/>
         </XYPlot>
       </div>
     );
