@@ -12,12 +12,20 @@ export default class Graph extends Component {
     this.loadSubmissions();
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.studentId != prevProps.studentId) {
+      this.loadSubmissions();
+    }
+  }
+
   loadSubmissions() {
     axios.get('/submissions/list').then((response) => {
       this.setState(response.data);
-      this.state.submissions = this.state.submissions
-        .filter(s => (s.grade != null && s.assignment.student_id == this.props.studentId))
-        .sort(function(a, b){return (a.created_at > b.created_at)});
+      this.setState({
+        submissions: this.state.submissions
+          .filter(s => (s.grade != null && s.assignment.student_id == this.props.studentId))
+          .sort(function(a, b){return (a.created_at > b.created_at)})
+      });
     });
   }
 
