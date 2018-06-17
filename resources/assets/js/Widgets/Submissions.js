@@ -25,20 +25,25 @@ export default class Submissions extends Component {
         <div className="assignments-list submissions-list">
           {
             this.state.submissions.map((s, i) => {
-              return (
-                <div className="assignments-row" key={"assignment-row-"+i}>
-                  <div className="assignments-cell" style={{cursor: 'pointer'}}>
-                    <a href={s.url} download>{s.assignment.title}</a>
-                  </div>
-                  <div className="assignments-cell" style={{cursor: 'pointer'}}>
-                    <a href={"/feedback/"+s.id}>
-                      <input type="button" value="Leave Feedback" className="add-resource bold-button" key="resource-file-submit" />
-                    </a>
+              if (s.grade === null) {
+                return (
+                  <div className="assignments-row" key={"assignment-row-"+i}>
+                    <div className="assignments-cell" style={{cursor: 'pointer'}}>
+                      <a href={s.url} download>{s.assignment.title}</a>
+                    </div>
+                    <div className="assignments-cell" style={{cursor: 'pointer'}}>
+                      <a href={"/feedback/"+s.id}>
+                        <input type="button" value="Leave Feedback" className="add-resource bold-button" key="resource-file-submit" />
+                      </a>
+                    </div>
+
                   </div>
 
-                </div>
-
-              )
+                )
+              }
+              else {
+                return null;
+              }
             })
           }
         </div>
