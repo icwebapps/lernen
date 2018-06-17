@@ -46,8 +46,8 @@ export default class Graph extends Component {
         <div className="graph-header" >
           Progress
         </div>
-        <div className="subject-list-name">
-          Maths
+        <div className="graph-subject">
+          {this.state.submissions.length == 0 ? "" : "Maths"}
         </div>
         <XYPlot title="Progress graph" yDomain={[0, 100]} xDomain={[0, this.state.submissions.length]}
                 margin = {{left: 150, right: 10, top: 50, bottom: 100}} height={500} width={600}>
