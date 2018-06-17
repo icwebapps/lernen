@@ -67,7 +67,7 @@ export default class Contacts extends Component {
           { this.state.talkingTo ? <ChatWidget userId={this.props.userId} isTutor={this.props.isTutor} talkingTo={this.state.talkingTo} /> : '' }
         </div>
         <div key="panel-graph" className="panel-graph">
-          { this.state.talkingTo ? <Graph userId={this.state.talkingTo.id} /> : '' }
+          { this.state.talkingTo ? <Graph studentId={this.state.talkingTo.id} /> : '' }
         </div>
 
       </div>

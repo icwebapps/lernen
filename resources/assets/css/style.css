@@ -230,3 +230,5 @@ input[type="text"].feedback-half{width:50%;display:inline-block;box-sizing:borde
 .feedback-marks-separator{color:#6c6b71;margin:10px -4px;position:absolute;display:inline-block;font-weight:600;font-size:21px}
 .feedback-half.feedback-marks{text-align:right;border-top-right-radius:0;border-bottom-right-radius:0;border-right:none}
 .feedback-half.feedback-total{border-top-left-radius:0;border-bottom-left-radius:0;border-left:none}
+.graph-header {height:15px;color:#313549;font-size:20px;border-bottom-width:3px;margin-left: 350px;margin-top: 30px;margin-bottom: 30px}
+.graph-subject {color:#73787D;padding:4px 15px 0;width:180px;margin-left: 350px;margin-top: 80px;margin-bottom: 30px}

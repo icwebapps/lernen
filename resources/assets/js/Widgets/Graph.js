@@ -15,8 +15,8 @@ export default class Graph extends Component {
   loadSubmissions() {
     axios.get('/submissions/list').then((response) => {
       this.setState(response.data);
-      this.state.submissions = response.data
-        .filter(s => s.grade != null)
+      this.state.submissions = this.state.submissions
+        .filter(s => (s.grade != null && s.assignment.student_id == this.props.studentId))
         .sort(function(a, b){return (a.created_at > b.created_at)});
     });
   }
@@ -43,8 +43,14 @@ export default class Graph extends Component {
     }
     return (
       <div className="graph">
+        <div className="graph-header" >
+          Progress
+        </div>
+        <div className="subject-list-name">
+          Maths
+        </div>
         <XYPlot title="Progress graph" yDomain={[0, 100]} xDomain={[0, this.state.submissions.length]}
-                margin = {{left: 100, right: 10, top: 50, bottom: 100}} height={500} width={500}>
+                margin = {{left: 150, right: 10, top: 50, bottom: 100}} height={500} width={600}>
           <LineMarkSeries
             data={data}
             lineStyle={{stroke: "red"}}
