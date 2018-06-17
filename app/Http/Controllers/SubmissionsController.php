@@ -54,7 +54,7 @@ class SubmissionsController
       foreach ($resources as $r) {
         $assignments = $r->load('assignments.submissions')->assignments;
         foreach ($assignments as $a) {
-          $submissions = array_merge($submissions, $a->submissions()->whereNull('grade')->get()->load('assignment')->all());
+          $submissions = array_merge($submissions, $a->submissions()->get()->load('assignment')->all());
         }
       }
       return [ "submissions" => $submissions ];

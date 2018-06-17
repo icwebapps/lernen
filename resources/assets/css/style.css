@@ -180,7 +180,7 @@ input.bold-button {width: 165px;text-transform: uppercase;font-weight: 700;font-
 .chat-talking-to{background:#fff;border-bottom:1px solid #DADADA;font-weight:600;font-size:20px;color:#313549;text-align:center;padding:25px 0}
 .chat-talking-to img{border-radius:50%;width:30px;vertical-align:-10px;margin-right:25px}
 .chat-container{flex:1;position:relative;}
-#contacts-widget textarea{border:none;border-top:1px solid #DADADA;font-family:'Open Sans',sans-serif;font-size:14px;padding:25px;outline:none;resize:none}
+#contacts-widget textarea{border:none;border-top:1px solid #DADADA;font-family:'Open Sans',sans-serif;font-size:14px;padding:25px;outline:none;resize:none;width: auto;border-radius: 0;}
 .chat-messages-container{position:absolute;bottom:0;padding:15px;width:100%;box-sizing:border-box;display:flex;flex-direction:column;height: 100%;overflow-y: scroll;}
 .chat-message{border:1px solid #DADADA;background:#fff;border-radius:7px;font-size:14px;padding:8px 25px 8px 15px;margin:5px 0;max-width:200px}
 .chat-message.outgoing{background:#4990e0;color:#fff;text-align:right;align-self:flex-end}
@@ -230,3 +230,5 @@ input[type="text"].feedback-half{width:50%;display:inline-block;box-sizing:borde
 .feedback-marks-separator{color:#6c6b71;margin:10px -4px;position:absolute;display:inline-block;font-weight:600;font-size:21px}
 .feedback-half.feedback-marks{text-align:right;border-top-right-radius:0;border-bottom-right-radius:0;border-right:none}
 .feedback-half.feedback-total{border-top-left-radius:0;border-bottom-left-radius:0;border-left:none}
+.graph-header {height:15px;color:#313549;font-size:20px;border-bottom-width:3px;margin-left: 350px;margin-top: 30px;margin-bottom: 30px}
+.graph-subject {color:#73787D;padding:4px 15px 0;width:180px;margin-left: 350px;margin-top: 80px;margin-bottom: 30px}

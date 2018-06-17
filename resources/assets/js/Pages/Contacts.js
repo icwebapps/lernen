@@ -5,6 +5,7 @@ import SearchField from '../Form/SearchField';
 import ResultsList from '../Search/ResultsList';
 import ChatWidget from '../Chat/ChatWidget';
 import Sidebar from '../Widgets/Sidebar';
+import Graph from '../Widgets/Graph';
 
 export default class Contacts extends Component {
   constructor() {
@@ -65,12 +66,16 @@ export default class Contacts extends Component {
         <div key="panel-chat" className="panel-chat">
           { this.state.talkingTo ? <ChatWidget userId={this.props.userId} isTutor={this.props.isTutor} talkingTo={this.state.talkingTo} /> : '' }
         </div>
+        <div key="panel-graph" className="panel-graph">
+          { this.state.talkingTo ? <Graph studentId={this.state.talkingTo.id} /> : '' }
+        </div>
+
       </div>
     ]);
   }
 }
 
 if (document.getElementById('contacts-widget')) {
-  var el = document.getElementById('contacts-widget');
+  let el = document.getElementById('contacts-widget');
   ReactDOM.render(<Contacts userId={el.dataset.userid} isTutor={el.dataset.istutor} talkingToId={el.dataset.talkingtoid} page={el.dataset.page} />, el);
 }

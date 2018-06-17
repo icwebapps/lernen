@@ -11,11 +11,13 @@ export default class Submissions extends Component {
     this.loadSubmissions();
   }
 
+
   loadSubmissions() {
     axios.get('/submissions/list').then((response) => {
       this.setState(response.data);
     });
   }
+
 
   render() {
     return (
@@ -30,11 +32,12 @@ export default class Submissions extends Component {
                   </div>
                   <div className="assignments-cell" style={{cursor: 'pointer'}}>
                     <a href={"/feedback/"+s.id}>
-                    <input type="button" value="Leave Feedback" className="add-resource bold-button" key="resource-file-submit" />
+                      <input type="button" value="Leave Feedback" className="add-resource bold-button" key="resource-file-submit" />
                     </a>
                   </div>
 
                 </div>
+
               )
             })
           }
