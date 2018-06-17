@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../../../../node_modules/react-vis/dist/style.css';
-import {XYPlot, LineSeries, XAxis, YAxis} from 'react-vis';
+import {XYPlot, LineMarkSeries, XAxis, YAxis, Hint} from 'react-vis';
 import axios from "axios";
 
 export default class Graph extends Component {
@@ -15,7 +15,9 @@ export default class Graph extends Component {
   loadSubmissions() {
     axios.get('/submissions/list').then((response) => {
       this.setState(response.data);
-      console.log(this.state.submissions);
+      this.state.submissions = response.data
+        .filter(s => s.grade != null)
+        .sort(function(a, b){return (a.created_at > b.created_at)});
     });
   }
 
@@ -31,16 +33,25 @@ export default class Graph extends Component {
 
 
 
-    let ticks = [];
-    for(let i = 0; i <= 10; ++i ){
-      ticks.push(10 * i );
+    let ticksY = [];
+    for(let i = 0; i <= 10; ++i ) {
+      ticksY.push(10 * i );
+    }
+    let ticksX = [];
+    for (let i = 1; i <= this.state.submissions.length; i++) {
+      ticksX.push(i);
     }
     return (
       <div className="graph">
-        <XYPlot yDomain={[0, 100]} height={300} width={300}>
-          <LineSeries data={data} />
-          <XAxis tickValues={[0, 1, 3, 4, 5]} tickLabelAngle={-90} tickFormat={v => `Value is ${v}`}/>
-          <YAxis tickValues={ticks}/>
+        <XYPlot title="Progress graph" yDomain={[0, 100]} xDomain={[0, this.state.submissions.length]}
+                margin = {{left: 100, right: 10, top: 50, bottom: 100}} height={500} width={500}>
+          <LineMarkSeries
+            data={data}
+            lineStyle={{stroke: "red"}}
+            markStyle={{stroke: "red", fill: "#4B87DD"}}
+          />
+          <XAxis tickValues={ticksX} tickLabelAngle={-45} tickFormat={i => this.state.submissions[i-1].assignment.title}/>
+          <YAxis tickValues={ticksY}/>
         </XYPlot>
       </div>
     );
