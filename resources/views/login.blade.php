@@ -21,6 +21,9 @@
       <div class="login-container">
         <div id="login-form">
         </div>
+        <br /><br />
+        Lernen is currently in testing stages. If you wish to create an account, <br />
+        please email <b><a href="mailto:hello@lernen.co.uk">hello@lernen.co.uk</a></b>
       </div>
     </div>
     
